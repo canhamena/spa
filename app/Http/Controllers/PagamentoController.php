@@ -1,0 +1,182 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Pagamento;
+use App\Http\Helpers\AppHelper;
+use Illuminate\Support\Facades\Auth;
+use App\Models\TipoServico;
+use App\Models\Marcacao;
+use App\Models\TipoServicoPagamento;
+
+class PagamentoController extends Controller
+{
+
+	    public function index()
+	    {
+		      $pagamentos = Pagamento::Orderby('id','desc')->get();
+		      return view('pagamento.index',compact('pagamentos'));
+	    }
+
+
+        public function store(Request $request)
+        {
+	          $request->validate([
+                'nome' => 'required'
+                 ]);
+
+	          $pagamento = new Pagamento();
+	          $pagamento->nome_cliente = $request->nome;
+	          $pagamento->numero_pagamento
+	           = AppHelper::geraNumeroPagamento(count(Pagamento::all()));
+	          $pagamento->valor = 0;
+	          $pagamento->user_id = Auth::user()->id;
+	          $pagamento->save();
+              
+	          return redirect()->route('pagamento.factura',base64_encode($pagamento->id));
+            
+	        
+        }
+
+
+
+        public function create($pagamento_id)
+        {
+	     $pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
+   
+	     if (isset($pagamento)) {
+               $tipo_servicos = TipoServico::Orderby('nome','asc')->get();
+         
+              return view('pagamento.create_factura',compact('pagamento','tipo_servicos'));
+	     }
+
+	     return redirect()->route('pagamento.index')->with('mensagem', 'pagamento não encontrado');
+
+       }
+
+
+       public function store_factura(Request $request)
+       {
+	        $request->validate([
+                'tipo_servico' => 'required',
+                'qtd' => 'required'
+
+                 ]);
+	        
+	       
+	        $tiposervicopagamento = new TipoServicoPagamento();
+	        $tiposervicopagamento->tipo_servico_id = $request->tipo_servico;
+	        $tiposervicopagamento->qtd = $request->qtd;
+	        $tiposervicopagamento->pagamento_id = $request->pagamento_id;
+	        $tiposervicopagamento->save();
+
+	       
+
+	        return redirect()->route('pagamento.factura',base64_encode($request->pagamento_id))->with('mensagem', 'tipo de serviço adicionado á factura');
+
+        }
+
+        public function factura_update(Request $request)
+        {
+	        $request->validate([
+                'tipo_servico' => 'required',
+                'qtd' => 'required']);
+
+	        $tiposervico = TipoServicoPagamento::where('id',$request->pagamentoservico_id)->get()->first();
+	        if (isset($tiposervico)) {
+
+	        	$tiposervico->tipo_servico_id = $request->tipo_servico;
+	        	$tiposervico->qtd = $request->qtd;
+	        	$tiposervico->save();
+	        	return redirect()->route('pagamento.factura',base64_encode($tiposervico->pagamento_id))->with('mensagem', 'Linha de pagamento actualizado ..!');
+	        	
+	        }
+
+
+              return redirect()->route('pagamento.factura',base64_encode($tiposervico->pagamento_id))->with('erro', 'Linha de pagamento não encontrado ..!');
+
+        }
+
+        public function factura_delete($pagamentoservico_id)
+        {
+	        $tiposervico = TipoServicoPagamento::where('id',base64_decode($pagamentoservico_id))->get()->first();
+	        if (isset($tiposervico)) {
+	        	$tiposervico->delete();
+	        	return redirect()->route('pagamento.factura',base64_encode($tiposervico->pagamento_id))->with('mensagem', 'Linha de pagamento eliminado ..!');
+	        	
+	        }
+
+
+              return redirect()->route('pagamento.factura',base64_encode($tiposervico->pagamento_id))->with('erro', 'Linha de pagamento não encontrado ..!');
+        }
+
+        public function show($pagamento_id)
+        {
+        	$pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
+   
+	     if (isset($pagamento)) {
+               $tipo_servicos = TipoServico::Orderby('nome','asc')->get();
+         
+              return view('pagamento.show',compact('pagamento','tipo_servicos'));
+	     }
+
+	     return redirect()->route('pagamento.index')->with('mensagem', 'pagamento não encontrado');
+
+        }
+
+        public function destroy($pagamento_id)
+        {
+        	$pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
+   
+	     if (isset($pagamento)) {
+	     	  $tiposervico = TipoServicoPagamento::where('pagamento_id',$pagamento->id)->get()->first();
+              if (isset($tiposervico)) {
+              	$tiposervico->delete();
+              }
+              $pagamento->delete();
+              return redirect()->route('pagamento.index')->with('mensagem', 'pagamento eliminado com sucesso');
+	     }
+
+	     return redirect()->route('pagamento.index')->with('mensagem', 'pagamento não encontrado');
+
+        }
+
+
+
+         public function pagamento_marcacao($reserva_id)
+       {
+	        
+               $marcacao = Marcacao::where("id",base64_decode($reserva_id))->get()->first();
+	        if (isset($marcacao)) {
+
+	        	    $pagamento = new Pagamento();
+	                $pagamento->nome_cliente = $marcacao->cliente->nome;
+	                $pagamento->numero_pagamento
+	                  = AppHelper::geraNumeroPagamento(count(Pagamento::all()));
+	                $pagamento->valor = 0;
+	                $pagamento->user_id = Auth::user()->id;
+	                $pagamento->save();
+
+                   foreach ($marcacao->marcacaoservico as $servico) {
+                   	    $tiposervicopagamento = new TipoServicoPagamento();
+	                    $tiposervicopagamento->tipo_servico_id = $servico->tiposervico->id;
+	                    $tiposervicopagamento->qtd = $servico->quantidade;
+	                    $tiposervicopagamento->pagamento_id = $pagamento->id;
+	                    $tiposervicopagamento->save();
+	                }
+	                $marcacao->estado = "A";
+	                $marcacao->save();
+
+                   return redirect()->route('pagamento.index')->with('mensagem', 'pagamento efectuado com sucesso');
+	        	
+	        }
+
+
+	             return redirect()->route('reserva.index')->with('erro', 'pagamento não pode ser feito');
+	        
+	        }
+
+
+
+}
