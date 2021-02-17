@@ -117,6 +117,11 @@ Route::post('/agenda/store', ['App\Http\Controllers\AgendaAtendimentoController'
 Route::post('/agenda/popular_tiposervico', ['App\Http\Controllers\AgendaAtendimentoController', 'tiposervico'])->name("tiposervico_local.post");
 
 
+/************** Estatistica ****************************** */
+Route::get('/estatistica/marcacao', ['App\Http\Controllers\EstatisticaController', 'marcacao'])->name('estatistica.marcacao');
+Route::get('/estatistica/servico', ['App\Http\Controllers\EstatisticaController', 'servico'])->name('estatistica.servico');
+
+
 
 
 

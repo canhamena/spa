@@ -13,7 +13,7 @@
             </ul>
         </li>
 
-   <li class="treeview">
+        <li class="treeview">
             <a href="#">
                 <i class="fa fa-dollar"></i> <span>Pagamento</span>
                 <span class="pull-right-container">
@@ -25,6 +25,20 @@
                 <li><a href="{{url('pagamento/index')}}"><i class=""></i> Listar</a></li>
             </ul>
         </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class=" fa fa-bar-chart "></i> <span>Estatistica</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu"> 
+                <li class=""><a href="{{url('estatistica/marcacao')}}"><i class=""></i> <span>Marcação</span></a></li>
+                <li><a href="{{url('estatistica/servico')}}"><i class=""></i> Serviço</a></li>
+            </ul>
+        </li>
+
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-cogs"></i> <span>Configurações</span>

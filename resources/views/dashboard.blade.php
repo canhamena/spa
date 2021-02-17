@@ -8,7 +8,7 @@
 
 @section('icone','fa fa-ticket')
 @section('module','Nome do spa')
-@section('subtitle','Página Inicial')
+@section('subtitle','Página Inicial') 
 
 @section('content')
 
@@ -94,7 +94,7 @@
                 <div class="box-body">
                   <!-- the events -->
                   <div id="external-events">
-                    <div class="external-event bg-green">Concluido</div>
+                    <div class="external-event bg-green">Atendimento</div>
                     <br>
                     <div class="external-event bg-yellow">Pendente</div>
                     <br>
@@ -130,10 +130,10 @@
     <script src="{{ asset('/platform/bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script >
 
-        //CALENDARIO 
-        /* initialize the calendar
-        -----------------------------------------------------------------*/
-        //Date for the calendar events (dummy data) 
+    //CALENDARIO 
+    /* initialize the calendar
+    -----------------------------------------------------------------*/
+    //Date for the calendar events (dummy data) 
     $(document).ready(function(){
         
         var dados = <?php echo json_encode($eventos, JSON_NUMERIC_CHECK); ?>;
