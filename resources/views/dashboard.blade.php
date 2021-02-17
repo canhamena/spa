@@ -94,7 +94,7 @@
                 <div class="box-body">
                   <!-- the events -->
                   <div id="external-events">
-                    <div class="external-event bg-green">Concluido</div>
+                    <div class="external-event bg-green">Atendimento</div>
                     <br>
                     <div class="external-event bg-yellow">Pendente</div>
                     <br>
