@@ -114,6 +114,11 @@ Route::get('/reserva/{id}/show', ['App\Http\Controllers\ReservaController', 'sho
 Route::post('/agenda/store', ['App\Http\Controllers\AgendaAtendimentoController', 'store'])->name('agenda.store');
 
 
+/************** Estatistica ****************************** */
+Route::get('/estatistica/marcacao', ['App\Http\Controllers\EstatisticaController', 'marcacao'])->name('estatistica.marcacao');
+Route::get('/estatistica/servico', ['App\Http\Controllers\EstatisticaController', 'servico'])->name('estatistica.servico');
+
+
 
 
 
