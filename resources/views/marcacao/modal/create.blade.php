@@ -261,4 +261,12 @@ $("#entryForm").validate({
     $('.timepicker').timepicker({
       showInputs: false
     });
+
+    
+
+        
+      
+
+
+
 </script>

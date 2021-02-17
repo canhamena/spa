@@ -63,7 +63,7 @@
                             <th>Nome </th>
                             <th>Descrição</th>
                             <th>Tipos de serviço</th>
-                            <th style="text-align: center;">Operação</th>
+                            <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,7 +72,11 @@
                                 <td>{{  $loop->index +1 }}</td>
                                 <td>{{ $servico->nome }}</td>
                                 <td>{{ $servico->descricao }}</td>
-                                <td>0</td>
+                                <td>
+                                    @if(isset($servico->tiposervico))
+                                    {{count($servico->tiposervico)}}
+                                    @endif
+                                </td>
                                
                                    <td style="text-align: center;">
 

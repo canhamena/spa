@@ -410,10 +410,11 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) 
   var id = button.data('whatever') 
  
-  
   var modal = $(this)
   modal.find('#endereco').val(id)
 });
+
+
 
 </script>
 
@@ -506,6 +507,9 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
             
 
         });
+
+
+
 
 </script>
 
@@ -626,6 +630,50 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
                          });
                              
                 }
+           }
+
+                 
+                    
+                });
+            
+
+        });
+
+        
+        </script>
+
+          <script type="text/javascript">
+
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+        $("#servico").change(function(e) {
+
+            e.preventDefault();
+          
+            var tiposervico_id = $(this).val();
+             var local = $("#localizacao").val();
+             
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    url: "{{ route('tiposervico_local.post') }}",
+                    data: {
+                       _token : $('meta[name="csrf-token"]').attr('content'),
+                       "_method": 'POST',
+                       disponivel: tiposervico_id},
+                    dataType: 'json',
+                    success: function(res)
+                           {       
+                    
+                         console.log(res);
+                             
+                
            }
 
                  

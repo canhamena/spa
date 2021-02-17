@@ -9,7 +9,7 @@ class AgendaAtendimento extends Model
 {
     use HasFactory;
 
-    protected $table = "agentaatendimento";
+    protected $table = "agendaatendimento";
 
        public function tiposervico() {
 

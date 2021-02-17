@@ -60,13 +60,13 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Clinete</th>
+                            <th>Cliente</th>
                             <th>Telefone</th>
                             <th>E-mail</th>
                             <th>Data da marcação</th>
                             <th>Data de atendimento</th>
                             <th>Estado </th>
-                            <th style="text-align: center;">Operação</th>
+                            <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>
                         <tbody>
