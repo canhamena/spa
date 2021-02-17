@@ -19,9 +19,11 @@ Route::get('/', function () {
 Route::view('users','livewire.user.index')->middleware('auth')->name('users');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',  ['App\Http\Controllers\DashboardController', 'index'])->name('dashboard');
 
 
 /*********************** spa *******************************/
