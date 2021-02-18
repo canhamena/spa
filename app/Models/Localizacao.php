@@ -26,4 +26,9 @@ class Localizacao extends Model
           
            return $this->hasOne(Municipio::class,'id','municipio_id');
        }
+
+        public function contacto() {
+          
+           return $this->hasOne(Contacto::class,'localizacao_id','id');
+       }
 }

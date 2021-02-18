@@ -4,7 +4,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"> <i class="fa fa-calendar-plus-o"></i> Adicionar desponiblidade de atendimento</h4>
+                <h4 class="modal-title"> <i class="fa fa-calendar-plus-o"></i> Adicionar disponiblidade de atendimento</h4>
               </div>
               <div class="modal-body">
 
@@ -46,7 +46,7 @@
                       <select class="form-control select2"  
                         style="width: 100%;" name="tiposervico[]" multiple="multiple" id="tiposervico">
 
-                           <option disabled="" selected=""> Aguarde... </option>
+                        
                              
                          </select>
                     </div>
@@ -60,7 +60,7 @@
                     <label for="inputExperience" class="col-sm-3 control-label">Data inicio<span class="text-danger">*</span></label>
 
                     <div class="col-sm-9">
-                     <input type="text" name="data_inicio" class="form-control"  id="datepicker" required="">
+                     <input type="date" name="data_inicio" class="form-control" min="<?php echo date('Y-m-d'); ?>"  required="">
                     </div>
                     <span class="text-danger">
                         @error('data_inicio')
@@ -72,7 +72,7 @@
                     <label for="inputExperience" class="col-sm-3 control-label">Data fim</label>
 
                     <div class="col-sm-9">
-                     <input type="text" name="data_fim" class="form-control datepicker"   >
+                     <input type="date" name="data_fim" class="form-control " min="<?php echo date('Y-m-d'); ?>"   >
                     </div>
                     <span class="text-danger">
                         @error('data_fim')
@@ -113,7 +113,7 @@
                       </span>
                   </div>
                   <div class="form-group has-feedback @error('qtd_cliente') has-error @enderror">
-                    <label for="inputExperience" class="col-sm-3 control-label">Qunatidade de cliente diário<span class="text-danger">*</span></label>
+                    <label for="inputExperience" class="col-sm-3 control-label">Quantidade de cliente diário<span class="text-danger">*</span></label>
 
                     <div class="col-sm-9">
                      <input type="number"  name="qtd_cliente" class="form-control timepicker">
@@ -126,20 +126,9 @@
                         @enderror
                       </span>
                   </div>
-                <div class="form-group has-feedback @error('data_inicio') has-error @enderror">
-                    <label for="inputExperience" class="col-sm-3 control-label">Data inicio<span class="text-danger">*</span></label>
-
-                    <div class="col-sm-9">
-                     <input type="number" name="local" class="form-control" id="endereco">
-                    </div>
-                    <span class="text-danger">
-                        @error('data_inicio')
-                          {{ $message }}
-                        @enderror
-                      </span>
-                  </div>
+                
+                  <input type="hidden" name="localizacao_id" class="form-control" id="endereco">
                   
-          
               </div>
               <div class="modal-footer" style="margin-left: 68%;">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
@@ -183,22 +172,12 @@ $("#entryForm").validate({
         qtd_cliente: {
           required: true
         }
-
-        
-        }
+      }
 
     });
 
 
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    });
-
-    //Date picker
-    $('.datepicker').datepicker({
-      autoclose: true
-    });
+    
 
 
 

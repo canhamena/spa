@@ -56,6 +56,8 @@ Route::post('/spa/popular_tiposervico', ['App\Http\Controllers\TipoServicoContro
 
 
 
+
+
 /******************* routa site ****************************/
 Route::get('/spa/sobre', ['App\Http\Controllers\SiteController', 'sobre']);
 Route::get('/spa/servico', ['App\Http\Controllers\SiteController', 'servico']);
@@ -112,6 +114,7 @@ Route::get('/reserva/{id}/show', ['App\Http\Controllers\ReservaController', 'sho
 
 /*************** Agendamento *******************************/
 Route::post('/agenda/store', ['App\Http\Controllers\AgendaAtendimentoController', 'store'])->name('agenda.store');
+Route::post('/agenda/popular_tiposervico', ['App\Http\Controllers\AgendaAtendimentoController', 'tiposervico'])->name("tiposervico_local.post");
 
 
 /************** Estatistica ****************************** */

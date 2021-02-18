@@ -57,7 +57,7 @@
                     </div>
                     <div class="inner">
                         <h3 class="text-white"> {{ $atendida }} </h3>
-                        <p>Atendimento</p>
+                        <p>Atendidos</p>
                     </div>
                 </div>
             </a>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="inner">
                         <h3 class="text-white"> {{ $cancelada }} </h3> 
-                        <p>Cancelada</p>
+                        <p>Cancelados</p>
                     </div>
                 </div>
             </a>
@@ -94,11 +94,11 @@
                 <div class="box-body">
                   <!-- the events -->
                   <div id="external-events">
-                    <div class="external-event bg-green">Atendimento</div>
+                    <div class="external-event bg-green">Atendidos</div>
                     <br>
-                    <div class="external-event bg-yellow">Pendente</div>
+                    <div class="external-event bg-yellow">Pendentes</div>
                     <br>
-                    <div class="external-event bg-red">Cancelado</div> 
+                    <div class="external-event bg-red">Cancelados</div> 
                   </div>
                 </div>
                 <!-- /.box-body -->

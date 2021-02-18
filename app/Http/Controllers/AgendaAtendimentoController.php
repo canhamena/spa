@@ -7,6 +7,7 @@ use App\Models\AgendaAtendimento;
 use App\Models\AgendaAtendimentoTipoServico;
 use App\Models\Localizacao;
 use App\Http\Helpers\AppHelper;
+use App\Models\TipoServico;
 
 
 class AgendaAtendimentoController extends Controller
@@ -24,11 +25,11 @@ class AgendaAtendimentoController extends Controller
              
 
               $localizacao = Localizacao::where('id',$request->localizacao_id)->get()->first();
-               return $request->all();
+              
               if (isset($localizacao)) {
               	    $agenda = new AgendaAtendimento();
-              	    $agenda->data_inicio = AppHelper::convertedmY2Ymd($request->data_inicio);
-              	    $agenda->data_fim = AppHelper::convertedmY2Ymd($request->data_fim);
+              	    $agenda->data_inicio = $request->data_inicio;
+              	    $agenda->data_fim = $request->data_fim;
               	    $agenda->atendimento_inicio = $request->inicio_atendimento;
               	    $agenda->atendimento_fim = $request->fim_atendimento;
               	    $agenda->qtd_cliente = $request->qtd_cliente;
@@ -46,6 +47,16 @@ class AgendaAtendimentoController extends Controller
 
               	return  redirect()->route('spa.index')->with('erro', 'Endereço não encontrado ..!');
 
+           }
+
+
+
+           public function tiposervico(Request $request)
+           {
+                   //$tiposervico = TipoServico::where('id',$request[0])->get();
+                   $tiposervico = TipoServico::all();
+                   
+                   return response()->json($request->disponivel);
            }
 
 

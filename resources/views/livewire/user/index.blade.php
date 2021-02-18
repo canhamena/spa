@@ -4,7 +4,7 @@
 
 
 @section('icone-modulo',"fa fa-building")
-@section('titulopagina', 'Portal')
+@section('titulopagina', 'Nome do portal')
 
 @section('icone','fa fa-users')
 @section('module','Utilizador')

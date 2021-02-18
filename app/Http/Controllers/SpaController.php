@@ -22,6 +22,13 @@ class SpaController extends Controller
         $spa_tipos = Tipo::all();
         $contactos = Contacto::all();
         $localizacaos = \DB::Select('select l.id as id, l.codigo as codigo  from localizacao l , contacto c where l.id != c.localizacao_id');
+        if (Auth()->user()->role->id == 1) {
+             $users = User::all();
+        }elseif(Auth()->user()->role->id == 2)
+        {
+            $localizacao = Localizacao::where('id',Auth()->user()->posto->id)->get()->first();
+            return view('spa.index_post',compact('spa','servicos','provincias','spa_tipos','contactos','localizacao'));
+        }
         return view('spa.index',compact('spa','servicos','provincias','spa_tipos','contactos','localizacaos'));
 
 	}

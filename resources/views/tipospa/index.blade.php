@@ -31,7 +31,7 @@
       <div class="col-md-12">
             <div class="box box-´dsefault" style="padding: 5px;">
                 <div class="box-header">
-                     <h3 class="box-title"><i class="fa fa-bullseye"></i> Tipo </h3>
+                     <h3 class="box-title"><i class="fa fa-bullseye"></i> Tipo de spa </h3>
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-tipo"  ><i class="fa fa-plus-circle"></i> Adicionar</a>
@@ -62,7 +62,7 @@
                             <th>#</th>
                             <th>Nome </th>
                             <th>Descrição</th>
-                            <th style="text-align: center;">Operação</th>
+                            <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>
                         <tbody>
