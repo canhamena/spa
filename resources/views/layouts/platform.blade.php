@@ -195,9 +195,9 @@
                     <!-- sidebar menu start-->
                     <div class="leftside-navigation leftside-navigation-scroll">
                         @if(Auth()->user()->is_admin==1)
-                            @include('menu.admin')
-                        @else
-                            
+                             @include('menu.admin')
+                        @elseif(Auth()->user()->role->id == 2)
+                            @include('menu.gestor')
                         @endif
 
                     </div>

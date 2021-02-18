@@ -40,7 +40,7 @@
         </li>
         <li class="treeview">
             <a href="#">
-                <i class=" fa fa-users"></i> <span>Utilizadores</span>
+                <i class=" fa fa-users"></i> <span>Utilizador</span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -49,8 +49,7 @@
                 <li><a href="{{ route('users') }}"><i class=""></i> Listar</a></li>
             </ul>
         </li>
-
-        <li class="treeview">
+          <li class="treeview">
             <a href="#">
                 <i class="fa fa-cogs"></i> <span>Configurações</span>
                 <span class="pull-right-container">
@@ -60,12 +59,10 @@
             <ul class="treeview-menu">
                 
                 <li><a href="{{ url('spa/index') }}"><i class=""></i> Spa</a></li>
-                <li><a href="{{ url('servico/index') }}"><i class=""></i> Serviço</a></li>
-                <li><a href="{{ url('tiposervico/index') }}"><i class=""></i>Tipo serviço</a></li>
-                <li><a href="{{ url('tipo/index') }}"><i class=""></i>Tipo de spa</a></li>
-
-             
+            
             </ul>
         </li>
+
+        
         
 </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Localizacao;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -13,13 +14,24 @@ class Users extends Component
 {
 
     use WithPagination;
-    public $users, $name, $email, $password, $role_id, $user_id;
+    public $users, $name, $email, $password, $role_id, $user_id,$localizacao_id;
     public $updateMode = false;
     public function render()
     {
+        if (Auth()->user()->role->id == 1) {
+             $users = User::all();
+             $roles = Role::all();
+             $postos = Localizacao::OrderBy('id','desc')->get();
+        }elseif(Auth()->user()->role->id == 2)
+        {   $roles = Role::Where('id','!=',1)->get();
+            $users = User::where('localizacao_id',Auth()->user()->posto->id)->get();
+            $postos = Localizacao::where('id',Auth()->user()->posto->id)->get();
+        }
+
         return view('livewire.users',[
-            'v_users' =>  User::paginate(10),
-            'roles' =>  Role::all(),
+            'v_users' => $users,
+            'roles' =>$roles,
+            'postos' => $postos,
         ]);
     }
 
@@ -29,6 +41,7 @@ class Users extends Component
         $this->email = '';
         $this->password = '';
         $this->role_id ='';
+        $this->localizacao_id = '';
     }
 
     public function store()
@@ -37,13 +50,15 @@ class Users extends Component
             'role_id' => 'required',
             'name' => 'required|unique:App\Models\User,name',
             'email' => 'required|email|unique:App\Models\User,email',
-            'password' => 'nullable'
+            'password' => 'nullable',
+            'localizacao_id' => 'required'
         ]);
 
         User::create(['role_id' =>$this->role_id,
                       'name' => $this->name,
                       'email' => $this->email,
                       'password' => Hash::make('12345678'),
+                      'localizacao_id' => $this->localizacao_id,
                       'status'=>1
                     ]);
 
@@ -65,6 +80,7 @@ class Users extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->password = '';
+        $this->localizacao_id = '';
 
         $this->updateMode = true;
     }
@@ -82,6 +98,7 @@ class Users extends Component
             'name' => 'required|unique:users,name,'.$this->user_id,
             'email' => 'required|email|max:255|unique:users,email,'.$this->user_id,
             'password' => 'nullable',
+            'localizacao_id' => 'required'
         ]);
 
         if ($this->user_id) {
@@ -91,6 +108,7 @@ class Users extends Component
                 'name' => $this->name,
                 'password' => $user->password,
                 'email' => $this->email,
+                'localizacao_id' => $this->localizacao_id,
                 'status'=>1
             ]);
             $this->updateMode = false;

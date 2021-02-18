@@ -48,17 +48,18 @@
                 
                   </div>
               </ul>
-
+          
            <div style="text-align: center;">
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm"><b><i class="fa fa-arrow-left"></i> Voltar</b></a>
-              
+                    @if(Auth()->user()->role->id == 1)
                     <a href="" data-toggle="modal" data-target="#modal-editar-servico"   data-whatevernome="{{$servico->nome }}"
                                               data-whateverdescricao="{{ $servico->descricao }}"
                                               data-whatever="{{ $servico->id }}" class="btn btn-warning btn-sm"><b> <i class="fa  fa-edit"></i>  </b></a>
                 
                 <a href="{{url("servico/".base64_encode($servico->id)."/delete")}}" class="btn btn-danger  btn-sm" title="Eliminar" style="border-color: #850e10;"><i class="fa fa-remove"></i></a>
-              
+               @endif
              </div>
+            
             </div>
             <!-- /.box-body -->
           </div>
@@ -106,7 +107,9 @@
                      <th >Nome</th>
                      <th >Descrição</th>
                      <th >Preço</th>
+                     @if(Auth()->user()->role->id == 1)
                     <th style="text-align: center;">Operação</th>
+                    @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -116,7 +119,7 @@
                       <td>{{$tiposervico->nome}}</td>
                       <td>{{$tiposervico->descricao}}</td>
                       <td style="text-align: right;">{{number_format($tiposervico->preco,2,',','.').' AOA'}}</td>
-                      
+                      @if(Auth()->user()->role->id == 1)
                       <td>
                        <div class="btn-group" style="">
                         <a title="Editar" href="" data-toggle="modal" data-target="#modal-editar-tiposervico"   data-whatevernome="{{$tiposervico->nome }}"
@@ -130,6 +133,7 @@
                        </div>
                    
                         </td>
+                        @endif
                        </tr>
                    @endforeach
                     

@@ -85,7 +85,7 @@
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-black-tie"></i> Endereço</a></li>
-            <li ><a href="#tab_2" data-toggle="tab"><i class="fa fa-phone"></i> Contatcos</a></li>
+            <li ><a href="#tab_2" data-toggle="tab"><i class="fa fa-phone"></i> Contactos</a></li>
             <li ><a href="#tab_3" data-toggle="tab"><i class="fa fa-bullseye"></i> Serviços</a></li>
            
    </ul>
@@ -139,7 +139,8 @@
                       <td> 
                         @if(isset($endereco->municipio))
                         {{$endereco->municipio->nome}}
-                        @endif</td>
+                        @endif
+                      </td>
                       <td>
                        
                          {{$endereco->rua}}

@@ -12,6 +12,18 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
+                        <label for="role">Perfil<span class="text-danger">*</span></label>
+
+                         <select class="form-control select2" 
+                            style="width: 100%;"  wire:model="role_id">
+                            <option value=""></option>
+                           @foreach($roles as $role)
+                              <option value="{{ $role->id }}">{{ $role->name }}</option>
+                           @endforeach
+                           </select>
+                            @error('role_id') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                    <div class="form-group">
                         <input type="hidden" wire:model="user_id">
                         <label for="">Nome</label>
                         <input type="text" class="form-control" wire:model="name" placeholder="">
@@ -27,6 +39,21 @@
                         <input type="password" class="form-control" wire:model="password">
                         @error('password') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
+                    
+                     <div class="form-group">
+                                <label for="role">Posto<span class="text-danger">*</span></label>
+
+                                <select class="form-control"  wire:model="localizacao_id">
+                                    <option value=""></option>
+                                    @foreach($postos as $posto)
+                                     
+                                     <option value="{{ $posto->id }}" 
+                                      >{{ $posto->codigo }}</option>
+
+                                    @endforeach
+                                  </select>
+                                  @error('localizacao_id') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
 
                 </form>
             </div>

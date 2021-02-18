@@ -4,7 +4,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"> <i class="fa fa-calendar-plus-o"></i> Adicionar desponiblidade de atendimento</h4>
+                <h4 class="modal-title"> <i class="fa fa-calendar-plus-o"></i> Adicionar disponiblidade de atendimento</h4>
               </div>
               <div class="modal-body">
 
@@ -113,7 +113,7 @@
                       </span>
                   </div>
                   <div class="form-group has-feedback @error('qtd_cliente') has-error @enderror">
-                    <label for="inputExperience" class="col-sm-3 control-label">Qunatidade de cliente diário<span class="text-danger">*</span></label>
+                    <label for="inputExperience" class="col-sm-3 control-label">Quantidade de cliente diário<span class="text-danger">*</span></label>
 
                     <div class="col-sm-9">
                      <input type="number"  name="qtd_cliente" class="form-control timepicker">
