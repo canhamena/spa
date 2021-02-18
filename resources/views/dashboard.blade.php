@@ -21,11 +21,11 @@
                 <div class="small-box bg-aqua" style="background-color: #3c8dbc !important;">
 
                     <div class="icon">
-                        <i class="fa fa-ticket" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                        <i class="fa fa-calendar" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
                     </div>
                     <div class="inner">
                         <h3 class="text-white"> {{ $marcacao }} </h3>
-                        <p>Marcação</p>
+                        <p>Reservas</p>
                     </div>
                 </div>
             </a>
@@ -37,7 +37,7 @@
             <a href="#">
                 <div class="small-box bg-yellow">
                     <div class="icon">
-                        <i class="fa fa-exclamation-circle" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                        <i class="fa fa-tasks" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
                     </div>
                     <div class="inner">
                         <h3 class="text-white">{{ $servico }} </h3>
@@ -129,7 +129,7 @@
     <script src="{{ asset('/platform/bower_components/moment/moment.js') }}"></script>
     <script src="{{ asset('/platform/bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script >
-
+ 
     //CALENDARIO 
     /* initialize the calendar
     -----------------------------------------------------------------*/

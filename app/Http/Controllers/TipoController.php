@@ -10,7 +10,7 @@ class TipoController extends Controller
 {
      public function index(){
       $tipos = Tipo::all();
-      return view('tipospa.index',compact('tipos'));
+      return view('tipospa.index',compact('tipos')); 
 
 	}
 

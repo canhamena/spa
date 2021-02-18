@@ -28,6 +28,24 @@
 @endif
 
     <div class="row">
+ 
+      <div class="col-lg-4 col-xs-6"> 
+        <!-- small box -->
+        <a href="" >
+            <div class="small-box bg-blue">
+                <div class="inner" style="padding-right: 100px">
+                    <h3 class="text-white">{{count($reservas)}}</h3>
+                    <p>Total de Reservas</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa fa-calendar" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                </div>
+            </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-12">
             <div class="box box-´dsefault" style="padding: 5px;">
                 <div class="box-header">
@@ -121,11 +139,14 @@
                                              data-whateverhora="{{ $reserva->hora }}"
                                              data-whatever="{{ $reserva->id }}"  class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                         </div>
+                                        
                                          @if($reserva->estado == 'M')
                                            <div class="btn-group">
                                                  <a title="Cancelar" href="{{url("reserva/".base64_encode($reserva->id)."/cancelar")}}" class="btn btn-danger btn-sm"><i class="fa fa-times"></i>  </a>
                                            </div>
                                          @endif
+                                         <div class="btn-group">
+                                        </div>
                                     </td>
                                 
                             </tr>
@@ -151,7 +172,75 @@
 
 @section('javascript')
 
+<script>
+  $(document).ready(function () {
+      $('input.tableflat').iCheck({
+          checkboxClass: 'icheckbox_flat-green',
+          radioClass: 'iradio_flat-green'
+      });
+  });
 
+  var asInitVals = new Array();
+  $(document).ready(function () {
+    $("#example1").dataTable().fnDestroy();
+      var oTable = $("#example1").dataTable({
+          "oLanguage": {
+              "sSearch": "Procurar",
+              "sEmptyTable": "Não foi encontrado nenhum registo",
+              "sLoadingRecords": "A carregar...",
+              "sProcessing": "A processar ...",
+              "sLengthMenu": "Mostrar MENU registo",
+              "sZeroRecords": " Não foram encontrados resultados",
+              "sInfo": "Mostrando de START até END de TOTAL registos",
+              "sInfoEmpty": "Mostrando de 0 até 0 registos",
+              "sInfoFiltered": "(filtrando de MAX  registos no total)",
+              "sInfoPostFix": "",
+              "oPaginate": {
+                  "sFirst": "Primeiro",
+                  "sPrevious": "Anterior",
+                  "sNext": "Próximo",
+                  "sLast": "Último"
+                 } ,
+                 "oAria": {
+                  "sSortAscending": ":Ordenar a coluna de forma ascendente ",
+                    "sSortDescending": ":Ordenar a coluna de forma descendente "
+                 }
+              },
+              "aoColumnDefs": [
+                  {
+                      'bSortable': false,
+                      'aTargets': [0]
+                  } //disables sorting for column one
+              ],
+              'iDisplayLength': 12,
+              "sPaginationType": "full_numbers",
+              "dom": 'T<"clear">lfrtip',
+              "tableTools": {
+                  "sSwfPath": ""
+              }
+          });
+          
+          $("tfoot input").keyup(function () {
+              /* Filter on the column based on the index of this element's parent <th> */
+              oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+          });
+          $("tfoot input").each(function (i) {
+              asInitVals[i] = this.value;
+          });
+          $("tfoot input").focus(function () {
+              if (this.className == "search_init") {
+                  this.className = "";
+                  this.value = "";
+              }
+          });
+          $("tfoot input").blur(function (i) {
+              if (this.value == "") {
+                  this.className = "search_init";
+                  this.value = asInitVals[$("tfoot input").index(this)];
+              }
+          });
+      });
+  </script>
    
 
    

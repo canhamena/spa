@@ -28,10 +28,27 @@
 @endif
 
     <div class="row">
+        <div class="col-lg-4 col-xs-6">  
+            <!-- small box -->
+            <a href="" >
+                <div class="small-box bg-lime">
+                    <div class="inner" style="padding-right: 100px">
+                        <h3 class="text-white">{{count($tiposervicos)}}</h3> 
+                        <p>Total de Tipos de Serviço</p> 
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa fa-tasks" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-12">
             <div class="box box-´dsefault" style="padding: 5px;">
                 <div class="box-header">
-                     <h3 class="box-title"><i class="fa fa-bullseye"></i> Tipo de  Serviço</h3>
+                     <h3 class="box-title"><i class="fa fa-tasks"></i> Tipo de  Serviço</h3>
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-tiposervico"  ><i class="fa fa-plus-circle"></i> Adicionar</a>

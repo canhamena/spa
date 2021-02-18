@@ -11,7 +11,7 @@ use App\Http\Requests\StoreMarcacaoRequest;
 use App\Http\Helpers\AppHelper;
 use App\Models\MarcacaoTipoServico;
 
-class ReservaController extends Controller
+class ReservaController extends Controller 
 {
     public function index()
     {    $reservas = Marcacao::all();

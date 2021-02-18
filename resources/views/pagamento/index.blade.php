@@ -27,6 +27,23 @@
               </div>
 @endif
 
+     <div class="row">
+        <div class="col-lg-4 col-xs-6">  
+            <!-- small box --> 
+            <a href="" >
+                <div class="small-box bg-green">
+                    <div class="inner" style="padding-right: 100px">
+                        <h3 class="text-white">{{count($pagamentos)}}</h3>
+                        <p>Total de Pagamentos</p> 
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa fa-dollar" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
     <div class="row">
       <div class="col-md-12">
             <div class="box box-´dsefault" style="padding: 5px;">
