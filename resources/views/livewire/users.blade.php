@@ -37,7 +37,7 @@
                 <th>Data de registo</th>
                 <th>Data última actualização</th>
                 <th style="text-align:center;">Estado</th>
-                <th style="text-align: center;">Operação</th>
+                <th style="text-align: center;">Operações</th>
             </tr>
         </thead>
         <tbody>

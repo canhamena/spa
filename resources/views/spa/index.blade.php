@@ -69,7 +69,7 @@
                  @else
                     <a href="" data-toggle="modal" data-target="#modal-create-spa" class="btn btn-info btn-sm"><b> <i class="fa  fa-check"></i> Adicionar </b></a>
                  @endif
-                    
+                
                 <a href="" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
              </div>
             </div>
@@ -114,14 +114,14 @@
                     <thead>
                     <tr>
                       <th>#</th>
-                      <th>Codigo</th>
+                      <th>Refência</th>
                      <th >Província</th>
                      <th >Município</th>
                      <th >Rua</th>
                      <th >Descrição</th>
                     
                     
-                     <th style="text-align: center;">Operação</th>
+                     <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -185,13 +185,13 @@
                     <tr>
                      <th >Nº do endereço</th>
                      <th >Telefone</th>
-                     <th >telemóvel</th>
+                     <th >Telemóvel</th>
                      <th >E-mail</th>
                      <th >Facebook</th>
                      <th >Whatsap</th>
 
                     
-                     <th style="text-align: center;">Operação</th>
+                     <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -235,7 +235,7 @@
                      <th >#</th>
                      <th >Nome</th>
                      <th >Descrição</th>
-                     <th style="text-align: center;">Operação</th>
+                     <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>

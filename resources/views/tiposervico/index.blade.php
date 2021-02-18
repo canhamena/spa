@@ -64,7 +64,7 @@
                             <th>Descrição</th>
                             <th>Preço</th>
                             <th>Serviço</th>
-                            <th style="text-align: center;">Operação</th>
+                            <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>
                         <tbody>

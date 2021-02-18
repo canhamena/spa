@@ -62,9 +62,9 @@
                             <th>#</th>
                             <th>Nº da factura</th>
                             <th>Nome do cliente </th>
-                            <th>utilizador</th>
+                            <th>Utilizador</th>
                             <th>Total pago</th>
-                            <th style="text-align: center;">Operação</th>
+                            <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -79,7 +79,7 @@
                 
 
                  <li class="list-group-item">
-                  <b>A pagar  : </b> 
+                  <b>Total a pagar  : </b> 
                    {{number_format($total,2,',','.').' AOA'}}
                 </li>
                 
@@ -137,7 +137,7 @@
                      <th >Quantidade</th>
                      <th >Preço uni.</th>
                      <th >Total</th>
-                    <th style="text-align: center;">Operação</th>
+                    <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>
