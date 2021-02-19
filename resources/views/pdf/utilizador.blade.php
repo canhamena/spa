@@ -1,4 +1,4 @@
-@extends('layouts.platform')
+@extends('pdf.include.layout')
 
 @section('content')
 
@@ -24,19 +24,42 @@
 
 <table class="principal">
       <tr class="cabeca">
-          <td width="115" style="text-align: left;">Referência do imóvel</td>
-          <td style="text-align: left;">Beneficiário</td>
-          <td width="90" style="text-align: left;">Nº de prestação</td>
-          <td width="100" style="text-align: left;">Prestações pagas</td>
-          <td width="150" style="text-align: left;">Valor do imóvel</td>
-          <td width="150" style="text-align: left;">Prestação</td>
-          <td width="150" style="text-align: left;">Total pago</td>
-          <td width="70"style="text-align: left;">Estado</td>
+      	  <td  style="text-align: left;" width="40">Nº</td>
+          <td width="" style="text-align: left;">Nome</td>
+          <td style="text-align: left;" width="200">Email</td>
+          <td width="200" style="text-align: left;">Função</td>
+          <td width="100" style="text-align: left;">Posto</td>
+          <td width="150" style="text-align: left;">Estado</td>
+          
       </tr>
 
-
+               @foreach($users as $user)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td style="text-align: left;">{{ $user->name }}</td>
+                            <td style="text-align: left;">{{ $user->email }}</td>
+                            <td style="text-align: left;">
+                            	@if(isset($user->role))
+                            	{{ $user->role->description }}
+                            	@endif
+                            </td>
+                            <td >
+                                @if(isset($user->posto))
+                                {{ $user->posto->codigo}}
+                                @endif
+                            </td>
+                           
+                            <td style="text-align:center;">
+                            
+                                @if($user->status==1)
+                                    Activo
+                                @else
+                                    Inactivo
+                                @endif
+                            </td>
+  </tr>
       	
-     
+    @endforeach 
   </table>
 
 

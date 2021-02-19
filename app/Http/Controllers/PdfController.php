@@ -12,13 +12,16 @@ class PdfController extends Controller
 
     public function utilizador()
     {
-    	//set_time_limit(300);
-         
-        
+    	if (Auth()->user()->role->id == 1) {
+             $users = User::OrderBy('name','asc')->get();
 
-        $users = User::all();
+        }elseif(Auth()->user()->role->id == 2)
+        {   $users = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('name','asc')->get();
+           
+        }
 
-    	$pdf = PDF::loadView('pdf.utilizador',compact('users'));
+
+    	$pdf = PDF::loadView('pdf.utilizador',compact('users'))->setPaper('a3',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
