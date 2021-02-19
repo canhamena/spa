@@ -27,7 +27,7 @@
                         <h3 class="box-title"><i class="fa fa-users"></i> Utilizadores</h3>
                         <div class="box-tools">
                             <div class="box-tools">
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-backdrop="static">
                                     <i class="fa fa-plus-circle"></i> Adicionar
                                 </button>
                                 <a class="btn btn-default btn-sm" href="#" target="_blank"><i class="fa fa-print"></i> Imprimir</a>

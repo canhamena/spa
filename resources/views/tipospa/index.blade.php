@@ -51,7 +51,7 @@
                      <h3 class="box-title"><i class="fa fa-building"></i> Tipo de spa </h3>
                     <div class="box-tools">
                         <div class="box-tools">
-                          <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-tipo"  ><i class="fa fa-plus-circle"></i> Adicionar</a>
+                          <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-tipo"  data-backdrop="static"><i class="fa fa-plus-circle"></i> Adicionar</a>
 
                         </div>
                     </div>

@@ -51,7 +51,7 @@
                      <h3 class="box-title"><i class="fa fa-tasks"></i> Tipo de  Serviço</h3>
                     <div class="box-tools">
                         <div class="box-tools">
-                          <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-tiposervico"  ><i class="fa fa-plus-circle"></i> Adicionar</a>
+                          <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-tiposervico" data-backdrop="static" ><i class="fa fa-plus-circle"></i> Adicionar</a>
 
                         </div>
                     </div>

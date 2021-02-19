@@ -65,9 +65,9 @@
            <div style="text-align: center;">
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm"><b><i class="fa fa-arrow-left"></i> Voltar</b></a>
                  @if(isset($spa))
-                 <a href="" data-toggle="modal" data-target="#modal-edit-spa" class="btn btn-warning btn-sm"><b> <i class="fa  fa-edit"></i> Editar </b></a>
+                 <a href="" data-toggle="modal" data-target="#modal-edit-spa" data-backdrop="static" class="btn btn-warning btn-sm"><b> <i class="fa  fa-edit"></i> Editar </b></a>
                  @else
-                    <a href="" data-toggle="modal" data-target="#modal-create-spa" class="btn btn-info btn-sm"><b> <i class="fa  fa-check"></i> Adicionar </b></a>
+                    <a href="" data-toggle="modal" data-target="#modal-create-spa" data-backdrop="static" class="btn btn-info btn-sm"><b> <i class="fa  fa-check"></i> Adicionar </b></a>
                  @endif
                 
                 <a href="" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
@@ -107,7 +107,7 @@
                             {{ session('erro') }}.
                        </div>
                       @endif
-                          <a style="margin-bottom: 10px;" href="" data-toggle="modal" data-target="#modal-create-endereco"  data-whatever="" id="reference" class="btn btn-default pull-right"><i class="fa fa fa-plus-circle fa-1x"></i>  Adicionar endereço</a>
+                          <a style="margin-bottom: 10px;" href="" data-toggle="modal" data-target="#modal-create-endereco" data-backdrop="static"  data-whatever="" id="reference" class="btn btn-default pull-right"><i class="fa fa fa-plus-circle fa-1x"></i>  Adicionar endereço</a>
 
                  <br>
                 <table  id="example1" class="table table-bordered table-hover">
