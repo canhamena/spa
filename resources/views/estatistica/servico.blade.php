@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="box box-info">
+            <div class="box box-info"> 
                 <div class="box-header with-border">
                     <div id="container" style="height: 500px"></div>
                 </div>

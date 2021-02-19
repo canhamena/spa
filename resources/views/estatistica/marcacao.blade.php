@@ -48,7 +48,7 @@
                     </div>  
                 </div>
             </div>
-
+            
             <div class="box box-info">
                 <div class="box-header with-border">
                     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

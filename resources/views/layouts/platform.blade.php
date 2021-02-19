@@ -245,7 +245,7 @@
     </footer>
 
 
-     
+      @include('pagamento.modal.create')
 
     <div class="control-sidebar-bg"></div>
 </div>
@@ -292,10 +292,6 @@
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree();
-    });
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
     });
 </script>
 
@@ -646,7 +642,7 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
                        {
                            $("#localidade").empty();
                           $.each(res,function(key,value){
-                                    $("#localidade").append('<option value="'+value.codigo+'">'+value.nome+' - '+value.descricao+' - '+value.rua+'</option>');
+                                    $("#localidade").append('<option value="'+value.id+'">'+value.nome+' - '+value.descricao+' - '+value.rua+'</option>');
                          });
                              
                 }
