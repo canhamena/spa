@@ -271,8 +271,22 @@
 <script src="{{ asset('/platform/assets/js/vendor.js') }}"></script>
 
 
+<script type="text/javascript">
+  
+  $('#mySelect').change(function() {
+        
+    if ($('#mySelect').val() == 3) {
+       document.getElementById('inpu_id').required = false;
+      $('#inputOculto').hide();
+    } else {
+      $('#inputOculto').show();
+       document.getElementById('inpu_id').required = true;
+      
+    }
+  });
 
-<!-- END DATATABLE-->
+</script>
+
 
 
 <script>

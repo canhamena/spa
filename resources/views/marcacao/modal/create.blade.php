@@ -129,6 +129,7 @@
                         style="width: 100%;" name="servico" id="servico">
                         @if ($spa)
                         <option disabled="" selected=""> Selecione </option>
+                        @if(isset($spa))
                             @foreach($spa->tiposervico as $servico)
                               <option value="{{$servico->id}}">{{$servico->nome}}</option>
                             @endforeach
