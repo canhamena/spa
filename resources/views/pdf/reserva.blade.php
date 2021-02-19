@@ -19,45 +19,45 @@
     }
 </style>
 
-<h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>UTILIZADORES</u></h2>
+<h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>RESERVAS</u></h2>
 
 
 <table class="principal">
       <tr class="cabeca">
       	  <td  style="text-align: left;" width="40">Nº</td>
-          <td width="" style="text-align: left;">Nome</td>
-          <td style="text-align: left;" width="200">Email</td>
-          <td width="200" style="text-align: left;">Função</td>
-          <td width="100" style="text-align: left;">Posto</td>
+          <td width="" style="text-align: left;">Cliente</td>
+          <td style="text-align: left;" width="200">Telefone</td>
+          <td width="200" style="text-align: left;">Email</td>
+          <td width="100" style="text-align: left;">Data de Marcação</td>
+          <td width="150" style="text-align: left;">Data de atendimento</td>
           <td width="150" style="text-align: left;">Estado</td>
-          
       </tr>
 
-               @foreach($users as $user)
+               @foreach($reservas as $reserva)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td style="text-align: left;">{{ $user->name }}</td>
-                            <td style="text-align: left;">{{ $user->email }}</td>
+                            <td style="text-align: left;">{{ $reserva->cliente->nome }}</td>
+                            <td style="text-align: left;">{{ $reserva->cliente->telefone }}</td>
                             <td style="text-align: left;">
-                            	@if(isset($user->role))
-                            	{{ $user->role->description }}
-                            	@endif
+                            	{{ $reserva->cliente->email }} 
                             </td>
                             <td >
-                                @if(isset($user->posto)) 
-                                {{ $user->posto->codigo}}
-                                @endif
+                                {{date('d-m-Y',strtotime($reserva->created_at)) ?? ''}}
                             </td>
                            
                             <td style="text-align:center;">
-                            
-                                @if($user->status==1)
-                                    Activo
-                                @else
-                                    Inactivo
+                                {{date('d-m-Y',strtotime($reserva->data_atendimento)) ?? ''}}
+                            </td>
+                            <td>
+                                @if ($reserva->estado == 'M')
+                                   <span> Pendente </span>  
+                                @elseif($reserva->estado == 'A')
+                                    <span> Atendido </span>
+                                @elseif($reserva->estado == 'C')
+                                    <span> Cancelado </span>
                                 @endif
                             </td>
-  </tr>
+                        </tr>
       	
     @endforeach 
   </table>

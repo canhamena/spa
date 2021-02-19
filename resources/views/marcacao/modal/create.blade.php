@@ -127,7 +127,7 @@
                     <div class="col-sm-10">
                       <select class="form-control select2" 
                         style="width: 100%;" name="servico" id="servico">
-                        @if ($spa)
+
                         <option disabled="" selected=""> Selecione </option>
                         @if(isset($spa))
                             @foreach($spa->tiposervico as $servico)

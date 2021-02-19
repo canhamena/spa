@@ -25,41 +25,32 @@
 <table class="principal">
       <tr class="cabeca">
       	  <td  style="text-align: left;" width="40">Nº</td>
-          <td width="" style="text-align: left;">Nome</td>
-          <td style="text-align: left;" width="200">Email</td>
-          <td width="200" style="text-align: left;">Função</td>
-          <td width="100" style="text-align: left;">Posto</td>
-          <td width="150" style="text-align: left;">Estado</td>
+          <td width="" style="text-align: left;">Numero da factura</td>
+          <td style="text-align: left;" width="200">Nome do cliente</td>
+          <td width="200" style="text-align: left;">Utilizador</td>
+          <td width="100" style="text-align: left;">Total pago</td>
           
       </tr>
 
-               @foreach($users as $user)
+               @foreach($pagamentos as $pagamenmto)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td style="text-align: left;">{{ $user->name }}</td>
-                            <td style="text-align: left;">{{ $user->email }}</td>
+                            <td style="text-align: left;">{{$pagamento->numero_pagamento}}</td>
+                            <td style="text-align: left;">{{$pagamento->nome_cliente}}</td> 
                             <td style="text-align: left;">
-                            	@if(isset($user->role))
-                            	{{ $user->role->description }}
-                            	@endif
+                            	{{Auth::user()->name}}
                             </td>
+                            @php
+                                $total = 0;
+                                foreach($pagamento->tiposervicopagamento as $pago){
+                                    $total += $pago->tiposervico->preco*$pago->qtd;
+                                }
+                            @endphp
                             <td >
-                                @if(isset($user->posto)) 
-                                {{ $user->posto->codigo}}
-                                @endif
+                                {{number_format($total,2,',','.').' AOA'}}
                             </td>
-                           
-                            <td style="text-align:center;">
-                            
-                                @if($user->status==1)
-                                    Activo
-                                @else
-                                    Inactivo
-                                @endif
-                            </td>
-  </tr>
-      	
-    @endforeach 
+                        </tr>
+                @endforeach 
   </table>
 
 
