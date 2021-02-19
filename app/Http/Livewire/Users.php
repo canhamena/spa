@@ -16,7 +16,7 @@ class Users extends Component
     use WithPagination;
     public $users, $name, $email, $password, $role_id, $user_id,$localizacao_id;
     public $updateMode = false;
-    public function render()
+    public function render() 
     {
         if (Auth()->user()->role->id == 1) {
              $users = User::all();

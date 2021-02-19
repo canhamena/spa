@@ -12,7 +12,11 @@ use App\Http\Helpers\AppHelper;
 use App\Models\Localizacao;
 use App\Models\Contacto;
 use App\Models\Tipo;
+<<<<<<< HEAD
 use App\Models\User;
+=======
+use App\Models\User; 
+>>>>>>> 6e53fd9903345417a059af6cef350d79a9b9cef8
 
 class SpaController extends Controller
 {
@@ -24,7 +28,7 @@ class SpaController extends Controller
         $contactos = Contacto::all();
         $localizacaos = \DB::Select('select l.id as id, l.codigo as codigo  from localizacao l , contacto c where l.id != c.localizacao_id');
         if (Auth()->user()->role->id == 1) {
-             $users = User::all();
+             $users = User::all(); 
         }elseif(Auth()->user()->role->id == 2)
         {
             $localizacao = Localizacao::where('id',Auth()->user()->posto->id)->get()->first();

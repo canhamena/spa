@@ -1,6 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MENU PRINCIPAL</li>
-    <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+    <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> <span>Principal</span></a></li>
     <li class="treeview">
             <a href="#">
                 <i class="fa fa fa-calendar"></i> <span>Reserva</span>
@@ -21,14 +21,18 @@
             </span>
             </a>
             <ul class="treeview-menu">
+<<<<<<< HEAD
                 
+=======
+                <li class=""><a href="#" data-toggle="modal" data-target="#modal-create-pagamento" data-backdrop="static"><i class=""></i> <span>Registar</span></a></li>
+>>>>>>> 6e53fd9903345417a059af6cef350d79a9b9cef8
                 <li><a href="{{url('pagamento/index')}}"><i class=""></i> Listar</a></li>
             </ul>
         </li>
 
         <li class="treeview">
             <a href="#">
-                <i class=" fa fa-bar-chart "></i> <span>Estatistica</span>
+                <i class=" fa fa-bar-chart "></i> <span>Estatística</span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

@@ -28,13 +28,31 @@
 @endif
 
     <div class="row">
+ 
+      <div class="col-lg-4 col-xs-6"> 
+        <!-- small box -->
+        <a href="" >
+            <div class="small-box bg-blue">
+                <div class="inner" style="padding-right: 100px">
+                    <h3 class="text-white">{{count($reservas)}}</h3>
+                    <p>Total de Reservas</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa fa-calendar" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                </div>
+            </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-12">
             <div class="box box-´dsefault" style="padding: 5px;">
                 <div class="box-header">
                      <h3 class="box-title"><i class="fa fa-calendar"></i> Reservas </h3>
                     <div class="box-tools">
                         <div class="box-tools">
-                          <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-reserva"  ><i class="fa fa-plus-circle"></i> Adicionar</a>
+                          <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-reserva" data-backdrop="static" ><i class="fa fa-plus-circle"></i> Adicionar</a>
 
                         </div>
                     </div>
@@ -100,9 +118,9 @@
                                 <td style="">
                                     @if($reserva->estado == "M")
                                      
-                                     <span class="label bg-yellow" >
+                                    <span class="label bg-yellow" >
                                              Pendente
-                                        </span>
+                                    </span>
                                  
                                         
                                     @elseif($reserva->estado == "C")
@@ -121,11 +139,14 @@
                                              data-whateverhora="{{ $reserva->hora }}"
                                              data-whatever="{{ $reserva->id }}"  class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                         </div>
+                                        
                                          @if($reserva->estado == 'M')
                                            <div class="btn-group">
                                                  <a title="Cancelar" href="{{url("reserva/".base64_encode($reserva->id)."/cancelar")}}" class="btn btn-danger btn-sm"><i class="fa fa-times"></i>  </a>
                                            </div>
                                          @endif
+                                         <div class="btn-group">
+                                        </div>
                                     </td>
                                 
                             </tr>
@@ -151,9 +172,5 @@
 
 @section('javascript')
 
-
-   
-
-   
 
 @endsection

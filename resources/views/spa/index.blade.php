@@ -65,11 +65,11 @@
            <div style="text-align: center;">
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm"><b><i class="fa fa-arrow-left"></i> Voltar</b></a>
                  @if(isset($spa))
-                 <a href="" data-toggle="modal" data-target="#modal-edit-spa" class="btn btn-warning btn-sm"><b> <i class="fa  fa-edit"></i> Editar </b></a>
+                 <a href="" data-toggle="modal" data-target="#modal-edit-spa" data-backdrop="static" class="btn btn-warning btn-sm"><b> <i class="fa  fa-edit"></i> Editar </b></a>
                  @else
-                    <a href="" data-toggle="modal" data-target="#modal-create-spa" class="btn btn-info btn-sm"><b> <i class="fa  fa-check"></i> Adicionar </b></a>
+                    <a href="" data-toggle="modal" data-target="#modal-create-spa" data-backdrop="static" class="btn btn-info btn-sm"><b> <i class="fa  fa-check"></i> Adicionar </b></a>
                  @endif
-                    
+                
                 <a href="" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
              </div>
             </div>
@@ -107,21 +107,21 @@
                             {{ session('erro') }}.
                        </div>
                       @endif
-                          <a style="margin-bottom: 10px;" href="" data-toggle="modal" data-target="#modal-create-endereco"  data-whatever="" id="reference" class="btn btn-default pull-right"><i class="fa fa fa-plus-circle fa-1x"></i>  Adicionar endereço</a>
+                          <a style="margin-bottom: 10px;" href="" data-toggle="modal" data-target="#modal-create-endereco" data-backdrop="static"  data-whatever="" id="reference" class="btn btn-default pull-right"><i class="fa fa fa-plus-circle fa-1x"></i>  Adicionar endereço</a>
 
                  <br>
                 <table  id="example1" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                       <th>#</th>
-                      <th>Codigo</th>
+                      <th>Refência</th>
                      <th >Província</th>
                      <th >Município</th>
                      <th >Rua</th>
                      <th >Descrição</th>
                     
                     
-                     <th style="text-align: center;">Operação</th>
+                     <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -186,13 +186,13 @@
                     <tr>
                      <th >Nº do endereço</th>
                      <th >Telefone</th>
-                     <th >telemóvel</th>
+                     <th >Telemóvel</th>
                      <th >E-mail</th>
                      <th >Facebook</th>
                      <th >Whatsap</th>
 
                     
-                     <th style="text-align: center;">Operação</th>
+                     <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -236,7 +236,7 @@
                      <th >#</th>
                      <th >Nome</th>
                      <th >Descrição</th>
-                     <th style="text-align: center;">Operação</th>
+                     <th style="text-align: center;">Operações</th>
                     </tr>
                     </thead>
                     <tbody>

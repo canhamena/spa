@@ -8,37 +8,49 @@
 
 @section('icone','fa fa-ticket')
 @section('module','Nome do spa')
-@section('subtitle','Estatistica') 
+@section('subtitle','Estatística') 
 
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-´dsefault" style="padding: 5px;">
-                <div class="box-header">
-                     <h3 class="box-title"><i class="fa fa-bar-chart"></i> Estatística </h3>
-                    <div class="box-tools">
-                        
-                        <div class="box-tools">
-                            <!--<a class="btn btn-info" href="#" ><i class="fa fa-plus-circle"></i> Adicionar</a>-->
-                            <form class="form-horizontal" >
-                                <div class="col-sm-3">
-                                <input type="text" name="nome" id="nome" class="form-control" id="inputName" placeholder="Ano" required>
-                                </div>
-                                <div class="col-sm-6">
-                                <input type="text" name="nome" id="nome" class="form-control" id="inputName" placeholder="Localização" >
-                                </div>
-                            </form>
+
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-bar-chart"></i> Estatística </h3>
+                </div>
+                <div class="box-body ">
+                    <div class="row">
+                        <div class="col-xs-4">
                         </div>
-                        
-                        
-                    </div>
+                        <div class="col-xs-2">
+                        </div>
+                        <form class="form-horizontal" >
+
+                                <div class="col-xs-3">
+                                    <label>Ano</label>
+                                    <select class="form-control">
+                                      <option>2020</option>
+                                      <option>2021</option>
+                                    </select>
+                                </div>
                     
+                                <div class="col-xs-3">
+                                    <label>Localização</label>
+                                    <select class="form-control">
+                                      <option>Bengo</option>
+                                      <option>Uige</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-info pull-right">Buscar</button>
+                                </div>
+                        </form>
+
+                    </div>  
                 </div>
             </div>
-        </div>
 
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
     </div>
 
 @endsection

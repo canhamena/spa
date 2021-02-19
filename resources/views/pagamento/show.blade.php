@@ -96,7 +96,7 @@
                             <th>Qunatidade</th>
                             <th>Preço unitário</th>
                             <th>Total</th>
-                            <th style="text-align: center;">Operação</th>
+                            <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>
                         <tbody>

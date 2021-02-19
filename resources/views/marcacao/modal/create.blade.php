@@ -159,7 +159,7 @@
                       </span>
                   </div>
                    <div class="form-group has-feedback @error('qtd_pessoa') has-error @enderror">
-                    <label for="inputExperience" class="col-sm-2 control-label">Qtd pessoas<span class="text-danger">*</span></label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Quantidade de pessoas<span class="text-danger">*</span></label>
                     <div class="col-sm-10">
                        <select class="form-control select2" multiple="multiple" name="qtd_pessoa[]" 
                         style="width: 100%;" id="qtd_pessoa" required="">
