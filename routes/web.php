@@ -121,6 +121,12 @@ Route::post('/agenda/popular_tiposervico', ['App\Http\Controllers\AgendaAtendime
 Route::get('/estatistica/marcacao', ['App\Http\Controllers\EstatisticaController', 'marcacao'])->name('estatistica.marcacao');
 Route::get('/estatistica/servico', ['App\Http\Controllers\EstatisticaController', 'servico'])->name('estatistica.servico');
 
+/************************ PdF ***********************************************/
+
+//************************** Utilizadores **************************************/
+Route::get('/pdf/utilizador', ['App\Http\Controllers\PdfController', 'utilizador'])->name('pdf.utilizador');
+
+
 
 
 

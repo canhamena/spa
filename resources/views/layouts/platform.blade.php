@@ -270,7 +270,7 @@
 <script src="{{ asset('/platform/bower_components/chart.js/Chart.js') }}"></script>
 <script src="{{ asset('/platform/assets/js/vendor.js') }}"></script>
 
-<<<<<<< HEAD
+
 <script type="text/javascript">
   
   $('#mySelect').change(function() {
@@ -287,54 +287,6 @@
 
 </script>
 
-<!-- DATATABLE-->
-
-<script>
-  
-    var asInitVals = new Array(); 
-    
-    $(document).ready(function () {
-      $("#example1").dataTable().fnDestroy(); 
-        var oTable = $("#example1").dataTable({
-            "oLanguage": {
-                "sSearch": "Procurar",
-                "sEmptyTable": "Não foi encontrado nenhum registo",
-                "sLoadingRecords": "A carregar...",
-                "sProcessing": "A processar ...",
-                "sLengthMenu": "Mostrar MENU registo",
-                "sZeroRecords": " Não foram encontrados resultados",
-                "sInfo": "Mostrando de START até END de TOTAL registos",
-                "sInfoEmpty": "Mostrando de 0 até 0 registos",
-                "sInfoFiltered": "(filtrando de MAX  registos no total)",
-                "sInfoPostFix": "",
-                "oPaginate": {
-                    "sPrevious": "Anterior",
-                    "sNext": "Próximo",
-                   } ,
-                   "oAria": {
-                    "sSortAscending": ":Ordenar a coluna de forma ascendente ",
-                      "sSortDescending": ":Ordenar a coluna de forma descendente "
-                   }
-                },
-                "aoColumnDefs": [
-                    {
-                        'bSortable': false,
-                        'aTargets': [0]
-                    } //disables sorting for column one
-                ],
-                'iDisplayLength': 12,
-                "sPaginationType": "full_numbers",
-                "dom": 'T<"clear">lfrtip',
-                "tableTools": {
-                    "sSwfPath": ""
-                }
-            });
-            
-        });
-        
-    </script>
-
-<!-- END DATATABLE-->
 
 
 <script>
