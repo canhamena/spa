@@ -12,15 +12,28 @@ class DashboardController extends Controller
 {
     public function index()
     {   
-        //buscando o estado da marcação por quantidade  
-        $marcacao = Marcacao::where('estado', '=', 'M')->count();
-        $atendida = Marcacao::where('estado', '=', 'A')->count();
-        $cancelada = Marcacao::where('estado', '=', 'C')->count();
-        $servico = Servico::all()->count();
+        //buscando o estado da marcação por quantidade
+        if (Auth()->user()->role->id == 1) {
+               $marcacao = Marcacao::where('estado', '=', 'M')->count();
+               $atendida = Marcacao::where('estado', '=', 'A')->count();
+               $cancelada = Marcacao::where('estado', '=', 'C')->count();
+               $servico = Servico::all()->count();
+               $dadosM = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'M')->groupBy('data_atendimento')->get();
+              $dadosA = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'A')->groupBy('data_atendimento')->get();
+              $dadosC = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'C')->groupBy('data_atendimento')->get();
+           }elseif(Auth()->user()->role->id == 2) {
+               $marcacao = Marcacao::where('estado', '=', 'M')->where('localizacao_id',Auth()->user()->posto->id)->count();
+               $atendida = Marcacao::where('estado', '=', 'A')->where('localizacao_id',Auth()->user()->posto->id)->count();
+               $cancelada = Marcacao::where('estado', '=', 'C')->where('localizacao_id',Auth()->user()->posto->id)->count();
+               $servico = Servico::all()->count();
+               $dadosM = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'M')->where('localizacao_id',Auth()->user()->posto->id)->groupBy('data_atendimento')->get();
+               $dadosA = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'A')->where('localizacao_id',Auth()->user()->posto->id)->groupBy('data_atendimento')->get();
+              $dadosC = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'C')->where('localizacao_id',Auth()->user()->posto->id)->groupBy('data_atendimento')->get();
 
-        $dadosM = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'M')->groupBy('data_atendimento')->get();
-        $dadosA = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'A')->groupBy('data_atendimento')->get();
-        $dadosC = Marcacao::select(DB::raw('count(data_atendimento) as qtd'), 'estado','data_atendimento')->where('estado', '=', 'C')->groupBy('data_atendimento')->get();
+          }
+       
+
+        
         $eventos = array();
 
         //Juntando as consultas proveniente do banco de dados em um unico array de valores

@@ -69,7 +69,7 @@ class AppHelper
                 break;
         }
 
-          return 'P'.$ticket;
+          return 'F'.$ticket;
     }
 
      public static function convertedmY2Ymd($date){

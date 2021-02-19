@@ -15,23 +15,38 @@ class PagamentoController extends Controller
 
 	    public function index()
 	    {
-		      $pagamentos = Pagamento::Orderby('id','desc')->get();
-		      return view('pagamento.index',compact('pagamentos'));
+	    	  if (Auth::user()->role->id == 1) {
+	    	   	   $pagamentos = Pagamento::Orderby('id','desc')->get();
+	    	   	
+	    	   }elseif(Auth::user()->role->id == 2)
+	    	   {
+	    	   	  
+	    	   	 $pagamentos = Pagamento::where('localizacao_id', Auth::user()->posto->id)->Orderby('id','desc')->get();
+
+	    	   }
+                $tipopagamentos = \DB::table('tipo_pagamento')->get();
+		      return view('pagamento.index',compact('pagamentos','tipopagamentos'));
 	    }
 
 
         public function store(Request $request)
         {
 	          $request->validate([
-                'nome' => 'required'
+                'nome' => 'required',
+                'tipo_pegamento' => 'required',
+                   'data_pagamento' => 'required',
+                   'refrencia' => 'nullable|unique:pagamento', 
                  ]);
 
 	          $pagamento = new Pagamento();
 	          $pagamento->nome_cliente = $request->nome;
 	          $pagamento->numero_pagamento
 	           = AppHelper::geraNumeroPagamento(count(Pagamento::all()));
-	          $pagamento->valor = 0;
 	          $pagamento->user_id = Auth::user()->id;
+	          $pagamento->localizacao_id = isset(Auth::user()->posto->id) ? Auth::user()->posto->id : null;
+	          $pagamento->data_pagamento = AppHelper::convertedmY2Ymd($request->data_pagamento);
+	          $pagamento->referencia = $request->referencia;
+	          $pagamento->tipopagamento_id = $request->tipo_pegamento;
 	          $pagamento->save();
               
 	          return redirect()->route('pagamento.factura',base64_encode($pagamento->id));
@@ -43,11 +58,15 @@ class PagamentoController extends Controller
 
         public function create($pagamento_id)
         {
-	     $pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
+        	
+		      
+
+	         $pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
    
 	     if (isset($pagamento)) {
                $tipo_servicos = TipoServico::Orderby('nome','asc')->get();
-         
+                
+             
               return view('pagamento.create_factura',compact('pagamento','tipo_servicos'));
 	     }
 
@@ -59,16 +78,17 @@ class PagamentoController extends Controller
        public function store_factura(Request $request)
        {
 	        $request->validate([
-                'tipo_servico' => 'required',
-                'qtd' => 'required'
+                   'tipo_servico' => 'required',
+                   'qtd' => 'required',
+                  ]);
 
-                 ]);
-	        
-	       
+
 	        $tiposervicopagamento = new TipoServicoPagamento();
 	        $tiposervicopagamento->tipo_servico_id = $request->tipo_servico;
 	        $tiposervicopagamento->qtd = $request->qtd;
 	        $tiposervicopagamento->pagamento_id = $request->pagamento_id;
+	        
+
 	        $tiposervicopagamento->save();
 
 	       

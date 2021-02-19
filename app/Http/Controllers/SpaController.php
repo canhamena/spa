@@ -12,7 +12,9 @@ use App\Http\Helpers\AppHelper;
 use App\Models\Localizacao;
 use App\Models\Contacto;
 use App\Models\Tipo;
+
 use App\Models\User; 
+
 
 class SpaController extends Controller
 {
@@ -127,7 +129,7 @@ class SpaController extends Controller
   {
             //$municicpios = Municipio::where('provincia_id',$request[0])->get();
            //$localidade = Localizacao::all();
-           $localidade = \DB::SELECT('select  m.nome as nome , l.id as id, l.descricao as descricao, l.rua as rua  from provincia p,localizacao l,municipio m where p.id = m.provincia_id and l.municipio_id = m.id and p.id = ?',[$request[0]]);
+           $localidade = \DB::SELECT('select  m.nome as nome , l.id as id, l.descricao as descricao, l.rua as rua ,l.codigo as codigo from provincia p,localizacao l,municipio m where p.id = m.provincia_id and l.municipio_id = m.id and p.id = ?',[$request[0]]);
            return response()->json($localidade);
   }
 

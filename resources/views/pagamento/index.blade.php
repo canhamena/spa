@@ -130,7 +130,7 @@
     </div>
 
 
-
+ @include('pagamento.modal.create')
 
 @endsection
 

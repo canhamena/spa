@@ -157,8 +157,8 @@
                    @csrf
                 <input type="hidden" name="pagamento_id" value="{{$pagamento->id}}">
             <div class="col-md-6">
-              <div class="form-group">
-                <label>Tipo de serviços</label>
+              <div class="form-group has-feedback @error('tipo_servico') has-error @enderror">
+                <label>Tipo de serviços<span class="text-danger">*</span></label>
                 <select class="form-control select2" name="tipo_servico" style="width: 100%;" required="">
                   <option selected="selected" disabled="">Selecione</option>
                   @foreach($tipo_servicos as $tipo_servico)
@@ -166,6 +166,11 @@
                   @endforeach
                   
                 </select>
+                 <span class="text-danger">
+                        @error('tipo_servico')
+                          {{ $message }}
+                        @enderror
+                </span>
               </div>
               <!-- /.form-group -->
              
@@ -173,20 +178,23 @@
             </div>
             <!-- /.col -->
             <div class="col-md-6">
-              <div class="form-group">
-                <label>Qunatidade</label>
+              <div class="form-group has-feedback @error('qtd') has-error @enderror">
+                <label>Qunatidade<span class="text-danger">*</span></label>
                 <input type="number" name="qtd" class="form-control" min="1" required="" >
               </div>
-              
+              <span class="text-danger">
+                        @error('qtd')
+                          {{ $message }}
+                        @enderror
+                </span>
             </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
+
         <!-- /.box-body -->
-      <div class="modal-footer" style="margin-left: 80%;">
+      
+      <div class="modal-footer" style="margin-left: 70%;">
             <button type="submit" class="btn btn-info"><i class="fa fa-plus-circle"></i> Salvar</button>
-     </div>
+    
+   </div>
 
        </form>
       </div>
@@ -199,6 +207,7 @@
 <script src="{{ asset('/platform/assets/assets/js/messages_pt_PT.min.js')}}"></script>
 
 <script type="text/javascript">
+
 
 $("#entryForm").validate({
          errorElement:"em",
@@ -214,10 +223,23 @@ $("#entryForm").validate({
         },
         qtd: {
           required: true
+        },
+        tipo_pagamento: {
+          required: true
+        },
+        data_pagamento: {
+          required: true
         }
         }
 
     });
+//Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+
+   
+
 </script>
 
 

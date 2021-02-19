@@ -21,7 +21,7 @@
             </span>
             </a>
             <ul class="treeview-menu">
-                <li class=""><a href="#" data-toggle="modal" data-target="#modal-create-pagamento" data-backdrop="static"><i class=""></i> <span>Registar</span></a></li>
+
                 <li><a href="{{url('pagamento/index')}}"><i class=""></i> Listar</a></li>
             </ul>
         </li>

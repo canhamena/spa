@@ -28,9 +28,11 @@
                         style="width: 100%;" name="servico" id="servico">
 
                            <option disabled="" selected=""> selecione </option>
+                           @if(isset($spa))
                             @foreach($spa->tiposervico as $servico)
                               <option  value="{{$servico->id}}">{{$servico->nome}}</option>
                             @endforeach
+                            @endif
                           </select>
                     </div>
                      <span class="text-danger">
