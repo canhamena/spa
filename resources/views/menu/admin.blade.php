@@ -1,6 +1,6 @@
 <ul class="sidebar-menu" data-widget="tree">
-    <li class="header">MENU PRINCIPAL</li>
-    <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> <span>Principal</span></a></li>
+    <li class="header">MENU</li>
+    <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> <span>Painel Principal</span></a></li>
     <li class="treeview">
             <a href="#">
                 <i class="fa fa fa-calendar"></i> <span>Reserva</span>
