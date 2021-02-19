@@ -20,13 +20,61 @@
                
                   @csrf
                   <div class="form-group has-feedback @error('nome') has-error @enderror">
-                    <label for="inputName" class="col-sm-2 control-label">Nome <span class="text-danger">*</span></label>
+                    <label for="inputName" class="col-sm-3 control-label">Nome <span class="text-danger">*</span></label>
 
-                    <div class="col-sm-10">
-                      <input type="text" name="nome" id="nome" class="form-control" id="inputName" placeholder="Nome do spa" required>
+                    <div class="col-sm-9">
+                      <input type="text" name="nome" id="nome" class="form-control" id="inputName" placeholder="Nome do cliente" required>
                     </div>
                     <span class="text-danger">
                         @error('nome')
+                          {{ $message }}
+                        @enderror
+                      </span>
+                  </div>
+                  <div class="form-group has-feedback @error('data_pagamento') has-error @enderror">
+                    <label for="inputName" class="col-sm-3 control-label">Data<span class="text-danger">*</span></label>
+
+                    <div class="col-sm-9">
+                      <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                <input type="text" name="data_pagamento" id="datepicker" class="form-control"  >
+              </div>
+                      
+                    </div>
+                    <span class="text-danger">
+                        @error('data_pagamento')
+                          {{ $message }}
+                        @enderror
+                      </span>
+                  </div>
+                  <div class="form-group has-feedback @error('tipo_pegamento') has-error @enderror" id="">
+                    <label for="inputName" class="col-sm-3 control-label">Tipo <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-9">
+                      <select class="form-control " name="tipo_pegamento" id="mySelect"  required="">
+                  <option selected="selected" disabled="">Selecione</option>
+                  @foreach($tipopagamentos as $pagamento)
+                  <option value="{{$pagamento->id}}">{{$pagamento->tipo}}</option>
+                  @endforeach
+                  
+                </select>
+                    </div>
+                    <span class="text-danger">
+                        @error('tipo_pegamento')
+                          {{ $message }}
+                        @enderror
+                      </span>
+                  </div>
+                  <div class="form-group has-feedback @error('referencia') has-error @enderror" id="inputOculto">
+                    <label for="inputName" class="col-sm-3 control-label">Referência <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-9">
+                    <input type="number" name="referencia" class="form-control" id="inpu_id">
+                    </div>
+                    <span class="text-danger">
+                        @error('referencia')
                           {{ $message }}
                         @enderror
                       </span>
@@ -51,7 +99,9 @@
 <script src="{{ asset('/platform/assets/assets/js/messages_pt_PT.min.js')}}"></script>
 <script src="{{ asset('/platform/assets/js/autoNumeric/autoNumeric.min.js')}}"></script>
 
+
 <script type="text/javascript">
+
 
 $("#entryForm").validate({
          errorElement:"em",
@@ -65,8 +115,18 @@ $("#entryForm").validate({
         nome: {
           required: true,
           minlength: 4
+        },
+        nome: {
+          data_pagamento: true
+          
+        },tipo_pagamento: {
+          required: true
         }
+        
         }
 
     });
+
+
+
 </script>

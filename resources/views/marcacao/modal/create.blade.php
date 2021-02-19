@@ -67,7 +67,7 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="timeline">
-
+               @if(Auth()->user()->role->id == 1)
                  <div class="form-group has-feedback @error('provincia_spa') has-error @enderror">
                     <label for="inputEmail" class="col-sm-2 control-label">Província<span class="text-danger">*</span></label>
 
@@ -104,6 +104,22 @@
                         @enderror
                       </span>
                   </div>
+                  @elseif(Auth()->user()->role->id == 2)
+                      <div class="form-group has-feedback @error('data_atendimento') has-error @enderror">
+                    <label for="inputExperience" class="col-sm-2 control-label">Posto<span class="text-danger">*</span></label>
+
+                    <div class="col-sm-10">
+                     <input type="text" readonly name="localidade" value="{{Auth()->user()->posto->codigo}}" class="form-control"  >
+                    </div>
+                    <span class="text-danger">
+                        @error('local')
+                          {{ $message }}
+                        @enderror
+                      </span>
+                  </div>
+                  <input type="hidden" name="provincia_spa" value="{{Auth()->user()->posto->codigo}}">
+                   
+                  @endif
 
                 <div class="form-group has-feedback @error('servico') has-error @enderror">
                     <label for="inputEmail" class="col-sm-2 control-label">Serviço<span class="text-danger">*</span></label>

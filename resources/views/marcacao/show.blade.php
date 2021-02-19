@@ -14,8 +14,6 @@
      <div class="row">
    <div class="col-md-4">
               
-          <!-- Profile Image -->
-             
           <div class="box box-default" id="a">
             <div class="box-body box-profile" id="b">
               
@@ -79,7 +77,7 @@
                 
 
                  <li class="list-group-item">
-                  <b>A pagar  : </b> 
+                  <b>Total a pagar  : </b> 
                    {{number_format($total,2,',','.').' AOA'}}
                 </li>
                 
@@ -209,5 +207,5 @@
 
    
 
-@endsection')
+@endsection
 

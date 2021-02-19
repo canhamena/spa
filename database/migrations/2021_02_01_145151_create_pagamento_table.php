@@ -17,8 +17,11 @@ class CreatePagamentoTable extends Migration
             $table->id();
             $table->string('nome_cliente');
             $table->string('numero_pagamento');
-            $table->decimal('valor',15,2);
+            $table->unsignedBigInteger('tipopagamento_id')->nullable(); // Preenchimento não obrigatório
+            $table->foreign('tipopagamento_id')->references('id')->on('tipo_pagamento');
+             $table->unsignedBigInteger('data_pagamento')->nullable(); 
             $table->unsignedBigInteger('user_id');
+            $table->string('refrencia')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

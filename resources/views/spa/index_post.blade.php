@@ -64,6 +64,7 @@
 
            <div style="text-align: center;">
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm"><b><i class="fa fa-arrow-left"></i> Voltar</b></a>
+                <a title="Disponibilidade" href="#" data-toggle="modal" data-target="#modal-create-desponiblidade" data-whatever="{{ $localizacao->id }}" class="btn btn-info btn-sm"><i class="fa  fa-calendar-plus-o"></i></a>
                 
                     
                 <a href="" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
@@ -233,7 +234,7 @@
 
       </div>
 
-
+@include('spa.modal.create_desponibilidade')
 @endsection
 
 

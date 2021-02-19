@@ -245,7 +245,7 @@
     </footer>
 
 
-      @include('pagamento.modal.create')
+     
 
     <div class="control-sidebar-bg"></div>
 </div>
@@ -268,7 +268,21 @@
 <script src="{{ asset('/platform/bower_components/chart.js/Chart.js') }}"></script>
 <script src="{{ asset('/platform/assets/js/vendor.js') }}"></script>
 
+<script type="text/javascript">
+  
+  $('#mySelect').change(function() {
+        
+    if ($('#mySelect').val() == 3) {
+       document.getElementById('inpu_id').required = false;
+      $('#inputOculto').hide();
+    } else {
+      $('#inputOculto').show();
+       document.getElementById('inpu_id').required = true;
+      
+    }
+  });
 
+</script>
 
 
 
@@ -276,6 +290,10 @@
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree();
+    });
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
     });
 </script>
 
@@ -626,7 +644,7 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
                        {
                            $("#localidade").empty();
                           $.each(res,function(key,value){
-                                    $("#localidade").append('<option value="'+value.id+'">'+value.nome+' - '+value.descricao+' - '+value.rua+'</option>');
+                                    $("#localidade").append('<option value="'+value.codigo+'">'+value.nome+' - '+value.descricao+' - '+value.rua+'</option>');
                          });
                              
                 }
