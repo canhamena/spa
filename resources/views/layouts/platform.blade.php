@@ -286,7 +286,7 @@
   });
 
 </script>
-=======
+
 <!-- DATATABLE-->
 
 <script>
@@ -333,7 +333,6 @@
         });
         
     </script>
->>>>>>> 6e53fd9903345417a059af6cef350d79a9b9cef8
 
 <!-- END DATATABLE-->
 

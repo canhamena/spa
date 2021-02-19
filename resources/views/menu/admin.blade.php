@@ -21,11 +21,7 @@
             </span>
             </a>
             <ul class="treeview-menu">
-<<<<<<< HEAD
-                
-=======
-                <li class=""><a href="#" data-toggle="modal" data-target="#modal-create-pagamento" data-backdrop="static"><i class=""></i> <span>Registar</span></a></li>
->>>>>>> 6e53fd9903345417a059af6cef350d79a9b9cef8
+
                 <li><a href="{{url('pagamento/index')}}"><i class=""></i> Listar</a></li>
             </ul>
         </li>
