@@ -127,11 +127,13 @@
                     <div class="col-sm-10">
                       <select class="form-control select2" 
                         style="width: 100%;" name="servico" id="servico">
+                        @if ($spa)
                         <option disabled="" selected=""> Selecione </option>
                             @foreach($spa->tiposervico as $servico)
                               <option value="{{$servico->id}}">{{$servico->nome}}</option>
                             @endforeach
                          </select>
+                         @endif
 
                     </div>
                      <span class="text-danger">
