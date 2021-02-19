@@ -18,7 +18,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-bar-chart"></i> Estatística > Serviço </h3>
                 </div>
-                <div class="box-header ">
+                <div class="box-header">
                     <div class="box-tools">
 
                        <!-- <div class="row"> -->
@@ -29,7 +29,7 @@
                             </div>
                             -->
                             <div class="box-tools">
-                            <div class="input-group input-group-sm">
+                            <!-- <div class="input-group input-group-sm"> -->
                             <form class="form-horizontal" >
                                    <!-- <div class="col-xs-4"> -->
                                         
@@ -39,14 +39,16 @@
                                                 <option>Bengo</option>
                                                 <option>Uíge</option>
                                             </select>
+                                            <!--
                                             <span class="input-group-btn">
                                                 <button type="submit" class="btn btn-info pull-right">Buscar</button>
                                             </span>
+                                            -->
                                        
                                     <!--</div> -->
                                       
                             </form>
-                            </div>
+                            <!-- </div> -->
                             </div>
                         <!-- </div> -->
                     </div>
@@ -54,7 +56,13 @@
                 </div>
             </div>
 
-            <div id="container" style="height: 400px"></div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <div id="container" style="height: 500px"></div>
+                </div>
+            </div>
+
+            
         </div>
     </div>
 
@@ -76,7 +84,7 @@
             type: 'pie',
             options3d: {
                 enabled: true,
-                alpha: 45
+                alpha: 50
             }
         },
         title: {
@@ -88,16 +96,16 @@
         plotOptions: {
             pie: {
                 innerSize: 100,
-                depth: 45
+                depth: 50
             }
         },
         series: [{
             name: 'Serviços prestados',
             data: [
                 ['5', 8],
-                ['Saúde', 3],
-                ['Mixed nuts', 1],
-                ['Oranges', 6],
+                ['10', 3],
+                ['200', 1],
+                ['300', 6],
             ]
         }]
     });
