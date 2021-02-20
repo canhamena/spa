@@ -55,8 +55,9 @@ class AgendaAtendimentoController extends Controller
            {
                    //$tiposervico = TipoServico::where('id',$request[0])->get();
                    $tiposervico = TipoServico::all();
-                   
-                   return response()->json($request->disponivel);
+                   $dados = $request[0];
+                   //$dados = [1,34,4];
+                   return response()->json($dados);
            }
 
 
