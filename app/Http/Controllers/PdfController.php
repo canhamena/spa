@@ -10,6 +10,10 @@ use App\Models\Servico;
 use App\Models\TipoServico;
 use App\Models\Spa;
 use App\Models\Tipo;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use App\Models\Localizacao;
+use App\Models\Contacto;
 use PDF;
 
 class PdfController extends Controller
@@ -72,42 +76,46 @@ class PdfController extends Controller
     	
     }
 
-
+    //concluido
     public function spa()
     {
-        $spa = Spa::all()->first();
-        $servicos = Servico::all();
-        $provincias = Provincia::all();
-        $spa_tipos = Tipo::all(); 
 
         $contactos = Contacto::all();
     	if (Auth()->user()->role->id == 1) {
-            $localizacaos = \DB::Select('select l.id as id, l.codigo as codigo  from localizacao l , contacto c where l.id != c.localizacao_id');
+            $spa = Spa::all()->first();
+            $servicos = Servico::all();
+            $provincias = Provincia::all();
+            $spa_tipos = Tipo::all();
+            $contactos = Contacto::all();
+            $localizacoes = \DB::Select('select l.id as id, l.codigo as codigo  from localizacao l , contacto c where l.id != c.localizacao_id'); 
 
         }elseif(Auth()->user()->role->id == 2)
-            $localizacao = Localizacao::where('id',Auth()->user()->posto->id)->get()->first();
-        {   $users = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('name','asc')->get();
-           
+        {  
+             $localizacao = Localizacao::where('id',Auth()->user()->posto->id)->get()->first(); 
+             $pdf = PDF::loadView('pdf.spa',compact('spa','servicos','provincias','spa_tipos','contactos','localizacao'))->setPaper('a3',"landscape");
+            $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
+            return $pdf->stream();       
         }
 
 
-    	$pdf = PDF::loadView('pdf.utilizador',compact('spa','servicos','provincias','spa_tipos','contactos','localizacaos'))->setPaper('a3',"landscape");
+    	$pdf = PDF::loadView('pdf.spa',compact('spa','servicos','provincias','spa_tipos','contactos','localizacoes'))->setPaper('a3',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
     }
 
+    //concluido
     public function tipospa()
     {
-    	if (Auth()->user()->role->id == 1) {
-             $tipospa = TipoServico::OrderBy('nome','asc')->get(); 
+    	if (Auth()->user()->role->id == 1) { 
+             $tipospa = Tipo::OrderBy('tipo','asc')->get();
 
         }elseif(Auth()->user()->role->id == 2)
-        {   $tipospa = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('nome','asc')->get();
+        {   $tipospa = Tipo::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('tipo','asc')->get();
            
         }
 
- 
+
     	$pdf = PDF::loadView('pdf.tipospa',compact('tipospa'))->setPaper('a3',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
@@ -118,7 +126,7 @@ class PdfController extends Controller
     public function servico()
     {
     	if (Auth()->user()->role->id == 1) {
-             $servicos = Servico::OrderBy('nome','asc')->get();
+             $servicos = Servico::OrderBy('nome','asc')->get(); 
 
         }elseif(Auth()->user()->role->id == 2)
         {   $servicos = Servico::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('nome','asc')->get();

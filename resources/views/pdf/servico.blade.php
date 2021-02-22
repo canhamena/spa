@@ -31,6 +31,7 @@
         }
 
         td {
+            font-size: larger;
             border: 2px solid black;
             padding: 12px;/*5px*/
         }
@@ -64,14 +65,12 @@
 
     
     <table class="principal">
+        
         <tr class="cabeca">
-            <td colspan="4">Dados de Utilizador</td>
-        </tr>
-        <tr class="cabeca">
-            <td  style="text-align: left;" width="40">Nº</td>
-            <td width="" style="text-align: left;">Nome</td>
-            <td style="text-align: left;" width="200">Descrição</td>
-            <td width="200" style="text-align: left;">Tipo de serviço (Quantidade)</td>
+            <td  style="text-align: left; font-weight:bold" width="40">Nº</td>
+            <td width="" style="text-align: left; font-weight:bold">Nome</td>
+            <td style="text-align: left; font-weight:bold" width="200">Descrição</td>
+            <td width="200" style="text-align: left; font-weight:bold">Tipo de serviço (Quantidade)</td>
             
         </tr>
 

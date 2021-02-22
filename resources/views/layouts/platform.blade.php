@@ -245,7 +245,7 @@
     </footer>
 
 
-      
+
 
     <div class="control-sidebar-bg"></div>
 </div>
@@ -668,22 +668,29 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
         });
 
 
-        $("#servico").change(function(e) {
+        $("#tiposervico").change(function(e) {
 
             e.preventDefault();
           
-            var tiposervico_id = $(this).val();
-             var local = $("#localizacao").val();
+             var tiposervico_id =  $(this).val();
+             var dados = tiposervico_id+"_";
+             /*for(var i =0;i<tiposervico_id.length; i++ ){
+                  if (i==0) {dados = tiposervico_id[i]  }else{
+                     dados = dados+"_"+tiposervico_id[i];
+                  }
+                 
+             }*/
+             
+             //var local = document.getElementById('localidade').value;
+            //dados = dados+"_"+local;
+             
+             console.log(JSON.stringify(dados));
              
                 $.ajax({
-                    type: 'POST',
+                    type: 'post',
                     contentType: 'application/json; charset=utf-8',
                     url: "{{ route('tiposervico_local.post') }}",
-                    data: {
-                       _token : $('meta[name="csrf-token"]').attr('content'),
-                       "_method": 'POST',
-                       disponivel: tiposervico_id},
-                    dataType: 'json',
+                    data: dados,
                     success: function(res)
                            {       
                     

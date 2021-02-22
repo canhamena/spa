@@ -137,6 +137,4 @@
     <div style="margin-left:  1000px; font-family: Arial Narrow, sans-serif "><small>  Utilizador : {{$nome}} ,  &nbsp; {{date('d-m-Y')}} - Processado por compudador </small></div>
     </footer>
     
-    
-
 @endsection

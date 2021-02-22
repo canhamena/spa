@@ -109,7 +109,7 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Posto<span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                     <input type="text" readonly name="localidade" value="{{Auth()->user()->posto->codigo}}" class="form-control"  >
+                     <input type="text" readonly name="localidade" id="localidade" value="{{Auth()->user()->posto->codigo}}" class="form-control"  >
                     </div>
                     <span class="text-danger">
                         @error('local')
