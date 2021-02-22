@@ -20,32 +20,42 @@
                     <h3 class="box-title"><i class="fa fa-bar-chart"></i> Estatística </h3>
                 </div>
                 <div class="box-body ">
-                    <div class="row">
-                        <div class="col-xs-4">
-                        </div>
-                        <div class="col-xs-2">
-                        </div>
-                        <form class="form-horizontal" >
-
-                                <div class="col-xs-3">
-                                    <label>Ano</label>
-                                    <select class="form-control">
-                                      <option>2020</option>
-                                      <option>2021</option>
-                                    </select>
-                                </div>
                     
-                                <div class="col-xs-3">
-                                    <label>Localização</label>
-                                    <select class="form-control">
-                                      <option>Bengo</option>
-                                      <option>Uige</option>
-                                    </select>
-                                    <button type="submit" class="btn btn-info pull-right">Buscar</button>
-                                </div>
-                        </form>
+                        <div class="col-md-7">
+                            
+                        </div>
+                <form action="{{route('estatistica.marcacao.filtro')}}" method="post" class="form-horizontal" >
+                    @csrf
+                    <div class="row">
+                         <div class="col-md-2">
+                            <select class="form-control select2" style="width: 100%;" name="ano">
+                               <option selected="selected" disabled="">Ano</option>
+                                   @foreach($anos as $key)
+                                      <option value="{{$key->ano}}">{{$key->ano}}</option>
+                                   @endforeach
+                            </select>
+            
+                            </div>
+                            <div class="col-md-2">
+                  
+                            <select class="form-control select2" style="width: 100%;" name="posto">
+                                <option selected="selected" disabled="">Posto</option>
+                                    @foreach($postos as $posto)
+                                       <option value="{{$posto->codigo}}">{{$posto->codigo}}</option>
+                                    @endforeach
+                  
+                            </select>
+                 
+                          </div>
+                          <div class="col-md-1 " style="margin-left: -5%;">
+                                 <button type="submit" class="btn btn-info pull-right"><i class="fa fa-search"></i></button>
+                          </div>
+                    </div>
+              
+                                 
+             </form>
 
-                    </div>  
+                  
                 </div>
             </div>
             
@@ -73,7 +83,7 @@
             type: 'column'
         },
         title: {
-            text: 'Marcação'
+            text: "<?php  echo $titulo;?>"
         },
         subtitle: {
             text: 'Dados estatísticos'
@@ -116,16 +126,44 @@
             }
         },
         series: [{
+            color: '#00a65a',
             name: 'Atendidos',
-            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+            data: [<?php $num =0; for ($j = 1; $j <= 12; $j++) {?>
+                          <?php
+                            if (array_key_exists($j,$atendidos)) {
+                           echo $atendidos[$j].","; 
+                         }else{
+                            echo $num.","; 
+                         }
+                           ?> 
+                 <?php } ?>]
+                 
     
         }, {
+            color: '#f39c12',
             name: 'Pendentes',
-            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+            data: [<?php $num =0; for ($j = 1; $j <= 12; $j++) {?>
+                          <?php
+                            if (array_key_exists($j,$pedentes)) {
+                           echo $pedentes[$j].","; 
+                         }else{
+                            echo $num.","; 
+                         }
+                           ?> 
+                 <?php } ?>]
     
         }, {
+            color: '#dd4b39',
             name: 'Cancelados',
-            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+            data: [<?php $num =0; for ($j = 1; $j <= 12; $j++) {?>
+                          <?php
+                            if (array_key_exists($j,$cancelados)) {
+                           echo $cancelados[$j].","; 
+                         }else{
+                            echo $num.","; 
+                         }
+                           ?> 
+                 <?php } ?>]
     
         }]
     });
