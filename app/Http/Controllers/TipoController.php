@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tipo;
+use App\Models\Auditoria;
 use Illuminate\Validation\Rule;
 
 class TipoController extends Controller
@@ -24,6 +25,8 @@ class TipoController extends Controller
 		    $tipo->tipo = $request->nome;
 		    $tipo->descricao = $request->descricao;
 		    $tipo->save();
+		    $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+		    Auditoria::create(['accao' =>"Registou Tipo de Spa   ".$tipo->tipo,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 
 		    return redirect()->route('tipo.index')->with('mensagem', 'Tipo registado com sucesso ..!');
 	}
@@ -42,6 +45,8 @@ class TipoController extends Controller
                 $tipo->tipo = $request->nome;
 		        $tipo->descricao = $request->descricao;
 		        $tipo->save();
+		          $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+		         Auditoria::create(['accao' =>"Actualizou Tipo de Spa   ".$tipo->tipo,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 		        return redirect()->route('tipo.index')->with('mensagem', 'Tipo actualizado com sucesso ..!');
 		       }
 

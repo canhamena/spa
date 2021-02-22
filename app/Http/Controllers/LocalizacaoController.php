@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Localizacao;
 use App\Models\Spa;
+use App\Models\Auditoria;
 use App\Http\Helpers\AppHelper;
 
 class LocalizacaoController extends Controller
@@ -27,7 +28,9 @@ class LocalizacaoController extends Controller
               $localizacao->descricao = $request->descricao_local;
               $localizacao->rua = $request->rua;
               $localizacao->save();
-        return  redirect()->route('spa.index')->with('mensagem', 'Endereço adicionado com sucesso ..!');
+                $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+              Auditoria::create(['accao' =>" Registou Posto ". $localizacao->codigo,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
+          return  redirect()->route('spa.index')->with('mensagem', 'Endereço adicionado com sucesso ..!');
         
            }
            return  redirect()->route('spa.index')->with('erro', 'Endereço invalido. Não existe Spa ..!');
@@ -47,15 +50,17 @@ class LocalizacaoController extends Controller
 
 			
 
-		$localizacao = Localizacao::where('id',$request->localizacao_id)->get()->first();
+		      $localizacao = Localizacao::where('id',$request->localizacao_id)->get()->first();
            if (isset($localizacao)) {
          
              $localizacao->municipio_id  = $request->municipio;
              $localizacao->descricao = $request->descricao_local;
              $localizacao->rua = $request->rua;
              $localizacao->save();
-                return  redirect()->route('spa.index')->with('mensagem', 'Endereço actualizado com sucesso ..!');
-         	# code...
+              $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+             Auditoria::create(['accao' =>" Actualizou Posto ". $localizacao->codigo]);
+             return  redirect()->route('spa.index')->with('mensagem', 'Endereço actualizado com sucesso ..!','user_id'=>auth()->user()->id,'localizacao_id'=>$posto;
+         
            }
            return  redirect()->route('spa.index')->with('erro', 'Endereço não encontrado ..!');
 	}
@@ -66,7 +71,9 @@ class LocalizacaoController extends Controller
        $localizacao = Localizacao::where('id',	base64_decode($localizacao_id))->get()->first();
 	if (isset($localizacao)) {
 		$localizacao->delete();
-		 return  redirect()->route('spa.index')->with('mensagem', 'Endereço removido com sucesso ..!');
+     $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+    Auditoria::create(['accao' =>" Elimonou Posto ". $localizacao->codigo]);
+		 return  redirect()->route('spa.index')->with('mensagem', 'Endereço removido com sucesso ..!','user_id'=>auth()->user()->id,'localizacao_id'=>$posto);
 	}
 
 	   return  redirect()->route('spa.index')->with('erro', 'Endereço não encontrado ..!');

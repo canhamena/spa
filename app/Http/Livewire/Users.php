@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Auditoria;
 use App\Models\Localizacao;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -61,7 +62,8 @@ class Users extends Component
                       'localizacao_id' => $this->localizacao_id,
                       'status'=>1
                     ]);
-
+                    $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+                   Auditoria::create(['accao' =>" Registou Utilizador  ".$this->name,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
         session()->flash('message', '<i class="fa fa-check-circle"></i> Utilizador criado!.');
 
         $this->resetInputFields();
@@ -112,6 +114,8 @@ class Users extends Component
                 'status'=>1
             ]);
             $this->updateMode = false;
+            $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+                   Auditoria::create(['accao' =>" Actulizou Utilizador  ".$this->name,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
             session()->flash('message', '<i class="fa fa-check-circle"></i> Utilizador actualizado!.');
             $this->resetInputFields();
 
@@ -120,8 +124,13 @@ class Users extends Component
 
     public function delete($id)
     {
-        if($id){
-            User::where('id',$id)->delete();
+        $utilizador = User::where('id',$id)->get()->first();
+        if(isset($utilizador)){
+            
+            $nome = $utilizador->nme;
+            $utilizador->delete();
+            $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+                   Auditoria::create(['accao' =>" Registou Utilizador  ".$nome,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
             session()->flash('message', 'Utilizador eliminado!.');
         }
     }
@@ -141,11 +150,14 @@ class Users extends Component
 
     public function disableUser($id)
     {
-        if($id){
-            $user = User::find($id);
+        $user = User::find($id);
+        if($user){
+            
             $user->update([
                 'status' => 0,
             ]);
+             $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+                   Auditoria::create(['accao' =>" Desabilitou Utilizador  ".$user->name,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
             session()->flash('message', '<i class="fa fa-check-circle"></i> Utilizador inactivado!.');
         }
     }

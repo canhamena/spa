@@ -36,7 +36,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td style="text-align: left;">{{ $servico->nome }}</td>
                             <td style="text-align: left;">{{ $servico->descricao }}</td>
-                            <td style="text-align: left;">
+                            <td style="text-align: left;"> 
                             	{{count($servico->tiposervico)}} 
                             </td>
                             

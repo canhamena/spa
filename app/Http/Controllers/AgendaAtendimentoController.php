@@ -8,6 +8,7 @@ use App\Models\AgendaAtendimentoTipoServico;
 use App\Models\Localizacao;
 use App\Http\Helpers\AppHelper;
 use App\Models\TipoServico;
+use App\Models\Auditoria;
 
 
 class AgendaAtendimentoController extends Controller
@@ -40,7 +41,8 @@ class AgendaAtendimentoController extends Controller
               	      foreach ($request->tiposervico as $tipospa) {
                             $agenda->tiposervico()->attach($tipospa);
                     }
-
+                   $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                   Auditoria::create(['accao' =>" Registou agendamento com referencia ". $agenda->id,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
                     return  redirect()->route('spa.index')->with('mensagem', 'Agendamento registado com sucesso ..!');
 
               	}

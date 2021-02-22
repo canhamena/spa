@@ -48,6 +48,8 @@ class PagamentoController extends Controller
 	          $pagamento->referencia = $request->referencia;
 	          $pagamento->tipopagamento_id = $request->tipo_pegamento;
 	          $pagamento->save();
+	           $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+	          Auditoria::create(['accao' =>" Registou pagamento com nº  ".$pagamento->numero_pagamento,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
               
 	          return redirect()->route('pagamento.factura',base64_encode($pagamento->id));
             
@@ -82,14 +84,19 @@ class PagamentoController extends Controller
                    'qtd' => 'required',
                   ]);
 
-
+              $pagamento = Pagamento::where('id',$request->pagamento_id)->get()->first();
+              if (!isset($pagamento)) {
+              	  return redirect()->route('pagamento.index')->with('mensagem', 'pagamento não encontrado');
+              }
+         
 	        $tiposervicopagamento = new TipoServicoPagamento();
 	        $tiposervicopagamento->tipo_servico_id = $request->tipo_servico;
 	        $tiposervicopagamento->qtd = $request->qtd;
 	        $tiposervicopagamento->pagamento_id = $request->pagamento_id;
-	        
-
 	        $tiposervicopagamento->save();
+	         $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+
+	         Auditoria::create(['accao' =>" Registou linha de factura do pagamento  nº  ".$pagamento->numero_pagamento,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 
 	       
 
@@ -105,10 +112,17 @@ class PagamentoController extends Controller
 
 	        $tiposervico = TipoServicoPagamento::where('id',$request->pagamentoservico_id)->get()->first();
 	        if (isset($tiposervico)) {
+	        	$pagamento = Pagamento::where('id',$tiposervico->pagamento_id)->get()->first();
+              if (!isset($pagamento)) {
+              	  return redirect()->route('pagamento.index')->with('mensagem', 'pagamento não encontrado');
+              }
 
 	        	$tiposervico->tipo_servico_id = $request->tipo_servico;
 	        	$tiposervico->qtd = $request->qtd;
 	        	$tiposervico->save();
+	        	$posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+	        	Auditoria::create(['accao' =>" Actualizou linha de factura do pagamento  nº  ".$pagamento->numero_pagamento,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
+
 	        	return redirect()->route('pagamento.factura',base64_encode($tiposervico->pagamento_id))->with('mensagem', 'Linha de pagamento actualizado ..!');
 	        	
 	        }
@@ -122,7 +136,15 @@ class PagamentoController extends Controller
         {
 	        $tiposervico = TipoServicoPagamento::where('id',base64_decode($pagamentoservico_id))->get()->first();
 	        if (isset($tiposervico)) {
+	        	$pagamento = Pagamento::where('id',$tiposervico->pagamento_id)->get()->first();
+              if (!isset($pagamento)) {
+              	  return redirect()->route('pagamento.index')->with('mensagem', 'pagamento não encontrado');
+              }
 	        	$tiposervico->delete();
+	        	$posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+	        	Auditoria::create(['accao' =>" Elimonou linha de factura do pagamento  nº  ".$pagamento->numero_pagamento,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
+
+
 	        	return redirect()->route('pagamento.factura',base64_encode($tiposervico->pagamento_id))->with('mensagem', 'Linha de pagamento eliminado ..!');
 	        	
 	        }
@@ -155,6 +177,9 @@ class PagamentoController extends Controller
               	$tiposervico->delete();
               }
               $pagamento->delete();
+              $posto = isset(auth()->user()->posto)? auth()->user()->posto->id : null;
+               Auditoria::create(['accao' =>" Eliminou pagamento com nº de factura ".$pagamento->numero_pagamento,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
+
               return redirect()->route('pagamento.index')->with('mensagem', 'pagamento eliminado com sucesso');
 	     }
 

@@ -11,6 +11,7 @@ use App\Models\Cliente;
 use App\Http\Requests\StoreMarcacaoRequest;
 use App\Http\Helpers\AppHelper;
 use App\Models\MarcacaoTipoServico;
+use App\Models\Auditoria;
 
 class ReservaController extends Controller 
 {
@@ -66,7 +67,8 @@ class ReservaController extends Controller
              	$marcaoa_tipo->marcacao_id = $marcacao->id;
              	$marcaoa_tipo->save();
               }
-
+               $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+               Auditoria::create(['accao' =>" Registou reserva do cliente ".$marcacao->cliente->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
               	return  redirect()->route('reserva.index')->with('mensagem', 'Marcação registado com sucesso ..!');
               # code...
            }
@@ -88,6 +90,8 @@ class ReservaController extends Controller
                     $marcacao->data_atendimento = AppHelper::convertedmY2Ymd($request->data_atendimento);
                     $marcacao->hora = $request->hora_atendimento;
                     $marcacao->save();
+                     $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                     Auditoria::create(['accao' =>" Actualizou reserva do cliente ".$marcacao->cliente->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
                     return  redirect()->route('reserva.index')->with('mensagem', 'Marcação actualizada com sucesso ..!');
             }
                  return  redirect()->route('reserva.index')->with('erro', 'Marcação não encontrado ..!');
@@ -102,6 +106,8 @@ class ReservaController extends Controller
             if ($marcacao != null) {
                     $marcacao->estado = 'C';
                     $marcacao->save();
+                     $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                     Auditoria::create(['accao' =>"Cancelou reserva do cliente ".$marcacao->cliente->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
                     return  redirect()->route('reserva.index')->with('mensagem', 'Marcação cancelada com sucesso ..!');
             }
                  return  redirect()->route('reserva.index')->with('erro', 'Marcação não encontrado ..!');

@@ -133,6 +133,11 @@ Route::get('/pdf/tiposervico', ['App\Http\Controllers\PdfController', 'tiposervi
 Route::get('/pdf/tipospa', ['App\Http\Controllers\PdfController', 'tipospa'])->name('pdf.tipospa');
 
 
+/************************ Auditoria ************************/
+
+Route::get('/autidoria/index', ['App\Http\Controllers\AutidoriaController', 'index'])->name('auditoria.index');
+
+
 
 
 

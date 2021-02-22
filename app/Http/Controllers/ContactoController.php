@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Localizacao;
 use App\Models\Contacto;
+use App\Models\Auditoria;
 
 class ContactoController extends Controller
 {
@@ -27,6 +28,8 @@ class ContactoController extends Controller
         $contacto->whatsao = $request->whatsap;
         $contacto->descricao = $request->descricao;
         $contacto->save();
+         $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+        Auditoria::create(['accao' =>" Registou contacto do posto ". $localizacao->codigo,'user_id'=>auth()->user()->id,'localizacao_id'=> $posto]);
         return  redirect()->route('spa.index')->with('mensagem', 'Contacto adicionado com sucesso ..!');
          	# code...
            }
@@ -50,7 +53,10 @@ class ContactoController extends Controller
 		$contacto = Contacto::where('id',$request->contacto_id)->get()->first();
            if (isset($contacto)) {
           
-		
+		 $localizacao = Localizacao::where('id',$request->localizacao_id)->get()->first();
+         if (!isset($localizacao)) {
+             return  redirect()->route('spa.index')->with('erro', 'Contacto invalido. Não existe Spa ..!');
+         }
         $contacto->localizacao_id = $request->localizacao_id;
         $contacto->telefone  = $request->telefone;
         $contacto->telemovel = $request->telemovel;
@@ -58,6 +64,10 @@ class ContactoController extends Controller
         $contacto->whatsao = $request->whatsap;
         $contacto->descricao = $request->descricao;
         $contacto->save();
+       
+
+          $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+        Auditoria::create(['accao' =>" Actualizou  contacto do posto ". $localizacao->codigo,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
         return  redirect()->route('spa.index')->with('mensagem', 'Contacto adicionado com sucesso ..!');
          	# code...
            }
@@ -73,7 +83,13 @@ class ContactoController extends Controller
 	{
 		$contacto = Contacto::where('id',base64_decode($contacto_id))->get()->first();
 	if (isset($contacto)) {
+         $localizacao = Localizacao::where('id',$contacto->localizacao_id)->get()->first();
+         if (!isset($localizacao)) {
+             return  redirect()->route('spa.index')->with('erro', 'Contacto invalido. Não existe Spa ..!');
+         }
 		$contacto->delete();
+        $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+        Auditoria::create(['accao' =>" Eliminou  contacto do posto ".$localizacao->codigo,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 		 return  redirect()->route('spa.index')->with('mensagem', 'Contacto eliminado com sucesso ..!');
 	}
 

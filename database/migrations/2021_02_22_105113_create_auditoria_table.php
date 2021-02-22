@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoTable extends Migration
+class CreateAuditoriaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateTipoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo', function (Blueprint $table) {
+        Schema::create('auditoria', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
-            $table->string('descricao')->nullable();
+            $table->string('accao');
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
-
+ 
     /**
      * Reverse the migrations.
      *
@@ -28,6 +29,6 @@ class CreateTipoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo');
+        Schema::dropIfExists('auditoria');
     }
 }

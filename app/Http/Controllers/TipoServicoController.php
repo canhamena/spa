@@ -7,6 +7,7 @@ use App\Http\Helpers\AppHelper;
 use App\Http\Requests\StoreServicoRequest;
 use App\Models\TipoServico;
 use App\Models\Servico;
+use App\Models\Auditoria;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\UpdateTipoServicoRequest;
 
@@ -38,6 +39,8 @@ class TipoServicoController extends Controller
              $tipoServico->imagem = $storagepath;
              $tipoServico->servico_id  = $request->servico_id;
              $tipoServico->save();
+             $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+              Auditoria::create(['accao' =>"Registou Tipo de serviço   ".$tipoServico->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 
              return redirect()->route('servico.show',base64_encode($servico->id))->with('mensagem', 'Tipo de serviço registado..!');
        }
@@ -62,6 +65,8 @@ class TipoServicoController extends Controller
                   $tiposervico->imagem = $storagepath;
 
                   $tiposervico->save();
+                  $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                  Auditoria::create(['accao' =>"Actualizou Tipo de serviço   ".$tipoServico->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 
                }
 
@@ -79,7 +84,10 @@ class TipoServicoController extends Controller
 
             if ($tiposervico->exists()) {
                 $id = $tiposervico->servico_id;
+                 $nome = $tiposervico->nome;
                 $tiposervico->delete();
+                 $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                Auditoria::create(['accao' =>"Eliminou Tipo de serviço   ".$nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
                 return redirect()->route('servico.show',base64_encode($id))->with('mensagem', 'Tipo de serviço eliminado.!');
 
             }
@@ -106,6 +114,9 @@ class TipoServicoController extends Controller
              $tipoServico->imagem = $storagepath;
              $tipoServico->servico_id  = $request->servico_id;
              $tipoServico->save();
+             $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+
+              Auditoria::create(['accao' =>"Registou Tipo de serviço   ".$tipoServico->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 
              return redirect()->route('tiposervico.index')->with('mensagem', 'Tipo de serviço registado..!');
        }
@@ -118,7 +129,10 @@ class TipoServicoController extends Controller
              $tiposervico = TipoServico::where('id',base64_decode($tipoServico_id))->get()->first();
 
             if ($tiposervico->exists()) {
+                $nome =  $tiposervico->nome;
                 $tiposervico->delete();
+                $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                 Auditoria::create(['accao' =>"Elimonou Tipo de serviço   ".$nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
                 return redirect()->route('tiposervico.index')->with('mensagem', 'Tipo de serviço eliminado .!');
 
             }

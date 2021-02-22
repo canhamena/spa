@@ -8,6 +8,7 @@ use App\Models\Servico;
 use App\Models\TipoServico;
 use App\Http\Helpers\AppHelper;
 use Illuminate\Validation\Rule;
+use App\Models\Auditoria;
 
 class ServicoController extends Controller
 {
@@ -32,6 +33,8 @@ class ServicoController extends Controller
     	
             
     	$servico->save();
+        $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+        Auditoria::create(['accao' =>"Registou serviço ".$servico->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 
     	return redirect()->route('servico.index')->with('mensagem', 'Serviço registado..!');
     }
@@ -50,6 +53,8 @@ class ServicoController extends Controller
     	     $servico->imagem = $storagepath;
     	     $servico->descricao = $request->descricao;
     	     $servico->save();
+              $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+             Auditoria::create(['accao' =>"Registou serviço ".$servico->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
     	     return redirect()->route('servico.index')->with('mensagem', 'Serviço Actualizado..!');
     	}
 
@@ -61,8 +66,10 @@ class ServicoController extends Controller
     	$servico = Servico::Where('id',base64_decode($servico_id))->get()->first();
 
     	if (isset($servico)) {
-    		
+    		$nome = $servico->nome;
             $servico->delete();
+            $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+            Auditoria::create(['accao' =>"Elimonou serviço ".$nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
     		return redirect()->route('servico.index')->with('mensagem', 'Serviço Eliminado..!');
     	}
 

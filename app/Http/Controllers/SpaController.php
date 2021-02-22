@@ -12,11 +12,12 @@ use App\Http\Helpers\AppHelper;
 use App\Models\Localizacao;
 use App\Models\Contacto;
 use App\Models\Tipo;
+use App\Models\Auditoria;
 
 use App\Models\User; 
 
 
-class SpaController extends Controller
+class SpaController extends Controller 
 {
     public function index(){
         $spa = Spa::all()->first();
@@ -74,7 +75,8 @@ class SpaController extends Controller
          foreach ($request->tipo_spa as $tipospa) {
              $spa->tipospa()->attach($tipospa);
          }
-
+         $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+         Auditoria::create(['accao' =>"Registou Spa   ".$spa->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
 		    return  redirect()->route('spa.index')->with('mensagem', 'Spa registado com sucesso ..!');
 	}
 
@@ -117,6 +119,8 @@ class SpaController extends Controller
                   foreach ($request->tipo_spa as $tipospa) {
                      $spa->tipospa()->attach($tipospa);
                 }
+                $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+                Auditoria::create(['accao' =>"Actualizou  Spa   ".$spa->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
                return  redirect()->route('spa.index')->with('mensagem', 'Spa actualizado com sucesso ..!');
 				
 			}
