@@ -19,47 +19,23 @@
     }
 </style>
 
-<h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>UTILIZADORES</u></h2>
+<h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>TIPOS DE SPA</u></h2> 
 
 
 <table class="principal">
       <tr class="cabeca">
       	  <td  style="text-align: left;" width="40">Nº</td>
           <td width="" style="text-align: left;">Nome</td>
-          <td style="text-align: left;" width="200">Email</td>
-          <td width="200" style="text-align: left;">Função</td>
-          <td width="100" style="text-align: left;">Posto</td>
-          <td width="150" style="text-align: left;">Estado</td>
-          
+          <td width="" style="text-align: left;">Descrição</td>
       </tr>
 
-               @foreach($users as $user)
+               @foreach($tipospa as $tipospa)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td style="text-align: left;">{{ $user->name }}</td>
-                            <td style="text-align: left;">{{ $user->email }}</td>
-                            <td style="text-align: left;">
-                            	@if(isset($user->role))
-                            	{{ $user->role->description }}
-                            	@endif
-                            </td>
-                            <td >
-                                @if(isset($user->posto)) 
-                                {{ $user->posto->codigo}}
-                                @endif
-                            </td>
-                           
-                            <td style="text-align:center;">
-                            
-                                @if($user->status==1)
-                                    Activo
-                                @else
-                                    Inactivo
-                                @endif
-                            </td>
-  </tr>
-      	
-    @endforeach 
+                            <td style="text-align: left;">{{ $tipospa->nome }}</td>
+                            <td style="text-align: left;">{{ $tipospa->descricao }}</td>
+                        </tr>
+                @endforeach 
   </table>
 
 
@@ -74,7 +50,8 @@
 
     } 
 
-</script>
+    </script>
+
     <footer style=" 
           width: 100%;
           position: fixed;
@@ -82,18 +59,18 @@
           left: 0;">
        
    
-  <hr>
+    <hr>
     
-  <div style="float: left; font-family: Arial Narrow, sans-serif  ">|<small> Muxima - Gestão de Spa</small> </div>
-        @php
-           $nome = explode(" ", Auth::user()->name);
-           $cont = count($nome);
-           $nome = $cont==1 ? $nome[0] : $nome[0]." ".$nome[$cont-1];
-       @endphp
-  <div style="margin-left:  1000px; font-family: Arial Narrow, sans-serif "><small>  Utilizador : {{$nome}} ,  &nbsp; {{date('d-m-Y')}} - Processado por compudador </small></div>
+    <div style="float: left; font-family: Arial Narrow, sans-serif  ">|<small> Muxima - Gestão de Spa</small> </div>
+            @php
+            $nome = explode(" ", Auth::user()->name);
+            $cont = count($nome);
+            $nome = $cont==1 ? $nome[0] : $nome[0]." ".$nome[$cont-1];
+        @endphp
+    <div style="margin-left:  1000px; font-family: Arial Narrow, sans-serif "><small>  Utilizador : {{$nome}} ,  &nbsp; {{date('d-m-Y')}} - Processado por compudador </small></div>
 
-  
-  
-</footer> 
+    
+    
+    </footer> 
 
 @endsection

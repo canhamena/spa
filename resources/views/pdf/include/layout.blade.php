@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>PDF</title>
-</head>
-<body>
- @yield('content')
-</body>
-</html>
+
+	<head>
+		<title>PDF</title>
+		@yield('css_style')
+	</head>
+
+	<body>
+		@yield('header')
+		@yield('content')
+		@yield('footer')
+	</body>
+</html> 

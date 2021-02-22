@@ -8,7 +8,7 @@
        padding: 5px;
       }
     .principal {
-      text-align: center;
+      text-align: center; 
       border-collapse: collapse;
       width: 1500px;
       }
@@ -19,12 +19,12 @@
     }
 </style>
 
-<h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>UTILIZADORES</u></h2>
+<h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>Spa</u></h2>
 
 
 <table class="principal">
       <tr class="cabeca">
-      	  <td  style="text-align: left;" width="40">Nº</td>
+      	  <td  style="text-align: left;" width="40">Nº</td> 
           <td width="" style="text-align: left;">Nome</td>
           <td style="text-align: left;" width="200">Email</td>
           <td width="200" style="text-align: left;">Função</td>
@@ -63,7 +63,7 @@
   </table>
 
 
-     <script type="text/php">
+<script type="text/php">
 
     if ( isset($pdf) ) {
 

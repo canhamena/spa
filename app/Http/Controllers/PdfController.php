@@ -67,24 +67,31 @@ class PdfController extends Controller
 
 
     	$pdf = PDF::loadView('pdf.pagamento',compact('pagamentos'))->setPaper('a3',"landscape");
-         $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
+        $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
     }
 
-    
+
     public function spa()
     {
+        $spa = Spa::all()->first();
+        $servicos = Servico::all();
+        $provincias = Provincia::all();
+        $spa_tipos = Tipo::all(); 
+
+        $contactos = Contacto::all();
     	if (Auth()->user()->role->id == 1) {
-             $users = User::OrderBy('name','asc')->get();
+            $localizacaos = \DB::Select('select l.id as id, l.codigo as codigo  from localizacao l , contacto c where l.id != c.localizacao_id');
 
         }elseif(Auth()->user()->role->id == 2)
+            $localizacao = Localizacao::where('id',Auth()->user()->posto->id)->get()->first();
         {   $users = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('name','asc')->get();
            
         }
 
 
-    	$pdf = PDF::loadView('pdf.utilizador',compact('users'))->setPaper('a3',"landscape");
+    	$pdf = PDF::loadView('pdf.utilizador',compact('spa','servicos','provincias','spa_tipos','contactos','localizacaos'))->setPaper('a3',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
@@ -93,15 +100,15 @@ class PdfController extends Controller
     public function tipospa()
     {
     	if (Auth()->user()->role->id == 1) {
-             $users = User::OrderBy('name','asc')->get();
+             $tipospa = TipoServico::OrderBy('nome','asc')->get(); 
 
         }elseif(Auth()->user()->role->id == 2)
-        {   $users = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('name','asc')->get();
+        {   $tipospa = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('nome','asc')->get();
            
         }
 
-
-    	$pdf = PDF::loadView('pdf.utilizador',compact('users'))->setPaper('a3',"landscape");
+ 
+    	$pdf = PDF::loadView('pdf.tipospa',compact('tipospa'))->setPaper('a3',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
