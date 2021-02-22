@@ -71,14 +71,16 @@ class PdfController extends Controller
 
 
     	$pdf = PDF::loadView('pdf.pagamento',compact('pagamentos'))->setPaper('a3',"landscape");
-         $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
+        $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
     }
 
-    
+    //concluido
     public function spa()
     {
+
+        $contactos = Contacto::all();
     	if (Auth()->user()->role->id == 1) {
             $spa = Spa::all()->first();
             $servicos = Servico::all();
@@ -102,6 +104,7 @@ class PdfController extends Controller
     	
     }
 
+    //concluido
     public function tipospa()
     {
     	if (Auth()->user()->role->id == 1) { 
