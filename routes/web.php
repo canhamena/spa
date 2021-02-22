@@ -131,6 +131,7 @@ Route::get('/pdf/spa', ['App\Http\Controllers\PdfController', 'spa'])->name('pdf
 Route::get('/pdf/servico', ['App\Http\Controllers\PdfController', 'servico'])->name('pdf.servico');
 Route::get('/pdf/tiposervico', ['App\Http\Controllers\PdfController', 'tiposervico'])->name('pdf.tiposervico');
 Route::get('/pdf/tipospa', ['App\Http\Controllers\PdfController', 'tipospa'])->name('pdf.tipospa');
+Route::get('/pdf/factura', ['App\Http\Controllers\PdfController', 'factura'])->name('pdf.factura');
 
 
 

@@ -157,5 +157,21 @@ class PdfController extends Controller
         return $pdf->stream();
     }
 
+    public function factura() 
+    {
+    	if (Auth()->user()->role->id == 1) {
+             $tiposervicos = TipoServico::OrderBy('nome','asc')->get();
+
+        }elseif(Auth()->user()->role->id == 2)
+        {   $tiposervicos = TipoServico::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('nome','asc')->get();
+           
+        }
+
+
+    	$pdf = PDF::loadView('pdf.factura',compact('tiposervicos'))->setPaper('a3',"landscape");
+         $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
+        return $pdf->stream();
+    }
+
     
 }
