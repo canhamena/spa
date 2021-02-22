@@ -122,9 +122,16 @@ Route::get('/estatistica/marcacao', ['App\Http\Controllers\EstatisticaController
 Route::get('/estatistica/servico', ['App\Http\Controllers\EstatisticaController', 'servico'])->name('estatistica.servico');
 
 /************************ PdF ***********************************************/
-
+ 
 //************************** Utilizadores **************************************/
 Route::get('/pdf/utilizador', ['App\Http\Controllers\PdfController', 'utilizador'])->name('pdf.utilizador');
+Route::get('/pdf/reserva', ['App\Http\Controllers\PdfController', 'reserva'])->name('pdf.reserva');
+Route::get('/pdf/pagamento', ['App\Http\Controllers\PdfController', 'pagamento'])->name('pdf.pagamento');
+Route::get('/pdf/spa', ['App\Http\Controllers\PdfController', 'spa'])->name('pdf.spa');
+Route::get('/pdf/servico', ['App\Http\Controllers\PdfController', 'servico'])->name('pdf.servico');
+Route::get('/pdf/tiposervico', ['App\Http\Controllers\PdfController', 'tiposervico'])->name('pdf.tiposervico');
+Route::get('/pdf/tipospa', ['App\Http\Controllers\PdfController', 'tipospa'])->name('pdf.tipospa');
+
 
 
 

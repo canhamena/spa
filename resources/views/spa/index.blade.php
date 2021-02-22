@@ -16,7 +16,7 @@
               
           <!-- Profile Image -->
              
-          <div class="box box-default" id="a">
+          <div class="box box-info" id="a">
             <div class="box-body box-profile" id="b">
                @php 
                  $imagem = null;
@@ -36,8 +36,8 @@
                   
                 <li class="list-group-item">
                   <b>Nome : </b> 
-                  @if(isset($spa))
-                    {{$spa->nome}}
+                  @if(isset($spa)) 
+                    {{$spa->nome}} 
                   @endif
                 </li>
                 <li class="list-group-item">
@@ -70,7 +70,7 @@
                     <a href="" data-toggle="modal" data-target="#modal-create-spa" data-backdrop="static" class="btn btn-info btn-sm"><b> <i class="fa  fa-check"></i> Adicionar </b></a>
                  @endif
                 
-                <a href="" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
+                <a href="{{route('pdf.spa')}}" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
              </div>
             </div>
             <!-- /.box-body -->
@@ -87,8 +87,7 @@
             <li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-black-tie"></i> Endereço</a></li>
             <li ><a href="#tab_2" data-toggle="tab"><i class="fa fa-phone"></i> Contactos</a></li>
             <li ><a href="#tab_3" data-toggle="tab"><i class="fa fa-bullseye"></i> Serviços</a></li>
-           
-   </ul>
+          </ul>
 
           <div class="tab-content">
 

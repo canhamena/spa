@@ -52,7 +52,7 @@
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-pagamento"  ><i class="fa fa-plus-circle"></i> Adicionar</a>
-
+                          <a class="btn btn-default btn-sm" href="{{route('pdf.pagamento')}}" target="_blank"><i class="fa fa-print"></i> Imprimir</a> 
                         </div>
                     </div>
                 </div>

@@ -52,7 +52,7 @@
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-servico" data-backdrop="static" ><i class="fa fa-plus-circle"></i> Adicionar</a>
-
+                          <a class="btn btn-default btn-sm" href="{{route('pdf.servico')}}" target="_blank"><i class="fa fa-print"></i> Imprimir</a> 
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                             <th>#</th>
                             <th>Nome </th>
                             <th>Descrição</th>
-                            <th>Tipos de serviço</th>
+                            <th>Tipo de serviço (Quantidade)</th>
                             <th style="text-align: center;">Operações</th>
                         </tr>
                         </thead>

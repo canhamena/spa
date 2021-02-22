@@ -46,14 +46,14 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12">  
             <div class="box box-info" style="padding: 5px;">
                 <div class="box-header">
                      <h3 class="box-title"><i class="fa fa-calendar"></i> Reservas </h3>
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-reserva" data-backdrop="static" ><i class="fa fa-plus-circle"></i> Adicionar</a>
-
+                          <a class="btn btn-default btn-sm" href="{{route('pdf.reserva')}}" target="_blank"><i class="fa fa-print"></i> Imprimir</a> 
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ class TipoServicoController extends Controller
     {
         $tiposervicos = TipoServico::OrderBy('id','desc')->get();
         $servicos = Servico::OrderBy('nome','asc')->get();
-        return view('tiposervico.index', compact('tiposervicos','servicos'));
+        return view('tiposervico.index', compact('tiposervicos','servicos')); 
     }
 
 
