@@ -20,4 +20,8 @@ class Pagamento extends Model
     {
           return $this->belongsToMany('App\Models\TipoServico','tipo_servico_pagamento');
     }
+    public function tipopagamento()
+    {
+          return $this->hasOne('App\Models\TipoPagamento', 'id', 'tipopagamento_id');
+    }
 }

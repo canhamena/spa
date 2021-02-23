@@ -114,7 +114,7 @@
                                             <a title="Editar"  href="{{url("pagamento/".base64_encode($pagamento->id)."/delete")}}" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
                                         </div>
                                         <div class="btn-group">
-                                            <a title="Gerar factura"  href="{{route('pdf.factura')}}" class="btn btn-default btn-sm"><i class="fa fa-file-pdf-o"></i></a>
+                                            <a title="Gerar factura"  href="{{url('pdf/factura/'.base64_encode($pagamento->id)."")}}" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-file-pdf-o"></i></a>
                                         </div>
                                          
                                     </td>

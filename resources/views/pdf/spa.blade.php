@@ -72,7 +72,7 @@
 
     <table class="principal" >
         <tr >
-            <td style="text-align: left; font-weight:bold; background-color: #787878;">Nome</td>
+            <td style="text-align: left; font-weight:bold; background-color: #787878;">Nome</td> 
             <td style="text-align: left;"> {{$spa->nome}} </td>
             <td style="text-align: left; font-weight:bold; width:30px; background-color: #787878;">Tipo</td>
             <td style="text-align: left;">

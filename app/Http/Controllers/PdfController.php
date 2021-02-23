@@ -15,6 +15,7 @@ use App\Models\Municipio;
 use App\Models\Localizacao;
 use App\Models\Contacto;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class PdfController extends Controller
 {
@@ -157,19 +158,20 @@ class PdfController extends Controller
         return $pdf->stream();
     }
 
-    public function factura() 
+    public function factura($pagamento_id) 
     {
     	if (Auth()->user()->role->id == 1) {
-             $tiposervicos = TipoServico::OrderBy('nome','asc')->get();
-
-        }elseif(Auth()->user()->role->id == 2)
-        {   $tiposervicos = TipoServico::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('nome','asc')->get();
-           
+            $pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
+            
+        }elseif(Auth()->user()->role->id == 2) 
+        {   
+            $pagamento = Pagamento::where('localizacao_id',Auth()->user()->posto->id,'id',base64_decode($pagamento_id))->get()->first();
         }
 
-
-    	$pdf = PDF::loadView('pdf.factura',compact('tiposervicos'))->setPaper('a3',"landscape");
-         $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
+        //print_r($pagamento->tipopagamento->tipo);
+        
+    	$pdf = PDF::loadView('pdf.factura',compact('pagamento'))->setPaper('a3',"landscape");
+         $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
         return $pdf->stream();
     }
 

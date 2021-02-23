@@ -45,7 +45,7 @@
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="nome" class="col-sm-2 control-label">Nome do cliente : </label>
+                  <label for="nome" class="col-sm-2 control-label">Nome do cliente : </label> 
 
                   <div class="col-sm-10">
                     <input type="text" readonly class="form-control" value="{{$pagamento->nome_cliente}}"  >
