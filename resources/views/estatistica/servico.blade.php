@@ -89,7 +89,7 @@
             }
         },
         title: {
-            text: 'Serviços'
+            text: "<?php echo $titulo; ?>"
         },
         subtitle: {
             text: 'Dados estatísticos'

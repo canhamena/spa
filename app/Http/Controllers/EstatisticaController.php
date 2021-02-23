@@ -64,7 +64,8 @@ class EstatisticaController extends Controller
           $postos = Localizacao::all();
           $dados = Spa::get()->first(); 
           $anos = isset($dados) ? date('Y',strtotime($dados->created_at)) : date('Y');
-          return view('estatistica.servico',compact('servicos','quantidades','quantidade','postos','anos'));
+          $titulo = " Serviço";
+          return view('estatistica.servico',compact('servicos','quantidades','quantidade','postos','anos','titulo'));
     }
 
 
@@ -72,32 +73,45 @@ class EstatisticaController extends Controller
       	    if (empty($request->ano) && empty($request->posto) ) {
     		   return redirect()->route('estatistica.servico');
     	    }
+        $posto = Localizacao::Where('codigo',$request->posto)->get()->first();
         $quantidades = array();
         $servicos = Servico::Orderby('nome','asc')->get();
         $quantidade = 0;
        if (empty($request->ano) && !empty($request->posto) ) {
-       	$ano = date('Y');
+       	      $ano = date('Y');
+               if (!isset($posto)) {
+               	    return redirect()->route('estatistica.servico');
+               }
        	     foreach ($servicos as $key) {
-        	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ? and p.localizacao_id = ? ", [$key->id,$ano,$request->posto]);
+        	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ? and p.localizacao_id = ? ", [$key->id,$ano,$posto->id]);
         	$quantidades[$key->id] = $dado[0]->qtd;
         	$quantidade += $dado[0]->qtd;
+        	$titulo = "Serviços no posto ".$request->posto." em ".date("Y");
         	
         }
        }elseif(!empty($request->ano) && !empty($request->posto)){
+       	      if (!isset($posto)) {
+               	    return redirect()->route('estatistica.servico');
+                }
                 foreach ($servicos as $key) {
-        	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ? and p.localizacao_id = ? ", [$key->id,$request->ano,$request->posto]);
+        	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ? and p.localizacao_id = ? ", [$key->id,$request->ano,$posto->id]);
         	     $quantidades[$key->id] = $dado[0]->qtd;
         	    $quantidade += $dado[0]->qtd;}
-        	
+        	    $titulo = "Serviços no posto ".$request->posto." em ".$request->ano;
         }elseif(!empty($request->ano) && empty($request->posto)){
         	 foreach ($servicos as $key) {
         	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ?  ", [$key->id,$request->ano]);
         	     $quantidades[$key->id] = $dado[0]->qtd;
         	    $quantidade += $dado[0]->qtd;}
+        	    $titulo = "Serviços  em ".$request->ano;
        }
+
+          $postos = Localizacao::all();
+          $dados = Spa::get()->first(); 
+          $anos = isset($dados) ? date('Y',strtotime($dados->created_at)) : date('Y');
         
         
-        return view('estatistica.servico',compact('servicos','quantidades','quantidade'));
+        return view('estatistica.servico',compact('servicos','quantidades','quantidade','postos','anos','titulo'));
     }
 }
 
