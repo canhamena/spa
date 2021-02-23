@@ -66,13 +66,14 @@
                 <div class="box-header">
                    
                     <div class="box-tools">
-                        <div class="box-tools">
-                          
+                        <div class="box-tools" >
+                            
                         </div>
                     </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+            
                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
@@ -111,6 +112,9 @@
                                         </div>
                                         <div class="btn-group">
                                             <a title="Editar"  href="{{url("pagamento/".base64_encode($pagamento->id)."/delete")}}" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a title="Gerar factura"  href="{{url('pdf/factura/'.base64_encode($pagamento->id)."")}}" target="_blank" class="btn btn-default btn-sm"><i class="fa fa-file-pdf-o"></i></a>
                                         </div>
                                          
                                     </td>

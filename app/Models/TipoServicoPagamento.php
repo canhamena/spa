@@ -9,7 +9,7 @@ class TipoServicoPagamento extends Model
 {
     use HasFactory;
 
-    protected $table = "tipo_servico_pagamento";
+    protected $table = "tipo_servico_pagamento"; 
 
     public function tiposervico()
     {

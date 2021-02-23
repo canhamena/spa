@@ -15,6 +15,7 @@ use App\Models\Municipio;
 use App\Models\Localizacao;
 use App\Models\Contacto;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class PdfController extends Controller
 {
@@ -154,6 +155,23 @@ class PdfController extends Controller
 
     	$pdf = PDF::loadView('pdf.tiposervico',compact('tiposervicos'))->setPaper('a3',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
+        return $pdf->stream();
+    }
+
+    public function factura($pagamento_id) 
+    {
+    	if (Auth()->user()->role->id == 1) {
+            $pagamento = Pagamento::where('id',base64_decode($pagamento_id))->get()->first();
+            
+        }elseif(Auth()->user()->role->id == 2) 
+        {   
+            $pagamento = Pagamento::where('localizacao_id',Auth()->user()->posto->id,'id',base64_decode($pagamento_id))->get()->first();
+        }
+
+        //print_r($pagamento->tipopagamento->tipo);
+        
+    	$pdf = PDF::loadView('pdf.factura',compact('pagamento'))->setPaper('a3',"landscape");
+         $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
         return $pdf->stream();
     }
 
