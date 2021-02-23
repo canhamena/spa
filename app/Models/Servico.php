@@ -25,5 +25,10 @@ class Servico extends Model
     {
          return $this->hasMany('App\Models\TipoServico');
     }
+
+     public static function anos()
+    {
+       return  \DB::SELECT('select Year(created_at) as ano  from spa');
+    }
     
 }

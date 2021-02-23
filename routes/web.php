@@ -118,10 +118,13 @@ Route::post('/agenda/popular_tiposervico', ['App\Http\Controllers\AgendaAtendime
 
 
 /************** Estatistica ****************************** */
-Route::get('/estatistica/marcacao', ['App\Http\Controllers\EstatisticaController', 'marcacao'])->name('estatistica.marcacao');
+Route::get('/estatistica/marcacao', ['App\Http\Controllers\EstatisticaController','marcacao'])->name('estatistica.marcacao');
+
+
 Route::post('/estatistica/marcacao/filtro', ['App\Http\Controllers\EstatisticaController', 'filtragem_marcacao'])->name('estatistica.marcacao.filtro');
 
 Route::get('/estatistica/servico', ['App\Http\Controllers\EstatisticaController', 'servico'])->name('estatistica.servico');
+Route::post('/estatistica/servico/filtro', ['App\Http\Controllers\EstatisticaController','filtragem_servico'])->name('estatistica.servico.filtro');
 
 /************************ PdF ***********************************************/
  

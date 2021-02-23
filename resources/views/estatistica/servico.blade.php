@@ -18,40 +18,41 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-bar-chart"></i> Estatística > Serviço </h3>
                 </div>
-                <div class="box-header">
-                    <div class="box-tools">
-
-                       <!-- <div class="row"> -->
-                            <!--
-                            <div class="col-xs-4">
+                <div class="box-body">
+                    <div class="col-md-7">
+                            
+                        </div>
+                <form action="{{route('estatistica.servico.filtro')}}" method="post" class="form-horizontal" >
+                    @csrf
+                    <div class="row">
+                         <div class="col-md-2">
+                            <select class="form-control select2" style="width: 100%;" name="ano">
+                               <option selected="selected" disabled="">Ano</option>
+                                   @php for($i=$anos;$i<= date('Y');$i++){ @endphp
+                                      <option value="{{$i}}">{{$i}}</option>
+                                   @php } @endphp
+                            </select>
+            
                             </div>
-                            <div class="col-xs-2">
-                            </div>
-                            -->
-                            <div class="box-tools">
-                            <!-- <div class="input-group input-group-sm"> -->
-                            <form class="form-horizontal" >
-                                   <!-- <div class="col-xs-4"> -->
-                                        
-                                            <select class="form-control select2" data-placeholder="Localização" style="width: 100%;">
-                                                <option value=""></option>
-                                                <option>Luanda</option>
-                                                <option>Bengo</option>
-                                                <option>Uíge</option>
-                                            </select>
-                                            <!--
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-info pull-right">Buscar</button>
-                                            </span>
-                                            -->
-                                       
-                                    <!--</div> -->
-                                      
-                            </form>
-                            <!-- </div> -->
-                            </div>
-                        <!-- </div> -->
+                            <div class="col-md-2">
+                  
+                            <select class="form-control select2" style="width: 100%;" name="posto">
+                                <option selected="selected" disabled="">Posto</option>
+                                    @foreach($postos as $posto)
+                                       <option value="{{$posto->codigo}}">{{$posto->codigo}}</option>
+                                    @endforeach
+                  
+                            </select>
+                 
+                          </div>
+                          <div class="col-md-1 " style="margin-left: -5%;">
+                                 <button type="submit" class="btn btn-info pull-right"><i class="fa fa-search"></i></button>
+                          </div>
                     </div>
+              
+                                 
+             </form>
+
                       
                 </div>
             </div>
@@ -96,18 +97,28 @@
         plotOptions: {
             pie: {
                 innerSize: 100,
-                depth: 50
-            }
-        },
+                depth: 50,
+                enabled: false,
+
+                showInLegend: true
+            },
+            
+        }
+        ,
         series: [{
-            name: 'Serviços prestados',
-            data: [
-                ['5', 8],
-                ['10', 3],
-                ['200', 1],
-                ['300', 6],
-            ]
-        }]
+        colorByPoint: true,
+        data: [
+       <?php  foreach($servicos as $servico) {?>
+        {
+            name: "<?php echo $servico->nome; ?>",
+            y: <?php 
+
+                   echo $quantidades[$servico->id]; ?>,
+            
+        },
+    <?php } ?>
+        ]
+    }]
     });
             </script>
 @endsection
