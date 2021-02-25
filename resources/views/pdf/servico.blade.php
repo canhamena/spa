@@ -31,12 +31,10 @@
         }
 
         td {
-            font-size: larger;
             border: 2px solid black;
             padding: 12px;/*5px*/
         }
         .principal {
-            font-size: large;
             text-align: center;
             border-collapse: collapse;
             width: 100%;/*1500px*/
@@ -46,7 +44,6 @@
         font-size:large;
         background-color: #787878;
         color: black;
-        text-align: center;
         }
     </style>
 @endsection
@@ -61,33 +58,15 @@
 
 @section('content')
 
-<<<<<<< HEAD
-<style type="text/css">
-	 td {
-       border: 2px solid black;
-       padding: 5px;
-      }
-    .principal {
-      text-align: center;
-      border-collapse: collapse;
-      width: 1500px;
-      }
-   .cabeca {
-      background: #850e10;
-      color: white;
-      text-align: center;
-    }
-</style>
-
 <h2  style="text-align: center; margin-top: 50px;  margin-bottom: 50px; "><u>SERVIÇOS</u></h2>
 
  
 <table class="principal">
       <tr class="cabeca">
-      	  <td  style="text-align: left;" width="40">Nº</td>
-          <td width="" style="text-align: left;">Nome</td>
+      	  <td  style="text-align: left;" width="10">Nº</td>
+          <td width="50" style="text-align: left;">Nome</td>
           <td style="text-align: left;" width="200">Descrição</td>
-          <td width="200" style="text-align: left;">Tipo de serviço (Quantidade)</td>
+          <td width="5" style="text-align: right;">Tipo de serviço (Quantidade)</td>
           
       </tr>
 

@@ -58,8 +58,8 @@ class LocalizacaoController extends Controller
              $localizacao->rua = $request->rua;
              $localizacao->save();
               $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
-             Auditoria::create(['accao' =>" Actualizou Posto ". $localizacao->codigo]);
-             return  redirect()->route('spa.index')->with('mensagem', 'Endereço actualizado com sucesso ..!','user_id'=>auth()->user()->id,'localizacao_id'=>$posto;
+             Auditoria::create(['accao' =>" Actualizou Posto ". $localizacao->codigo,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);  
+             return  redirect()->route('spa.index')->with('mensagem', 'Endereço actualizado com sucesso ..!');
          
            }
            return  redirect()->route('spa.index')->with('erro', 'Endereço não encontrado ..!');
@@ -70,10 +70,10 @@ class LocalizacaoController extends Controller
 	{
        $localizacao = Localizacao::where('id',	base64_decode($localizacao_id))->get()->first();
 	if (isset($localizacao)) {
-		$localizacao->delete();
-     $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
-    Auditoria::create(['accao' =>" Elimonou Posto ". $localizacao->codigo]);
-		 return  redirect()->route('spa.index')->with('mensagem', 'Endereço removido com sucesso ..!','user_id'=>auth()->user()->id,'localizacao_id'=>$posto);
+		  $localizacao->delete();
+      $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+      Auditoria::create(['accao' =>" Elimonou Posto ". $localizacao->codigo, 'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
+		  return  redirect()->route('spa.index')->with('mensagem', 'Endereço removido com sucesso ..!');
 	}
 
 	   return  redirect()->route('spa.index')->with('erro', 'Endereço não encontrado ..!');

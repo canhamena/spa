@@ -8,10 +8,10 @@
                     </button>
                     <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-users"></i> <b> Adicionar utilizador</b></h5>
                 </div>
-               <div class="modal-body">
+               <div class="modal-body"> 
                     <form>
 
-                        <div class="form-group">
+                        <div class="form-group"> 
                                 <label for="role">Perfil<span class="text-danger">*</span></label>
 
                                 <select class="form-control"  wire:model="role_id">
@@ -20,7 +20,7 @@
                                      
                                      <option value="{{ $role->id }}">{{ $role->name }}</option>
 
-                                    @endforeach
+                                    @endforeach 
                                   </select>
                                   @error('role_id') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>

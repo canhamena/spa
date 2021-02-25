@@ -39,8 +39,8 @@
                      <h3 class="box-title"><i class="fa fa-map-o"></i> Auditória </h3>
                     <div class="box-tools">
                         <div class="box-tools">
-                         
-                          <a class="btn btn-default btn-sm" href="" target="_blank"><i class="fa fa-print"></i> Imprimir</a> 
+                          
+                          <a class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#modal-auditoria" data-backdrop="static"><i class="fa fa-print"></i> Imprimir</a> 
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
     </div>
 
 
-
+@include('pdf.modal.auditoria')  
 
 @endsection
 

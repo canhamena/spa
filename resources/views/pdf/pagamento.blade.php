@@ -34,11 +34,9 @@
         td {
             border: 2px solid black;
             padding: 12px;/*5px*/
-            font-size: larger;
             color: black;
         }
         .principal {
-            font-size: large;
             text-align: center;
             border-collapse: collapse;
             border-spacing: 0px 5px;
@@ -46,7 +44,6 @@
         
         }
     .cabeca {
-        font-size:large;
         background-color: #787878;
         color: black;
         text-align: center;
@@ -73,8 +70,8 @@
 
     <table class="principal">
         <tr class="cabeca">
-            <td  style="text-align: left; font-weight:bold;" width="40">Nº</td>
-            <td width="" style="text-align: left; font-weight:bold;">Numero da factura</td>
+            <td  style="text-align: left; font-weight:bold;" width="20">Nº</td>
+            <td width="20" style="text-align: left; font-weight:bold;">Numero da factura</td>
             <td style="text-align: left; font-weight:bold;" width="200">Nome do cliente</td>
             <td width="200" style="text-align: left; font-weight:bold;">Utilizador</td>
             <td width="100" style="text-align: left; font-weight:bold;">Total pago</td>
@@ -95,7 +92,7 @@
                                         $total += $pago->tiposervico->preco*$pago->qtd;
                                     }
                                 @endphp
-                                <td >
+                                <td style="text-align: right;">
                                     {{number_format($total,2,',','.').' AOA'}}
                                 </td>
                             </tr>

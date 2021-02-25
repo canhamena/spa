@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',  ['App\Http\C
  Route::get('/spa/index', ['App\Http\Controllers\SpaController', 'index'])->name('spa.index');
  Route::post('/spa/post', ['App\Http\Controllers\SpaController', 'store']);
  Route::post('/spa/popular_municipio', ['App\Http\Controllers\SpaController', 'popular_municipio'])->name("municipio.post");
- Route::post('/spa/popular_localidade', ['App\Http\Controllers\SpaController', 'popular_localidade'])->name("localidade.post");
+ Route::post('/spa/popular_localidade', ['App\Http\Controllers\SpaController', 'popular_localidade'])->name("localidade.post"); 
 
  
  Route::post('/spa/update', ['App\Http\Controllers\SpaController', 'update'])->name('spa.update');
@@ -86,7 +86,7 @@ Route::post('/contacto/store', ['App\Http\Controllers\ContactoController', 'stor
 Route::post('/contacto/update', ['App\Http\Controllers\ContactoController', 'update'])->name('contacto.update');
 Route::get('/contacto/{id}/delete', ['App\Http\Controllers\ContactoController', 'destroy'])->name('contacto.delete');
 
-
+ 
 /******************  Pagamento **********************************/
 Route::post('/pagamento/store', ['App\Http\Controllers\PagamentoController', 'store'])->name('pagamento.store');
 Route::get('/pagamento/{id}/create', ['App\Http\Controllers\PagamentoController', 'create'])->name('pagamento.factura');
@@ -130,18 +130,20 @@ Route::post('/estatistica/servico/filtro', ['App\Http\Controllers\EstatisticaCon
  
 //************************** Utilizadores **************************************/
 Route::get('/pdf/utilizador', ['App\Http\Controllers\PdfController', 'utilizador'])->name('pdf.utilizador');
-Route::get('/pdf/reserva', ['App\Http\Controllers\PdfController', 'reserva'])->name('pdf.reserva');
+Route::post('/pdf/reserva', ['App\Http\Controllers\PdfController', 'reserva'])->name('pdf.reserva');
 Route::get('/pdf/pagamento', ['App\Http\Controllers\PdfController', 'pagamento'])->name('pdf.pagamento');
 Route::get('/pdf/spa', ['App\Http\Controllers\PdfController', 'spa'])->name('pdf.spa');
 Route::get('/pdf/servico', ['App\Http\Controllers\PdfController', 'servico'])->name('pdf.servico');
 Route::get('/pdf/tiposervico', ['App\Http\Controllers\PdfController', 'tiposervico'])->name('pdf.tiposervico');
 Route::get('/pdf/tipospa', ['App\Http\Controllers\PdfController', 'tipospa'])->name('pdf.tipospa');
 Route::get('/pdf/factura/{id}', ['App\Http\Controllers\PdfController', 'factura'])->name('pdf.factura');
+Route::post('/pdf/auditoria', ['App\Http\Controllers\PdfController', 'auditoria'])->name('pdf.auditoria'); 
 
 
 /************************ Auditoria ************************/
 
 Route::get('/autidoria/index', ['App\Http\Controllers\AutidoriaController', 'index'])->name('auditoria.index');
+Route::post('/auditoria/popular_utilizador', ['App\Http\Controllers\AutidoriaController', 'popular_utilizador'])->name('utilizador.post'); 
 
 
 

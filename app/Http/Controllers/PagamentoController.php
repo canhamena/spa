@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\TipoServico;
 use App\Models\Marcacao;
 use App\Models\TipoServicoPagamento;
+use App\Models\Auditoria;
 
 class PagamentoController extends Controller
 {
@@ -48,7 +49,7 @@ class PagamentoController extends Controller
 	          $pagamento->referencia = $request->referencia;
 	          $pagamento->tipopagamento_id = $request->tipo_pegamento;
 	          $pagamento->save();
-	           $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+	        	$posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
 	          Auditoria::create(['accao' =>" Registou pagamento com nº  ".$pagamento->numero_pagamento,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
               
 	          return redirect()->route('pagamento.factura',base64_encode($pagamento->id));
@@ -210,7 +211,7 @@ class PagamentoController extends Controller
 	                    $tiposervicopagamento->pagamento_id = $pagamento->id;
 	                    $tiposervicopagamento->save();
 	                }
-	                $marcacao->estado = "A";
+	                $marcacao->estado = "A"; 
 	                $marcacao->save();
 
                    return redirect()->route('pagamento.index')->with('mensagem', 'pagamento efectuado com sucesso');

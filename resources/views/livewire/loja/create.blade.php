@@ -12,7 +12,7 @@
                     <form>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nome</label>
-                            <input type="text" class="form-control" required id="exampleFormControlInput1" placeholder="" wire:model="nome">
+                            <input type="text" class="form-control" required id="exampleFormControlInput1" placeholder="" wire:model="nome" >
                             @error('nome') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group">

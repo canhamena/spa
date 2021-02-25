@@ -62,7 +62,7 @@ class Users extends Component
                       'localizacao_id' => $this->localizacao_id,
                       'status'=>1
                     ]);
-                    $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+                    $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
                    Auditoria::create(['accao' =>" Registou Utilizador  ".$this->name,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
         session()->flash('message', '<i class="fa fa-check-circle"></i> Utilizador criado!.');
 
@@ -114,7 +114,7 @@ class Users extends Component
                 'status'=>1
             ]);
             $this->updateMode = false;
-            $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+            $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
                    Auditoria::create(['accao' =>" Actulizou Utilizador  ".$this->name,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
             session()->flash('message', '<i class="fa fa-check-circle"></i> Utilizador actualizado!.');
             $this->resetInputFields();
@@ -129,7 +129,7 @@ class Users extends Component
             
             $nome = $utilizador->nme;
             $utilizador->delete();
-            $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+            $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
                    Auditoria::create(['accao' =>" Registou Utilizador  ".$nome,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
             session()->flash('message', 'Utilizador eliminado!.');
         }
@@ -156,7 +156,7 @@ class Users extends Component
             $user->update([
                 'status' => 0,
             ]);
-             $posto = isset(auth()->user()->posto)) ? auth()->user()->posto->id : null;
+             $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
                    Auditoria::create(['accao' =>" Desabilitou Utilizador  ".$user->name,'user_id'=>auth()->user()->id,'localizacao_id' =>$posto]);
             session()->flash('message', '<i class="fa fa-check-circle"></i> Utilizador inactivado!.');
         }

@@ -30,7 +30,7 @@
                     <label for="inputName" class="col-sm-2 control-label">Nome<span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome ">
+                      <input type="text" class="form-control" name="nome" id="nome" autocomplete="nope" placeholder="Nome " >
                     </div>
                     <span class="text-danger">
                         @error('nome')
@@ -43,7 +43,7 @@
                     <label for="inputName" class="col-sm-2 control-label">Telefone<span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone ">
+                      <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Telefone " autocomplete="nope">
                     </div>
                     <span class="text-danger">
                         @error('telefone')
@@ -55,7 +55,7 @@
                     <label for="inputName" class="col-sm-2 control-label">E-mail<span class="text-danger"></span></label>
 
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="E-mail ">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="E-mail " autocomplete="nope">
                     </div>
                     <span class="text-danger">
                         @error('email')
@@ -93,7 +93,6 @@
                     <div class="col-sm-10">
                       <select class="form-control select2" 
                         style="width: 100%;" name="localidade" id="localidade">
-                        
                             
                          </select>
 
@@ -186,7 +185,7 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Data<span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                     <input type="text" name="data_atendimento" class="form-control" id="datepicker" required="">
+                     <input type="text" name="data_atendimento" class="form-control" id="datepicker" required="" autocomplete="nope">
                     </div>
                     <span class="text-danger">
                         @error('data_atendimento')
@@ -200,7 +199,7 @@
                     <div class="col-sm-10">
                      <!--<input type="time" name="hora_atendimento" class="form-control">-->
 
-                     <input type="time"  name="hora_atendimento" class="form-control timepicker">
+                     <input type="time"  name="hora_atendimento" class="form-control timepicker" autocomplete="nope">
 
                     
                     </div>

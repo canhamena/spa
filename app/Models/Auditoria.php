@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auditoria extends Model
 {
     use HasFactory;
-      protected $table = "auditoria";
+      protected $table = "auditoria"; 
 
        protected $fillable = [
         'accao','user_id', 'localizacao_id'];

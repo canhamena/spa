@@ -31,19 +31,15 @@
         }
 
         td {
-            font-size: larger;
             border: 2px solid black;
             padding: 12px;/*5px*/
         }
         .principal {
-            font-size: large;
-            text-align: center;
             border-collapse: collapse;
             width: 100%;/*1500px*/
             border: 0px;
         }
     .cabeca {
-        font-size:large;
         background-color: #787878;
         color: black;
         text-align: center;
@@ -67,9 +63,9 @@
         
         <tr class="cabeca">
             <td  style="text-align: left; font-weight:bold;" width="40">Nº</td>
-            <td width="" style="text-align: left; font-weight:bold;">Nome</td>
-            <td style="text-align: left; font-weight:bold;" width="200">Descrição</td>
-            <td width="200" style="text-align: left; font-weight:bold;">Preço</td>
+            <td width="150" style="text-align: left; font-weight:bold;">Nome</td>
+            <td style="text-align: left; font-weight:bold;" width="">Descrição</td>
+            <td width="130" style="text-align: left; font-weight:bold;">Preço</td>
             <td width="100" style="text-align: left; font-weight:bold;">Serviço</td>
         </tr>
 
@@ -78,7 +74,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td style="text-align: left;">{{ $tiposervico->nome }}</td>
                                 <td style="text-align: left;">{{ $tiposervico->descricao }}</td>
-                                <td style="text-align: left;">
+                                <td style="text-align: right;">
                                     {{number_format($tiposervico->preco,2,',','.').' AOA'}}
                                 </td>
                                 <td >

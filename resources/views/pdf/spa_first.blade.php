@@ -39,7 +39,6 @@
             border-collapse: separate;
             border-spacing: 0px 5px;
             width: 100%;/*1500px*/
-        
         }
     .cabeca {
         background-color: #787878;
@@ -48,6 +47,9 @@
     
     .geral{
         border-collapse:collapse;
+    }
+    .title{
+        font-weight:bold;
     }
     </style>
 @endsection
@@ -87,60 +89,56 @@
     <br><br>
     <table class="geral princiapl" style="width: 100%">
         <tr class="cabeca">
-            <td colspan="4"  style="text-align: center;">POSTO</td> 
+            <td colspan="4"  style="text-align: center; font-weight:bold;">POSTO</td> 
         </tr>
     
         <tr class="cabeca">
-            <td  style="text-align: left; width:10px;" >Posto</td>
-            <td width="100" style="text-align: left;">Provincia</td>
-            <td style="text-align: left; width:150px;" >Município</td>
-            <td width="200" style="text-align: left;">Rua</td>
+            <td  style="text-align: left; width:10px; font-weight:bold;" >Posto</td>
+            <td width="100" style="text-align: left; font-weight:bold;">Provincia</td>
+            <td style="text-align: left; width:150px; font-weight:bold;" >Município</td>
+            <td width="200" style="text-align: left; font-weight:bold;">Rua</td>
         </tr>
         
-            @foreach($spa->endereco as $endereco)
             <tr class="principal">
-            <td> {{  $endereco->codigo }}</td>
-            <td> {{$endereco->municipio->provincia->nome}}</td>
-            <td> {{$endereco->municipio->nome}} </td>
-            <td> {{$endereco->rua}} </td>
+                <td> {{ $localizacao->codigo }}</td>
+                <td> {{ $localizacao->municipio->provincia->nome }}</td>
+                <td> {{ $localizacao->municipio->nome }} </td>
+                <td> {{ $localizacao->rua }} </td>
             </tr>
-            @endforeach
+        
+        
     </table>
     <br><br>
-    <table class="geral principal" style="width: 100%">
+    <table class="geral principal" >
         <tr class="cabeca">
-            <td colspan="4" style="text-align: center;">CONTACTOS</td> 
+            <td colspan="3" style="text-align: center; font-weight:bold;">CONTACTOS</td> 
         </tr>
-        <tr class="cabeca">
-            <td  style="text-align: left;" width="10">Nº</td>
-            <td width="40" style="text-align: right;">Telefone</td>
-            <td style="text-align: right;" width="40">Telemovel</td>
-            <td width="200" style="text-align: left;">E-mail</td>
+       <tr class="title">
+           <td>Telefone</td>
+           <td>Telemovel</td>
+           <td>Email</td>
+       </tr>
+        <tr>
+            <td>{{$contactos->telefone}}</td>
+            <td>{{$contactos->telemovel}}</td>
+            <td>{{$contactos->email}}</td>
         </tr>
-        @foreach($contactos as $contacto)
-            <tr>
-                <td>{{$contacto->localizacao_id}}</td>
-                <td>{{$contacto->telefone}}</td>
-                <td>{{$contacto->telemovel}}</td>
-                <td>{{$contacto->email}}</td>
-            </tr>
-        @endforeach
+        
     </table>
     <br><br>
     <table class="geral principal">
         <tr class="cabeca">
-            <td colspan="3" style="text-align: center;">SERVIÇOS</td> 
+            <td colspan="3" style="text-align: center; font-weight:bold;">SERVIÇOS</td> 
         </tr>
         <tr class="cabeca">
-            <td  style="text-align: left;" width="10" colspan="">Nº</td>
-            <td width="100" style="text-align: left;">Nome</td>
-            <td style="text-align: left;" width="200">Descrição</td>
-           
+            <td  style="text-align: left; font-weight:bold;" width="10" colspan="">Nº</td>
+            <td width="50" style="text-align: left; font-weight:bold;">Nome</td>
+            <td style="text-align: left; font-weight:bold;" width="200">Descrição</td>
         </tr>
         @foreach($spa->tiposervico as $servico)
             <tr>
-                <td>{{  $loop->index +1 }}</td>
-                <td >{{$servico->nome}}</td>
+                <td>{{ $loop->index +1 }}</td>
+                <td>{{$servico->nome}}</td>
                 <td>{{$servico->descricao}}</td>
             </tr>
         @endforeach

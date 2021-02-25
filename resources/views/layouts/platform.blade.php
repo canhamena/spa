@@ -709,6 +709,49 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
         
         </script>
 
+<script type="text/javascript">
+
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+    $(".per").change(function(e) {
+
+        e.preventDefault();
+     
+        var perfil_id = $(this).val();
+        console.log(perfil_id);
+             
+            
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: "{{ route('utilizador.post') }}",
+                data: servico_id,
+                success: function(res)
+                       {       
+                 if(res)
+                   {
+                       $(".us").empty();
+                      $.each(res,function(key,value){
+                                $(".us").append('<option value="'+value.id+'">'+value.name+'</option>');
+                     });
+                         
+            }
+       }
+
+             
+                
+            });
+        
+
+    });
+    </script>
+
 
 
 

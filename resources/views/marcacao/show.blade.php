@@ -74,7 +74,7 @@
 
                 }
                 @endphp
-                
+                 
 
                  <li class="list-group-item">
                   <b>Total a pagar  : </b> 
@@ -84,7 +84,7 @@
                   </div>
               </ul>
 
-           <div style="text-align: center;">
+           <div style="text-align: center;"> 
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm"><b><i class="fa fa-arrow-left"></i> Voltar</b></a>
                  <a href="{{ url("pagamento/".base64_encode($marcacao->id)."/pagamento_marcacao")}}" class="btn btn-success btn-sm" ><i class="fa fa-money"></i> Pagamento</a>
                 <a href="" class="btn btn-default btn-sm" target="_blank"><i class="fa fa-file-pdf-o"></i> Imprimir</a>

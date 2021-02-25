@@ -18,7 +18,7 @@
                 <i class="fa fa-dollar"></i> <span>Pagamento</span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            </span> 
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{url('pagamento/index')}}"><i class=""></i> Listar</a></li>
@@ -57,7 +57,7 @@
             </a>
             <ul class="treeview-menu">
                 
-                <li><a href="{{ url('spa/index') }}"><i class=""></i> Spa</a></li>
+                <li><a href="{{ url('spa/index') }}"><i class=""></i> Spa</a></li> 
             
             </ul>
         </li>

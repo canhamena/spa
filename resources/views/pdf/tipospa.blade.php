@@ -31,19 +31,16 @@
         }
 
         td {
-            font-size: larger;
             border: 2px solid black;
             padding: 12px;/*5px*/
         }
         .principal {
-            font-size: large;
             text-align: center;
             border-collapse: collapse;
             width: 100%;/*1500px*/
             border: 0px;
         }
     .cabeca {
-        font-size:large;
         background-color: #787878;
         color: black;
         text-align: center;
@@ -67,8 +64,8 @@
     <table class="principal">
         <tr class="cabeca">
             <td  style="text-align: left; font-weight:bold;" width="40">Nº</td>
-            <td width="" style="text-align: left; font-weight:bold;">Nome</td>
-            <td style="text-align: left; font-weight:bold;" width="200">Descrição</td>
+            <td width="300" style="text-align: left; font-weight:bold;">Nome</td>
+            <td style="text-align: left; font-weight:bold;" width="">Descrição</td>
             
         </tr>
 

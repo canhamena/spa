@@ -61,7 +61,7 @@
                 
                   </div>
               </ul>
-
+ 
            <div style="text-align: center;">
                 <a href="{{ URL::previous() }}" class="btn btn-default btn-sm"><b><i class="fa fa-arrow-left"></i> Voltar</b></a>
                  @if(isset($spa))

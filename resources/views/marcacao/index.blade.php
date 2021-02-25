@@ -10,14 +10,14 @@
 @section('module','Reservas')
 @section('subtitle','Listagem')
 
-@section('content')
+@section('content') 
 
 
 @if (session('mensagem'))
 <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <i class="fa fa-info-circle"></i>    {{ session('mensagem') }}.
-              </div>
+</div>
 @endif
 
 @if (session('erro'))
@@ -53,7 +53,7 @@
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-reserva" data-backdrop="static" ><i class="fa fa-plus-circle"></i> Adicionar</a>
-                          <a class="btn btn-default btn-sm" href="{{route('pdf.reserva')}}" target="_blank"><i class="fa fa-print"></i> Imprimir</a> 
+                          <a class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#modal-relatorio-reserva" data-backdrop="static" ><i class="fa fa-print"></i> Imprimir</a> 
                         </div>
                     </div>
                 </div>
@@ -165,6 +165,7 @@
 
 @include('marcacao.modal.create')
 @include('marcacao.modal.alterarData')
+@include('pdf.modal.findByDate')  
 
 
 @endsection
