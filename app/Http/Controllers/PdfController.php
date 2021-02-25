@@ -9,6 +9,7 @@ use App\Models\Pagamento;
 use App\Models\Servico;
 use App\Models\TipoServico;
 use App\Models\Spa;
+use App\Models\User;
 use App\Models\Tipo;
 use App\Models\Provincia;
 use App\Models\Municipio;

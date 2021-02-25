@@ -6,8 +6,8 @@
 @section('icone-modulo',"fa fa-building")
 @section('titulopagina', 'Nome do spa')
 
-@section('icone','fa fa-ticket')
-@section('module','Tipo de spa')
+@section('icone','fa fa-money')
+@section('module','Pagamento')
 @section('subtitle','Listagem')
 
 @section('content')
@@ -37,7 +37,7 @@
                         <p>Total de Pagamentos</p> 
                     </div>
                     <div class="icon">
-                        <i class="fa fa fa-dollar" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
+                        <i class="fa fa-money" style="color:white; padding: 9.5px 18px 8px 18px;"></i>
                     </div>
                 </div>
             </a>
@@ -48,7 +48,7 @@
       <div class="col-md-12">
             <div class="box box-info" style="padding: 5px;">
                 <div class="box-header">
-                     <h3 class="box-title"><i class="fa fa-dollar"></i> Pagamentos </h3>
+                     <h3 class="box-title"><i class="fa fa-money"></i> Pagamentos </h3>
                     <div class="box-tools">
                         <div class="box-tools">
                           <a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal-create-pagamento"  ><i class="fa fa-plus-circle"></i> Adicionar</a>

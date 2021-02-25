@@ -147,7 +147,7 @@
                   <div class="form-group has-feedback @error('tiposervico') has-error @enderror">
                     <label for="inputExperience" class="col-sm-2 control-label">Tipo de serivço<span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                       <select class="form-control select2" multiple="multiple" name="tiposervico[]" id="tiposervico" 
+                       <select class="form-control select2"  name="tiposervico" id="tiposervico" 
                         style="width: 100%;">
                        
                              
@@ -186,7 +186,7 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Data<span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                     <input type="text" name="data_atendimento" class="form-control" id="datepicker" required="">
+                     <input type="date" name="data_atendimento" class="form-control" id="data_atendimento" max="" min="">
                     </div>
                     <span class="text-danger">
                         @error('data_atendimento')
@@ -273,7 +273,7 @@ $("#entryForm").validate({
 
     });
  //Date picker
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
       autoclose: true
     });
      //Timepicker

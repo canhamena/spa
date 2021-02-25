@@ -672,28 +672,25 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
 
             e.preventDefault();
           
-             var tiposervico_id =  $(this).val();
-             var dados = tiposervico_id+"_";
-             /*for(var i =0;i<tiposervico_id.length; i++ ){
-                  if (i==0) {dados = tiposervico_id[i]  }else{
-                     dados = dados+"_"+tiposervico_id[i];
-                  }
-                 
-             }*/
-             
-             //var local = document.getElementById('localidade').value;
-            //dados = dados+"_"+local;
-             
-             console.log(JSON.stringify(dados));
-             
+             var tiposervico =  $(this).val();
+              var posto = document.getElementById('provincia_spa').value;
+           
+               
+                
                 $.ajax({
                     type: 'post',
                     contentType: 'application/json; charset=utf-8',
                     url: "{{ route('tiposervico_local.post') }}",
-                    data: dados,
+                    data: {tiposervico : tiposervico,posto: },
                     success: function(res)
                            {       
-                    
+
+                             //document.getElementById("data_atendimento").innerHTML = res[0].data_fim;
+                             //datae = JSON.parse(res);
+                             //$("#data_atendimento").removeAttr('required');
+                            
+                            //$("#data_atendimento").attr('min','2021-02-28');
+                            //$("#data_atendimento").attr('max','2021-02-28');
                          console.log(res);
                              
                 

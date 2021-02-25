@@ -12,6 +12,7 @@ use App\Http\Requests\StoreMarcacaoRequest;
 use App\Http\Helpers\AppHelper;
 use App\Models\MarcacaoTipoServico;
 use App\Models\Auditoria;
+use App\Models\TipoServicoPagamento;
 
 class ReservaController extends Controller 
 {
@@ -119,8 +120,8 @@ class ReservaController extends Controller
               $marcacao = Marcacao::where('id',base64_decode($marcacao_id))->get()->first();
               
             if ($marcacao != null) {
-                    
-                    return  view('marcacao.show',compact('marcacao'));
+                    $tipopagamentos = \DB::table('tipo_pagamento')->get();
+                    return  view('marcacao.show',compact('marcacao','tipopagamentos'));
               }
                  return  redirect()->route('reserva.index')->with('erro', 'Marcação não encontrado ..!');
     }

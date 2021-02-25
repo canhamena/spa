@@ -37,10 +37,16 @@
                             <div class="col-md-2">
                   
                             <select class="form-control select2" style="width: 100%;" name="posto">
-                                <option selected="selected" disabled="">Posto</option>
+                                    @if(Auth()->user()->role->id == 1)
+                                     <option selected="selected" disabled="">Posto</option>
+                               
+
                                     @foreach($postos as $posto)
                                        <option value="{{$posto->codigo}}">{{$posto->codigo}}</option>
                                     @endforeach
+                                @elseif(Auth()->user()->role->id == 2)
+                                   <option value="{{Auth()->user()->posto->codigo}}" selected="">{{Auth()->user()->posto->codigo}}</option>
+                                @endif
                   
                             </select>
                  

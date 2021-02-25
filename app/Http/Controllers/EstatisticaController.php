@@ -15,6 +15,12 @@ class EstatisticaController extends Controller
     //Metodo responsavel por mostrar os dados estatistico das marcações 
     public function marcacao(){
     	$marcacao = new Marcacao();
+        if (Auth()->user()->role->id == 1) {
+             $marcacao->GraficoGeral();
+          }elseif(Auth()->user()->role->id == 2)
+         {   
+             $marcacao->GraficoGeralPosto(Auth()->user()->posto->id);
+        }
          $marcacao->GraficoGeral();
          $atendidos = $marcacao->mesatendico;
          $cancelados = $marcacao->mescancelado;
@@ -34,8 +40,11 @@ class EstatisticaController extends Controller
     	if (empty($request->ano) && empty($request->posto) ) {
     		 return redirect()->route('estatistica.marcacao');
     	}
-    	    $marcacao->GraficoFiltro($request->posto,$request->ano);
-            $titulo = (empty($request->ano) ? "Reservas do posto  ".$request->posto." em ".date('Y') :( empty($request->posto) ?  "Reservas de ".$request->ano : "Reservas do posto  ".$request->posto." em ".$request->ano));
+       
+             $marcacao->GraficoFiltro($request->posto,$request->ano);
+         
+    	    
+          $titulo = (empty($request->ano) ? "Reservas do posto  ".$request->posto." em ".date('Y') :( empty($request->posto) ?  "Reservas de ".$request->ano : "Reservas do posto  ".$request->posto." em ".$request->ano));
              $atendidos = $marcacao->mesatendico;
              $cancelados = $marcacao->mescancelado;
              $pedentes = $marcacao->mespedente;
@@ -55,11 +64,22 @@ class EstatisticaController extends Controller
         $servicos = Servico::Orderby('nome','asc')->get();
 
         $quantidade = 0;
-        foreach ($servicos as $key) {
-        	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id where s.id = ?", [$key->id]);
-        	   $quantidades[$key->id] = $dado[0]->qtd;
-        	   $quantidade += $dado[0]->qtd;
+        if (Auth()->user()->role->id == 1) {
+          foreach ($servicos as $key) {
+              $dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ?", [$key->id]);
+             $quantidades[$key->id] = $dado[0]->qtd;
+             $quantidade += $dado[0]->qtd;
         }
+          }elseif(Auth()->user()->role->id == 2)
+         {   
+          foreach ($servicos as $key) {
+          $dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ?", [$key->id]);
+             $quantidades[$key->id] = $dado[0]->qtd;
+             $quantidade += $dado[0]->qtd;
+        }
+            
+        }
+        
 
           $postos = Localizacao::all();
           $dados = Spa::get()->first(); 
@@ -83,12 +103,14 @@ class EstatisticaController extends Controller
                	    return redirect()->route('estatistica.servico');
                }
        	     foreach ($servicos as $key) {
-        	$dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ? and p.localizacao_id = ? ", [$key->id,$ano,$posto->id]);
+        	     $dado = DB::SELECT("SELECT count(*) as qtd  FROM servico s LEFT join tipo_servico ts on ts.servico_id = s.id inner join tipo_servico_pagamento tsp on ts.id = tsp.tipo_servico_id inner join pagamento p on p.id = tsp.pagamento_id where s.id = ? and YEAR(tsp.created_at) = ? and p.localizacao_id = ? ", [$key->id,$ano,$posto->id]);
         	$quantidades[$key->id] = $dado[0]->qtd;
         	$quantidade += $dado[0]->qtd;
-        	$titulo = "Serviços no posto ".$request->posto." em ".date("Y");
+       
         	
         }
+
+          $titulo = "Serviços no posto ".$request->posto." em ".date("Y");
        }elseif(!empty($request->ano) && !empty($request->posto)){
        	      if (!isset($posto)) {
                	    return redirect()->route('estatistica.servico');

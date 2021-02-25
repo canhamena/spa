@@ -56,10 +56,21 @@ class AgendaAtendimentoController extends Controller
            public function tiposervico(Request $request)
            {
                    //$tiposervico = TipoServico::where('id',$request[0])->get();
-                   $tiposervico = TipoServico::all();
-                   $dados = $request[0];
-                   //$dados = [1,34,4];
-                   return response()->json($dados);
+                   //$tiposervico = TipoServico::where('id',$request[0])->get()->first();
+                   $dados = $request->all();
+                   /*$index = count($dados)-1;
+                   $posto = $dados[$index];
+                   unset($dados[$index]); 
+                   $d = 2;
+                   //$sql = \DB::SELECT('SELECT * FROM agendaatendimento a, agendaatendimento_tiposervico ad WHERE a.id = ad.agenda_atendimento_id and a.localizacao_id = ? and "2021-02-26" = a.data_fim and ad.tipo_servico_id in (?)',[$posto,$d);
+                      $sql=\DB::table('agendaatendimento')
+                     ->join('agendaatendimento_tiposervico', 'agendaatendimento.id', '=', 'agendaatendimento_tiposervico.agenda_atendimento_id')
+                    ->where('agendaatendimento.localizacao_id', '=',$posto)
+                    ->where('agendaatendimento.data_fim', '=',"2021-02-26")
+                    ->whereIn('agendaatendimento_tiposervico.tipo_servico_id',$dados)
+                    ->get();
+                     //->where('agendaatendimento_tiposervico.tipo_servico_id', '=',$dados)*/
+                   return response()->json($sql);
            }
 
 

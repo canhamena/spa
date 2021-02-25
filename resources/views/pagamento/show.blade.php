@@ -143,10 +143,11 @@
 
        </form>
       </div>
-        </div>
+        
         <!-- /.col -->
-    </div>
+    
 @include('pagamento.modal.edit')
+
 @endsection
 <script src="{{ asset('/platform/assets/assets/js/jquery.validate.min.js')}}"></script>
 <script src="{{ asset('/platform/assets/assets/js/messages_pt_PT.min.js')}}"></script>
