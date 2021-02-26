@@ -13,6 +13,6 @@ class AgendaAtendimento extends Model
 
        public function tiposervico() {
 
-           return $this->belongsToMany(TipoServico::class,'agendaatendimento_tiposervico');
+           return $this->belongsToMany(TipoServico::class,'agendaatendimento_tiposervico');  
        }
 }

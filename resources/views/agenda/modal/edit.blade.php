@@ -46,7 +46,7 @@
                   
                   <div class="form-group has-feedback @error('descricao') has-error @enderror">
                     <label for="inputExperience" class="col-sm-2 control-label">Descrição</label>
- 
+
                     <div class="col-sm-10">
                       <textarea class="form-control" id="descricao" name="descricao" placeholder=""></textarea>
                     </div>
@@ -54,7 +54,7 @@
                         @error('descricao')
                           {{ $message }}
                         @enderror
-                      </span> 
+                      </span>
                   </div>
                  
                   

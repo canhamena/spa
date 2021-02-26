@@ -86,7 +86,7 @@
                         <tbody>
                          @foreach($servicos as $servico)
                              <tr>
-                                <td>{{  $loop->index +1 }}</td>
+                                <td>{{ $loop->index +1 }}</td>
                                 <td>{{ $servico->nome }}</td>
                                 <td>{{ $servico->descricao }}</td>
                                 <td>
@@ -101,7 +101,7 @@
                                             <a title="Ver mais" href="{{url("servico/".base64_encode($servico->id)."/show")}}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>
 
                                         </div>
-                                        <div class="btn-group">
+                                        <div class="btn-group"> 
                                             <a title="Editar"  data-toggle="modal" data-target="#modal-editar-servico"   data-whatevernome="{{$servico->nome }}"
                                               data-whateverdescricao="{{ $servico->descricao }}"
                                               data-whatever="{{ $servico->id }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>

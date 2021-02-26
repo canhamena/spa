@@ -126,6 +126,11 @@ Route::post('/estatistica/marcacao/filtro', ['App\Http\Controllers\EstatisticaCo
 Route::get('/estatistica/servico', ['App\Http\Controllers\EstatisticaController', 'servico'])->name('estatistica.servico');
 Route::post('/estatistica/servico/filtro', ['App\Http\Controllers\EstatisticaController','filtragem_servico'])->name('estatistica.servico.filtro');
 
+/************************ Agenda ***********************************************/
+Route::get('/agenda/index', ['App\Http\Controllers\AgendaAtendimentoController', 'index'])->name('agenda.index');
+Route::post('/agenda/update', ['App\Http\Controllers\AgendaAtendimentoController', 'update']);
+Route::get('/agenda/{id}/show', ['App\Http\Controllers\AgendaAtendimentoController', 'show'])->name('agenda.show'); 
+
 /************************ PdF ***********************************************/
  
 //************************** Utilizadores **************************************/
@@ -138,6 +143,7 @@ Route::get('/pdf/tiposervico', ['App\Http\Controllers\PdfController', 'tiposervi
 Route::get('/pdf/tipospa', ['App\Http\Controllers\PdfController', 'tipospa'])->name('pdf.tipospa');
 Route::get('/pdf/factura/{id}', ['App\Http\Controllers\PdfController', 'factura'])->name('pdf.factura');
 Route::post('/pdf/auditoria', ['App\Http\Controllers\PdfController', 'auditoria'])->name('pdf.auditoria'); 
+Route::get('/pdf/agenda/', ['App\Http\Controllers\PdfController', 'agenda'])->name('pdf.agenda');
 
 
 /************************ Auditoria ************************/

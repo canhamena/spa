@@ -44,7 +44,7 @@ class ServicoController extends Controller
     	$request->validate([
                 'nome' => 'required'
                  ]);
-    	$servico = Servico::where('id',$request->servico_id)->get()->first();
+    	$servico = Servico::where('id',$request->servico_id)->get()->first(); 
     
     	if (isset($servico)) {
     		 $caminho =AppHelper::UPLOAD_FOLDER_SERVICO;
@@ -53,7 +53,7 @@ class ServicoController extends Controller
     	     $servico->imagem = $storagepath;
     	     $servico->descricao = $request->descricao;
     	     $servico->save();
-              $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
+             $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
              Auditoria::create(['accao' =>"Registou serviço ".$servico->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
     	     return redirect()->route('servico.index')->with('mensagem', 'Serviço Actualizado..!');
     	}

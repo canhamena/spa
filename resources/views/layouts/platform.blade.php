@@ -336,7 +336,7 @@ $('#modal-editar-servico').on('show.bs.modal', function (event) {
 </script>
 
 
- <script type="text/javascript">
+ <script type="text/javascript"> 
     
 $('#modal-editar-tiposervico').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
@@ -428,6 +428,25 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
  
   var modal = $(this)
   modal.find('#endereco').val(id)
+});
+
+
+$('#modal-edit-desponibilidade').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal 
+  var id = button.data('whatever') 
+  var tiposervico = button.data('whatevernome') 
+  var datainicio = button.data('whateverdatainicio') // Extraindo informação do elemento data-* atributo
+  var datafim = button.data('whateverdatafim')
+  var horainicio = button.data('whateverhorainicio')
+  var horafim = button.data('whateverhorafim')
+
+  var modal = $(this)
+  modal.find('#nome').val(tiposervico)
+  modal.find('#data_inicio').val(datainicio)
+  modal.find('#data_fim').val(datafim)
+  modal.find('#inicio_atendimento').val(horainicio)
+  modal.find('#fim_atendimento').val(horafim)
+  modal.find('#id').val(id)
 });
 
 

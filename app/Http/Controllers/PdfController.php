@@ -17,6 +17,8 @@ use App\Models\Contacto;
 use App\Models\User;
 use App\Models\Auditoria;
 use App\Models\Role;
+use App\Models\AgendaAtendimento;
+use App\Models\AgendaAtendimentoTipoServico;
 use PDF;
 use App\Http\Helpers\AppHelper;
 use DB;
@@ -353,11 +355,22 @@ class PdfController extends Controller
             $pdf = PDF::loadView('pdf.auditorias',compact('dados','dizer'))->setPaper('a3',"landscape");
             $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
             return $pdf->stream();
-        }
-        
-
-        
+        }  
     } 
+
+    public function agenda(){
+        if (Auth()->user()->role->id == 1) {
+            $agendas = AgendaAtendimento::all();   
+        }elseif(Auth()->user()->role->id == 2) 
+        {
+            $agendas = AgendaAtendimento::where('localizacao_id',Auth()->user()->posto->id)
+                                        ->get(); 
+        }
+
+        $pdf = PDF::loadView('pdf.agenda',compact('agendas'))->setPaper('a3',"landscape");
+            $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
+            return $pdf->stream();
+    }
 
     
 }

@@ -1,10 +1,10 @@
-<div class="modal fade" id="modal-editar-servico">
+<div class="modal fade" id="modal-create-servico">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"> <i class="fa fa-bullseye"></i> Editar serviço</h4>
+                <h4 class="modal-title"> <i class="fa fa-bullseye"></i> Adicionar serviço</h4>
               </div>
               <div class="modal-body">
 
@@ -15,9 +15,8 @@
                      @endforeach
                  </div>
                  @endif
-                <form class="form-horizontal" id="entryForm" action="{{url('servico/update')}}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" id="entryForm" action="{{url('servico/salvar')}}" method="post" enctype="multipart/form-data">
                   @csrf
-                  <input type="hidden" name="servico_id" id="id">
                   <div class="form-group has-feedback @error('nome') has-error @enderror">
                     <label for="inputName" class="col-sm-2 control-label">Nome <span class="text-danger">*</span></label>
 
@@ -32,10 +31,10 @@
                   </div>
                  
                   <div class="form-group has-feedback @error('imagem') has-error @enderror">
-                    <label for="inputName" class="col-sm-2 control-label">Imagem </label>
+                    <label for="inputName" class="col-sm-2 control-label">Imagem <span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                      <input type="file" name="imagem" id="imagem"  class="form-control" id="inputName" accept=".jpeg, .jpg, .png" placeholder="">
+                      <input type="file" name="imagem" id="imagem"  class="form-control" id="inputName" accept=".jpeg, .jpg, .png" placeholder="" required>
                     </div>
                     <span class="text-danger">
                         @error('imagem')
@@ -46,7 +45,7 @@
                   
                   <div class="form-group has-feedback @error('descricao') has-error @enderror">
                     <label for="inputExperience" class="col-sm-2 control-label">Descrição</label>
- 
+
                     <div class="col-sm-10">
                       <textarea class="form-control" id="descricao" name="descricao" placeholder=""></textarea>
                     </div>
@@ -54,7 +53,7 @@
                         @error('descricao')
                           {{ $message }}
                         @enderror
-                      </span> 
+                      </span>
                   </div>
                  
                   
@@ -90,6 +89,9 @@ $("#entryForm").validate({
         nome: {
           required: true,
           minlength: 4
+        },
+        imagem: {
+          required: true,
         }
          
       }

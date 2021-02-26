@@ -15,7 +15,7 @@
    <div class="col-md-4">
               
           <!-- Profile Image -->
-          <div class="box box-default" id="a">
+          <div class="box box-info" id="a">
             <div class="box-body box-profile" id="b">
               @php 
 

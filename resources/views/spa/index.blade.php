@@ -151,7 +151,7 @@
                      
                       <td>
                      <div class="btn-group" style="">
-                        <a title="Editar" href=""  data-toggle="modal" data-target="#modal-editar-endereco" data-whateverrua="{{$endereco->rua }}"
+                        <a title="Editar" href=""  data-toggle="modal" data-target="#modal-editar-endereco"  data-backdrop="static" data-whateverrua="{{$endereco->rua }}" 
                         data-whateverdescricao="{{ $endereco->descricao }}"
                                              data-whatever="{{ $endereco->id }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                         </a>
@@ -162,7 +162,7 @@
                     </div>
 
                     <div class="btn-group" style="">
-                        <a title="Disponibilidade" href="#" data-toggle="modal" data-target="#modal-create-desponiblidade" data-whatever="{{ $endereco->id }}" class="btn btn-info btn-sm"><i class="fa  fa-calendar-plus-o"></i></a>
+                        <a title="Disponibilidade" href="#" data-toggle="modal" data-target="#modal-create-desponiblidade" data-backdrop="static" data-whatever="{{ $endereco->id }}" class="btn btn-info btn-sm"><i class="fa  fa-calendar-plus-o"></i></a>
                       </a>
                     </div>
                    

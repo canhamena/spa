@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-create-desponiblidade">
+<div class="modal fade" id="modal-edit-desponibilidade"> 
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -14,21 +14,22 @@
                          <p>{{ $error }}</p>
                      @endforeach
                  </div>
-                 @endif
+                 @endif 
                
-                <form class="form-horizontal" id="entryForm" action="{{url('agenda/store')}}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" id="entryForm" action="{{url('agenda/update')}}" method="post" enctype="multipart/form-data">
                
                   @csrf
-                     
+                  <input type="hidden" name="agenda_id" id="id">
+                  <input type="hidden" name="nome" id="nome">
                    <div class="form-group has-feedback @error('servico') has-error @enderror">
                     <label for="inputEmail" class="col-sm-3 control-label">Serviço <span class="text-danger">*</span></label>
 
                     <div class="col-sm-9">
                       <select class="form-control select2"   
-                        style="width: 100%;" name="servico" id="servico"> 
+                        style="width: 100%;" name="servico" id="servico">
 
                            <option disabled="" selected=""> selecione </option>
-                           @if(isset($spa))
+                            @if(isset($spa))
                             @foreach($spa->tiposervico as $servico)
                               <option  value="{{$servico->id}}">{{$servico->nome}}</option>
                             @endforeach
@@ -62,7 +63,7 @@
                     <label for="inputExperience" class="col-sm-3 control-label">Data inicio<span class="text-danger">*</span></label>
 
                     <div class="col-sm-9">
-                     <input type="date" name="data_inicio" class="form-control" min="<?php echo date('Y-m-d'); ?>"  required="">
+                     <input type="date" name="data_inicio" id="data_inicio" class="form-control" min="<?php echo date('Y-m-d'); ?>"  required="">
                     </div>
                     <span class="text-danger">
                         @error('data_inicio')
@@ -74,7 +75,7 @@
                     <label for="inputExperience" class="col-sm-3 control-label">Data fim</label>
 
                     <div class="col-sm-9">
-                     <input type="date" name="data_fim" class="form-control " min="<?php echo date('Y-m-d'); ?>"   >
+                     <input type="date" name="data_fim" id="data_fim" class="form-control " min="<?php echo date('Y-m-d'); ?>"   >
                     </div>
                     <span class="text-danger">
                         @error('data_fim')
@@ -88,7 +89,7 @@
                     <div class="col-sm-9">
                      <!--<input type="time" name="hora_atendimento" class="form-control">-->
 
-                     <input type="time"  name="inicio_atendimento" class="form-control timepicker" required="">
+                     <input type="time"  name="inicio_atendimento" id="inicio_atendimento" class="form-control timepicker" required="">
 
                     
                     </div>
@@ -104,7 +105,7 @@
                     <div class="col-sm-9">
                      <!--<input type="time" name="hora_atendimento" class="form-control">-->
 
-                     <input type="time"  name="fim_atendimento" class="form-control timepicker" required="">
+                     <input type="time"  name="fim_atendimento" id="fim_atendimento" class="form-control timepicker" required="">
 
                     
                     </div>
@@ -118,7 +119,7 @@
                     <label for="inputExperience" class="col-sm-3 control-label">Quantidade de cliente diário<span class="text-danger">*</span></label>
 
                     <div class="col-sm-9">
-                     <input type="number"  name="qtd_cliente" class="form-control timepicker">
+                     <input type="number"  name="qtd_cliente" id="qtd_cliente" class="form-control timepicker">
 
                     
                     </div>

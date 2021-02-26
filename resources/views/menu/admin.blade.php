@@ -1,7 +1,19 @@
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MENU</li>
     <li class="active"><a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> <span>Painel Principal</span></a></li>
-    <li class="treeview">
+        
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-calendar-check-o"></i> <span>Agenda</span>
+                <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu"> 
+                <li><a href="{{url('agenda/index')}}"><i class=""></i> Listar</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
             <a href="#">
                 <i class="fa fa fa-calendar"></i> <span>Reserva</span>
                 <span class="pull-right-container">
