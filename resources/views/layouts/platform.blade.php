@@ -585,20 +585,23 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
         $("#servico").change(function(e) {
 
             e.preventDefault();
-         
+            var array = new Array();
             var servico_id = $(this).val();
-                
+             var posto = document.getElementById('provincia_spa').value;
+                array.push(servico_id);
+                array.push(posto);
                 
                 $.ajax({
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
                     url: "{{ route('tiposervico.post') }}",
-                    data: servico_id,
+                    data: JSON.stringify(array),
                     success: function(res)
                            {       
                      if(res)
                        {
                            $("#tiposervico").empty();
+                           $("#tiposervico").append('<option disabled="" selected=""> Selecione </option>');
                           $.each(res,function(key,value){
                                     $("#tiposervico").append('<option value="'+value.id+'">'+value.nome+'</option>');
                          });
@@ -658,7 +661,9 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
         
         </script>
 
-          <script type="text/javascript">
+        
+
+      <script type="text/javascript">
 
 
         $.ajaxSetup({
@@ -671,30 +676,40 @@ $('#modal-create-desponiblidade').on('show.bs.modal', function (event) {
         $("#tiposervico").change(function(e) {
 
             e.preventDefault();
-          
+             var array= new Array();
              var tiposervico =  $(this).val();
               var posto = document.getElementById('provincia_spa').value;
-           
-               
+                array.push(tiposervico);
+                array.push(posto);
                 
                 $.ajax({
                     type: 'post',
                     contentType: 'application/json; charset=utf-8',
                     url: "{{ route('tiposervico_local.post') }}",
-                    data: {tiposervico : tiposervico,posto: },
+                    data: JSON.stringify(array),
                     success: function(res)
-                           {       
+                           {   
 
-                             //document.getElementById("data_atendimento").innerHTML = res[0].data_fim;
-                             //datae = JSON.parse(res);
-                             //$("#data_atendimento").removeAttr('required');
-                            
-                            //$("#data_atendimento").attr('min','2021-02-28');
-                            //$("#data_atendimento").attr('max','2021-02-28');
-                         console.log(res);
-                             
-                
-           }
+                         console.log(res.horas);
+                          $("#data_atendimento").removeAttr('min');
+                          $("#data_atendimento").removeAttr('max');
+                          $("#data_atendimento").attr('min',res.teste.data_inicio);
+                          $("#data_atendimento").attr('max',res.teste.data_fim);
+
+                          $("#hora_atendimento").attr('min',res.teste.atendimento_inicio);
+                          $("#hora_atendimento").attr('max',res.teste.atendimento_fim);
+                          
+                          min =0;
+                          $("#qtd_pessoa").attr('min',1);
+                          $("#qtd_pessoa").attr('max',res.num_cliente);
+                          document.getElementById("agenda_id").value = res.id_agenda;
+                          for(var i = 0, len = res.horas.length; i < len; ++i) {
+                             $("#principal").append("<small style='color: red;'>&nbsp&nbsp "+res.horas[i].hora+"&nbsp&nbsp </small>");
+                          }
+                          
+                           //$('#horas').html(res.horas);
+                     
+                        }
 
                  
                     

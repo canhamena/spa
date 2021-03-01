@@ -54,23 +54,29 @@ class AgendaAtendimentoController extends Controller
 
 
            public function tiposervico(Request $request)
-           {
-                   //$tiposervico = TipoServico::where('id',$request[0])->get();
-                   //$tiposervico = TipoServico::where('id',$request[0])->get()->first();
-                   $dados = $request->all();
-                   /*$index = count($dados)-1;
-                   $posto = $dados[$index];
-                   unset($dados[$index]); 
-                   $d = 2;
-                   //$sql = \DB::SELECT('SELECT * FROM agendaatendimento a, agendaatendimento_tiposervico ad WHERE a.id = ad.agenda_atendimento_id and a.localizacao_id = ? and "2021-02-26" = a.data_fim and ad.tipo_servico_id in (?)',[$posto,$d);
-                      $sql=\DB::table('agendaatendimento')
+           {       
+
+                  $dados = $request->all();
+                   
+                    $sql=\DB::table('agendaatendimento')
                      ->join('agendaatendimento_tiposervico', 'agendaatendimento.id', '=', 'agendaatendimento_tiposervico.agenda_atendimento_id')
-                    ->where('agendaatendimento.localizacao_id', '=',$posto)
-                    ->where('agendaatendimento.data_fim', '=',"2021-02-26")
-                    ->whereIn('agendaatendimento_tiposervico.tipo_servico_id',$dados)
-                    ->get();
-                     //->where('agendaatendimento_tiposervico.tipo_servico_id', '=',$dados)*/
-                   return response()->json($sql);
+                    ->where('agendaatendimento.localizacao_id', '=',$dados[1])
+                    ->where('agendaatendimento.data_fim', '>=',date('Y-m-d'))
+                    ->where('agendaatendimento_tiposervico.tipo_servico_id','=',$dados[0])
+                    ->get()->first();
+                    $num = $horas =null;
+                    if (isset($sql)) {
+                        $num = \DB::SELECT('select sum(mt.quantidade) as qtd from agendaatendimento a, marcacao m , marcacao_tipo_servico mt where a.id = m.agenda_id and m.id = mt.marcacao_id and a.id = ? ',[$sql->id]);
+                        $horas = \DB::SELECT('SELECT m.hora as hora FROM marcacao m , marcacao_tipo_servico mt WHERE m.id = mt.marcacao_id and m.agenda_id = ? and mt.tipo_servico_id = ?',[$sql->id,$dados[0]]);
+                    }
+                   
+                    $qtd = 0; 
+                   if ($num == null && isset($sql)) {
+                       $qtd = $sql->qtd_cliente;
+                    }elseif(!$num == null){
+                       $qtd = $sql->qtd_cliente - $num[0]->qtd;
+                    }
+                     return response()->json(['teste'=>$sql,'num_cliente'=>$qtd,'id_agenda'=>$sql->id,'horas'=>$horas]);
            }
 
 
