@@ -12,13 +12,15 @@ use App\Http\Requests\StoreMarcacaoRequest;
 use App\Http\Helpers\AppHelper;
 use App\Models\MarcacaoTipoServico;
 use App\Models\Auditoria;
+use App\Models\TipoServicoPagamento;
 
 class ReservaController extends Controller 
 {
     public function index()
     {  
+     
         if (Auth()->user()->role->id == 1) {
-             $reservas = Marcacao::all();
+             $reservas = Marcacao::OrderBy('id','desc')->get();
            $provincias = \DB::select('select distinct(p.nome), p.nome as nome , p.id  as id from provincia p,localizacao l,municipio m where p.id = m.provincia_id and l.municipio_id = m.id');
           }elseif(Auth()->user()->role->id == 2)
          {   
@@ -36,14 +38,15 @@ class ReservaController extends Controller
 
     public function store(StoreMarcacaoRequest $request)
     {
-    	     $local = localizacao::Where('codigo',$request->localidade)->get()->first();
+          
+           $horas = \DB::SELECT('SELECT m.hora as hora FROM marcacao m , marcacao_tipo_servico mt WHERE m.id = mt.marcacao_id and m.agenda_id = ? and mt.tipo_servico_id = ? and m.hora = ?',[$request->agenda_id,$request->tiposervico,$request->data_atendimento]);
+           if (isset($horas)) {
+                 return  redirect()->route('reserva.index')->with('erro', 'Já existe uma  reserva com esse horário..!');
+           }
+          
+    	     $local = localizacao::Where('id',$request->localidade)->get()->first();
            if (isset( $local)) {
            
-    	     if (count($request->tiposervico) != count($request->qtd_pessoa)) {
-    	     	  	return  redirect()->route('reserva.index')->with('mensagem', 'Marcação não registada. a quantidade do campo tipo de serviço tem que ser igual a quantidade campo quantidade de pessoa ..!');
-    	       }
-
-              
               $marcacao = new Marcacao();
               $cliente = new Cliente();
               $cliente->nome = $request->nome;
@@ -51,29 +54,29 @@ class ReservaController extends Controller
               $cliente->telefone = $request->telefone;
               $cliente->save();
 
-           
-
-              $marcacao->data_atendimento = AppHelper::convertedmY2Ymd($request->data_atendimento);
+          
+              $marcacao->data_atendimento = $request->data_atendimento;
               $marcacao->hora = $request->hora_atendimento;
               $marcacao->estado = "M";
               $marcacao->cliente_id = $cliente->id;
               $marcacao->localizacao_id = $local->id;
+              $marcacao->agenda_id = $request->agenda_id;
               $marcacao->save();
 
-             for ($i=0; $i <count($request->tiposervico) ; $i++) { 
+             
              	$marcaoa_tipo = new MarcacaoTipoServico();
-             	$marcaoa_tipo->tipo_servico_id = $request->tiposervico[$i];
-             	$marcaoa_tipo->quantidade = $request->qtd_pessoa[$i];
+             	$marcaoa_tipo->tipo_servico_id = $request->tiposervico;
+             	$marcaoa_tipo->quantidade = $request->qtd_pessoa;
              	$marcaoa_tipo->marcacao_id = $marcacao->id;
              	$marcaoa_tipo->save();
-              }
+              
                $posto = isset(auth()->user()->posto) ? auth()->user()->posto->id : null;
                Auditoria::create(['accao' =>" Registou reserva do cliente ".$marcacao->cliente->nome,'user_id'=>auth()->user()->id,'localizacao_id'=>$posto]);
-              	return  redirect()->route('reserva.index')->with('mensagem', 'Marcação registado com sucesso ..!');
+              	return  redirect()->route('reserva.index')->with('mensagem', 'Reserva registada com sucesso ..!');
               # code...
            }
 
-           return  redirect()->route('reserva.index')->with('erro', 'Marcação não registado. Endereço não encontrado ..!');
+           return  redirect()->route('reserva.index')->with('erro', 'Reserva não registado. Endereço não encontrado ..!');
     	    
     }
 
@@ -119,8 +122,8 @@ class ReservaController extends Controller
               $marcacao = Marcacao::where('id',base64_decode($marcacao_id))->get()->first();
               
             if ($marcacao != null) {
-                    
-                    return  view('marcacao.show',compact('marcacao'));
+                    $tipopagamentos = \DB::table('tipo_pagamento')->get();
+                    return  view('marcacao.show',compact('marcacao','tipopagamentos'));
               }
                  return  redirect()->route('reserva.index')->with('erro', 'Marcação não encontrado ..!');
     }

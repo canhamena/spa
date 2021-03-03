@@ -58,7 +58,7 @@ class Users extends Component
         User::create(['role_id' =>$this->role_id,
                       'name' => $this->name,
                       'email' => $this->email,
-                      'password' => Hash::make('12345678'),
+                      'password' => Hash::make('1234'),
                       'localizacao_id' => $this->localizacao_id,
                       'status'=>1
                     ]);

@@ -27,7 +27,7 @@
 
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-dollar"></i> <span>Pagamento</span>
+                <i class="fa fa-money"></i> <span>Pagamento</span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span> 

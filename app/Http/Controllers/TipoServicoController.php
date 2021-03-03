@@ -144,6 +144,21 @@ class TipoServicoController extends Controller
       public function popular_tiposervico(Request $request)
       {
            $tiposervico = TipoServico::where('servico_id',$request[0])->get();
-           return response()->json($tiposervico);
+           $sql=\DB::SELECT('select DISTINCT(tp.id) ,tp.id as id , tp.nome as nome, SUM(mtp.quantidade) as qtd,a.qtd_cliente qtd_cliente from servico s, tipo_servico tp, agendaatendimento_tiposervico ats, agendaatendimento a , marcacao_tipo_servico mtp, marcacao m where s.id = tp.servico_id and ats.tipo_servico_id = tp.id and a.id = ats.agenda_atendimento_id and s.id = ? and a.localizacao_id = ? and a.id = m.agenda_id and m.id = mtp.marcacao_id and  mtp.tipo_servico_id = tp.id and a.data_fim>=?  GROUP by tp.id HAVING qtd <qtd_cliente',[$request[0],$request[1],date('Y-m-d')]);
+                         /*->join('tiposervico','servico.id','=','tiposervico.servico_id')
+                         join('agendaatendimento_tiposervico','agendaatendimento_tiposervico.tiposervico_id','=','tiposervico.id')
+                         ->join('agendaatendimento','agendaatendimento.id','=','agendaatendimento_tiposervico.agenda_atendimento_id')
+                          ->where('agendaatendimento.localizacao_id', '=',$dados[1])
+                          ->where('agendaatendimento.data_fim', '>=',date('Y-m-d'))
+                          ->where('servico.id', '=',$request[0])->get();
+           /*$sql=\DB::table('agendaatendimento')
+                     ->join('agendaatendimento_tiposervico', 'agendaatendimento.id', '=', 'agendaatendimento_tiposervico.agenda_atendimento_id')
+                     ->join('tiposervico')
+                    ->where('agendaatendimento.localizacao_id', '=',$dados[1])
+                    ->where('agendaatendimento.data_fim', '>=',date('Y-m-d'))
+                    ->where('agendaatendimento_tiposervico.tipo_servico_id','=',$dados[0])
+                    ->get()->first();*/
+         
+           return response()->json($sql);
       }
 }

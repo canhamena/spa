@@ -44,6 +44,7 @@
     .cabeca {
         background-color: #787878;
         color: black;
+        font-weight:bold;
         }
     
     .geral{
@@ -85,47 +86,49 @@
         </tr>
     </table>
     <br><br>
-    <table class="geral princiapl" style="width: 100%">
+    <table class="geral principal">
         <tr class="cabeca">
             <td colspan="4"  style="text-align: center;">POSTO</td> 
         </tr>
     
         <tr class="cabeca">
-            <td  style="text-align: left; width:10px;" >Posto</td>
-            <td width="100" style="text-align: left;">Provincia</td>
-            <td style="text-align: left; width:150px;" >Município</td>
-            <td width="200" style="text-align: left;">Rua</td>
+            <td >Posto</td>
+            <td width="100" >Provincia</td>
+            <td  >Município</td>
+            <td width="100" >Rua</td>
         </tr>
         
             @foreach($spa->endereco as $endereco)
-            <tr class="principal">
-            <td> {{  $endereco->codigo }}</td>
-            <td> {{$endereco->municipio->provincia->nome}}</td>
-            <td> {{$endereco->municipio->nome}} </td>
-            <td> {{$endereco->rua}} </td>
+            <tr class="">
+                <td> {{  $endereco->codigo }}</td>
+                <td> {{$endereco->municipio->provincia->nome}}</td>
+                <td> {{$endereco->municipio->nome}} </td>
+                <td> {{$endereco->rua}} </td>
             </tr>
             @endforeach
     </table>
     <br><br>
-    <table class="geral principal" style="width: 100%">
+
+    <table class="geral principal">
         <tr class="cabeca">
             <td colspan="4" style="text-align: center;">CONTACTOS</td> 
         </tr>
         <tr class="cabeca">
-            <td  style="text-align: left;" width="10">Nº</td>
-            <td width="40" style="text-align: right;">Telefone</td>
-            <td style="text-align: right;" width="40">Telemovel</td>
-            <td width="200" style="text-align: left;">E-mail</td>
+            <td >Nº</td>
+            <td  >Telefone</td>
+            <td  >Telemovel</td>
+            <td  >E-mail</td>
         </tr>
         @foreach($contactos as $contacto)
             <tr>
-                <td>{{$contacto->localizacao_id}}</td>
+                <td>{{  $loop->index +1 }} </td>
                 <td>{{$contacto->telefone}}</td>
                 <td>{{$contacto->telemovel}}</td>
                 <td>{{$contacto->email}}</td>
             </tr>
         @endforeach
     </table>
+
     <br><br>
     <table class="geral principal">
         <tr class="cabeca">

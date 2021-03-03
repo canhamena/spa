@@ -30,7 +30,7 @@ class StoreMarcacaoRequest extends FormRequest
              'localidade' => 'required',
              'servico' => 'required',
              'tiposervico' => 'required',
-             'qtd_pessoa' => 'required',
+             'qtd_pessoa' => 'required|min:1',
              'data_atendimento' => 'required'
              
         ];

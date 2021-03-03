@@ -69,6 +69,15 @@ class Marcacao extends Model
     }
 
 
+    public function GraficoGeralPosto($posto)
+    {
+        $ano = date('Y');
+        $meses = $this->meses($ano);
+        $marcacao = \DB::SELECT('select Month(created_at) as mes , estado from marcacao where Year(created_at) = ? and localizacao_id = ? ',[$ano,$posto]);
+        $this->organizar($marcacao, $meses);
+
+    }
+
     public function GraficoFiltro($posto,$ano)
     {
         $ano = $ano == null ? date('Y') : $ano;
@@ -84,4 +93,24 @@ class Marcacao extends Model
         $this->organizar($marcacao,$meses);
 
     }
+
+
+      public function GraficoFiltroPosto($posto,$ano,$posto_id)
+    {
+        $ano = $ano == null ? date('Y') : $ano;
+        $posto = Localizacao::where('codigo',$posto)->get()->first();
+        if (empty($posto) && !isset($posto)) {
+            $marcacao = \DB::SELECT('select Month(created_at) as mes , estado from marcacao where Year(created_at) = ? and localizacao_id = ? ',[$ano,$posto_id]);
+        }else{
+             
+             $marcacao = \DB::SELECT('select Month(created_at) as mes , estado from marcacao where Year(created_at) = ? and localizacao_id = ?',[$ano,$posto->id,$posto_id]); 
+        }
+        $meses = $this->meses($ano);
+       
+        $this->organizar($marcacao,$meses);
+
+    }
+
+
+    
 }

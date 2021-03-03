@@ -70,7 +70,7 @@
                @if(Auth()->user()->role->id == 1)
                  <div class="form-group has-feedback @error('provincia_spa') has-error @enderror">
                     <label for="inputEmail" class="col-sm-2 control-label">Província<span class="text-danger">*</span></label>
-
+                   <input type="hidden" name="agenda_id" id="agenda_id">
                     <div class="col-sm-10">
                       <select class="form-control select2" 
                         style="width: 100%;" name="provincia_spa" id="provincia_spa">
@@ -146,7 +146,7 @@
                   <div class="form-group has-feedback @error('tiposervico') has-error @enderror">
                     <label for="inputExperience" class="col-sm-2 control-label">Tipo de serivço<span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                       <select class="form-control select2" multiple="multiple" name="tiposervico[]" id="tiposervico" 
+                       <select class="form-control select2"  name="tiposervico" id="tiposervico" 
                         style="width: 100%;">
                        
                              
@@ -163,17 +163,8 @@
                    <div class="form-group has-feedback @error('qtd_pessoa') has-error @enderror">
                     <label for="inputExperience" class="col-sm-2 control-label">Quantidade de pessoas<span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                       <select class="form-control select2" multiple="multiple" name="qtd_pessoa[]" 
-                        style="width: 100%;" id="qtd_pessoa" required="">
-                      
-                              <option value="1">Uma</option>
-                              <option value="2">Duais</option>
-                              <option value="3">Três</option>
-                              <option value="4">Quatro</option>
-                              <option value="5">Cinco</option>
+                      <input type="number" class="form-control" style="width: 100%;" id="qtd_pessoa" name="qtd_pessoa" max="" min="">
                        
-                       </select>
-
                     </div>
                     <span class="text-danger">
                         @error('qtd_pessoa')
@@ -185,7 +176,7 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Data<span class="text-danger">*</span></label>
 
                     <div class="col-sm-10">
-                     <input type="text" name="data_atendimento" class="form-control" id="datepicker" required="" autocomplete="nope">
+                     <input type="date" name="data_atendimento" class="form-control" id="data_atendimento" max="" min="">
                     </div>
                     <span class="text-danger">
                         @error('data_atendimento')
@@ -197,9 +188,8 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Hora</label>
 
                     <div class="col-sm-10">
-                     <!--<input type="time" name="hora_atendimento" class="form-control">-->
-
-                     <input type="time"  name="hora_atendimento" class="form-control timepicker" autocomplete="nope">
+                     
+                     <input type="time"  name="hora_atendimento" id="hora_atendimento" min="" max="" class="form-control">
 
                     
                     </div>
@@ -216,6 +206,9 @@
             
             </div>
             <!-- /.tab-content -->
+          </div>
+          <div id="principal" style="">
+               <h4>Horas já marcadas(indisponível)</h4>
           </div>
               </div>
               <div class="modal-footer" style="margin-left: 65%;">
@@ -272,7 +265,7 @@ $("#entryForm").validate({
 
     });
  //Date picker
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
       autoclose: true
     });
      //Timepicker

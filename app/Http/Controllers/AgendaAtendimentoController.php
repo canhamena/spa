@@ -109,13 +109,34 @@ class AgendaAtendimentoController extends Controller
         }
 
 
-        public function tiposervico(Request $request)
-        {
-                //$tiposervico = TipoServico::where('id',$request[0])->get();
-                $tiposervico = TipoServico::all();
-                $dados = $request[0];
-                //$dados = [1,34,4];
-                return response()->json($dados);
-        }
-             	
+           public function tiposervico(Request $request)
+           {       
+
+                  $dados = $request->all();
+                   
+                    $sql=\DB::table('agendaatendimento')
+                     ->join('agendaatendimento_tiposervico', 'agendaatendimento.id', '=', 'agendaatendimento_tiposervico.agenda_atendimento_id')
+                    ->where('agendaatendimento.localizacao_id', '=',$dados[1])
+                    ->where('agendaatendimento.data_fim', '>=',date('Y-m-d'))
+                    ->where('agendaatendimento_tiposervico.tipo_servico_id','=',$dados[0])
+                    ->get()->first();
+                    $num = $horas =null;
+                    if (isset($sql)) {
+                        $num = \DB::SELECT('select sum(mt.quantidade) as qtd from agendaatendimento a, marcacao m , marcacao_tipo_servico mt where a.id = m.agenda_id and m.id = mt.marcacao_id and a.id = ? ',[$sql->id]);
+                        $horas = \DB::SELECT('SELECT m.hora as hora FROM marcacao m , marcacao_tipo_servico mt WHERE m.id = mt.marcacao_id and m.agenda_id = ? and mt.tipo_servico_id = ?',[$sql->id,$dados[0]]);
+                    }
+                   
+                    $qtd = 0; 
+                   if ($num == null && isset($sql)) {
+                       $qtd = $sql->qtd_cliente;
+                    }elseif(!$num == null){
+                       $qtd = $sql->qtd_cliente - $num[0]->qtd;
+                    }
+                     return response()->json(['teste'=>$sql,'num_cliente'=>$qtd,'id_agenda'=>$sql->id,'horas'=>$horas]);
+           }
+
+
+              
+
+              	
 }

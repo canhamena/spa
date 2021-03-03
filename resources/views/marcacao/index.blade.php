@@ -32,7 +32,7 @@
       <div class="col-lg-4 col-xs-6"> 
         <!-- small box -->
         <a href="" >
-            <div class="small-box bg-blue">
+            <div class="small-box bg-orange">
                 <div class="inner" style="padding-right: 100px">
                     <h3 class="text-white">{{count($reservas)}}</h3>
                     <p>Total de Reservas</p>
