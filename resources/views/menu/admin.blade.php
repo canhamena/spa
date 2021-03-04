@@ -79,6 +79,6 @@
              
             </ul>
         </li>
-        <li ><a href="{{ route('auditoria.index') }}"><i class="fa fa-map-o"></i> <span>Auditória</span></a></li>
+        <li ><a href="{{ route('auditoria.index') }}"><i class="fa fa-map-o"></i> <span>Auditoria</span></a></li>
         
 </ul>

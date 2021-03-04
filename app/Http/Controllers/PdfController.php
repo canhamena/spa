@@ -31,7 +31,7 @@ class PdfController extends Controller
     public function utilizador()
     {
     	if (Auth()->user()->role->id == 1) {
-             $users = User::OrderBy('name','asc')->get();
+             $users = User::OrderBy('name','asc')->get(); 
 
         }elseif(Auth()->user()->role->id == 2) 
         {   $users = User::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('name','asc')->get();
@@ -83,7 +83,7 @@ class PdfController extends Controller
                                     FROM marcacao m, cliente c
                                     WHERE c.id=m.cliente_id
                                     ORDER BY c.nome ASC');
-            $dizer = 'RESERVAS';
+            $dizer = 'Reservas';
         }
     
     	$pdf = PDF::loadView('pdf.reserva',compact('reservas','dizer'))->setPaper('a3',"landscape");
@@ -159,7 +159,7 @@ class PdfController extends Controller
         }
 
 
-    	$pdf = PDF::loadView('pdf.tipospa',compact('tipospa'))->setPaper('a3',"landscape");
+    	$pdf = PDF::loadView('pdf.tipospa',compact('tipospa'))->setPaper('a4',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true);
         return $pdf->stream();
     	
@@ -177,7 +177,7 @@ class PdfController extends Controller
         }
 
 
-    	$pdf = PDF::loadView('pdf.servico',compact('servicos'))->setPaper('a3',"landscape");
+    	$pdf = PDF::loadView('pdf.servico',compact('servicos'))->setPaper('a4',"landscape");
          $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
         return $pdf->stream();
     	
@@ -187,7 +187,7 @@ class PdfController extends Controller
     public function tiposervico()
     {
     	if (Auth()->user()->role->id == 1) {
-             $tiposervicos = TipoServico::OrderBy('nome','asc')->get();
+             $tiposervicos = TipoServico::OrderBy('nome','asc')->get(); 
 
         }elseif(Auth()->user()->role->id == 2)
         {   $tiposervicos = TipoServico::where('localizacao_id',Auth()->user()->posto->id)->OrderBy('nome','asc')->get();
@@ -212,7 +212,7 @@ class PdfController extends Controller
 
         //print_r($pagamento->tipopagamento->tipo);
         
-    	$pdf = PDF::loadView('pdf.factura',compact('pagamento'))->setPaper('a3',"landscape");
+    	$pdf = PDF::loadView('pdf.factura',compact('pagamento'))->setPaper('a4',"landscape");
         $pdf->getDOMPdf()->set_option('isPhpEnabled', true); 
         return $pdf->stream();
     }

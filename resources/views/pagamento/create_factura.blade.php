@@ -93,7 +93,7 @@
                         <tr>
                             <th>#</th>
                             <th>Tipo de serviço </th>
-                            <th>Qunatidade</th>
+                            <th>Quantidade</th>
                             <th>Preço unitário</th>
                             <th>Total</th>
                             <th style="text-align: center;">Operação</th>
@@ -158,7 +158,7 @@
                 <input type="hidden" name="pagamento_id" value="{{$pagamento->id}}">
             <div class="col-md-6">
               <div class="form-group has-feedback @error('tipo_servico') has-error @enderror">
-                <label>Tipo de serviços<span class="text-danger">*</span></label>
+                <label>Tipos de serviço<span class="text-danger">*</span></label>
                 <select class="form-control select2" name="tipo_servico" style="width: 100%;" required="">
                   <option selected="selected" disabled="">Selecione</option>
                   @foreach($tipo_servicos as $tipo_servico)
@@ -179,7 +179,7 @@
             <!-- /.col -->
             <div class="col-md-6">
               <div class="form-group has-feedback @error('qtd') has-error @enderror">
-                <label>Qunatidade<span class="text-danger">*</span></label>
+                <label>Quantidade<span class="text-danger">*</span></label>
                 <input type="number" name="qtd" class="form-control" min="1" required="" >
               </div>
               <span class="text-danger">
